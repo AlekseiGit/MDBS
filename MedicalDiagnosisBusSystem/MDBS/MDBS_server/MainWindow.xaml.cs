@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Core;
 using DataModels;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace MDBS_server
 {
@@ -23,6 +24,17 @@ namespace MDBS_server
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static BitmapImage Image_0;
+        public static BitmapImage Image_1;
+        public static BitmapImage Image_2;
+        public static BitmapImage Image_3;
+        public static BitmapImage Image_4;
+        public static BitmapImage Image_5;
+        public static BitmapImage Image_6;
+        public static BitmapImage Image_7;
+        public static BitmapImage Image_8;
+        public static BitmapImage Image_9;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +52,18 @@ namespace MDBS_server
             }
 
             DialogGrid.RowHeight = 70;
+            RefreshInformation();
+        }
+
+        public void RefreshInformation()
+        {
+            Incoming.Content += " (27/511)";
+            Outgoing.Content += " (27/511)";
+            NeedAnswer.Content += " (27/511)";
+            Archive.Content += " (27/511)";
+
+            NeedAnswer.Background = Brushes.LightGreen;
+
         }
 
         private void ItemsSourceChanged(object sender, EventArgs e)
@@ -72,28 +96,21 @@ namespace MDBS_server
             var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
             var messages = new List<Message>();
 
-            switch (categoryName)
+            if (categoryName.Contains("Входящие"))
             {
-                case "Входящие":
-                    {
-                        messages = core.GetIncomingMessages();
-                        break;
-                    }
-                case "Исходящие":
-                    {
-                        messages = core.GetOutgoingMessages();
-                        break;
-                    }
-                case "Требуется ответ":
-                    {
-                        messages = core.GetNeedAnswerMessages();
-                        break;
-                    }
-                case "Архив":
-                    {
-                        messages = core.GetArchiveMessages();
-                        break;
-                    }
+                messages = core.GetIncomingMessages();
+            }
+            else if (categoryName.Contains("Исходящие"))
+            {
+                messages = core.GetOutgoingMessages();
+            }
+            else if (categoryName.Contains("Требуется ответ"))
+            {
+                messages = core.GetNeedAnswerMessages();
+            }
+            else if (categoryName.Contains("Архив"))
+            {
+                messages = core.GetArchiveMessages();
             }
 
             FillMessageGrid(messages);
@@ -154,6 +171,32 @@ namespace MDBS_server
             }
         }
 
+        private void ShowFullSizeImage(object sender, RoutedEventArgs e)
+        {
+            if (DialogGrid.SelectedItems.Count == 1)
+            {
+                AnswerWindow answerWindow = new AnswerWindow();
+                var dialogRow = DialogGrid.SelectedItems[0] as Dialog;
+
+                if (dialogRow.From == new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"))
+                    return;
+
+                answerWindow.ParentMessageId = dialogRow.ID;
+                answerWindow.PatientId = dialogRow.PatientID;
+                answerWindow.PatientName = dialogRow.PatientName;
+                answerWindow.FromId = new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+                answerWindow.FromName = dialogRow.FromName;
+                answerWindow.ToId = dialogRow.From;
+
+                if (answerWindow.ShowDialog() == true)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
+
         private void MessageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var core = new CoreFunc();
@@ -161,7 +204,12 @@ namespace MDBS_server
 
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                var messageId = (e.AddedItems[0] as Message).ID;
+                var message = e.AddedItems[0] as Message;
+
+                if (message == null)
+                    return;
+
+                var messageId = message.ID;
 
                 dialog = core.GetDialog((Guid)messageId);
 
@@ -241,16 +289,26 @@ namespace MDBS_server
         {
             var core = new CoreFunc();
 
+            ImageControl0.Source = null;
             ImageControl1.Source = null;
             ImageControl2.Source = null;
             ImageControl3.Source = null;
             ImageControl4.Source = null;
             ImageControl5.Source = null;
+            ImageControl6.Source = null;
+            ImageControl7.Source = null;
+            ImageControl8.Source = null;
+            ImageControl9.Source = null;
 
             if (e.AddedItems != null && e.AddedItems.Count > 0)
             {
-                var messageId = (e.AddedItems[0] as Dialog).ID;
-                var patientId = (e.AddedItems[0] as Dialog).PatientID;
+                var dialog = e.AddedItems[0] as Dialog;
+
+                if (dialog == null)
+                    return;
+
+                var messageId = dialog.ID;
+                var patientId = dialog.PatientID;
 
                 var patientInfo = core.GetPatientInfo((Guid)patientId);
                 var images = core.GetAttachments((Guid)messageId);
@@ -267,31 +325,56 @@ namespace MDBS_server
                 {
                     if (images.ElementAtOrDefault(0) != null)
                     {
-                        BitmapImage img = ToImage(images[0].Data);
-                        ImageControl1.Source = img;
+                        Image_0 = ToImage(images[0].Data);
+                        ImageControl0.Source = Image_0;
                     }
 
                     if (images.ElementAtOrDefault(1) != null)
                     {
-                        BitmapImage img = ToImage(images[1].Data);
-                        ImageControl2.Source = img;
+                        Image_1 = ToImage(images[1].Data);
+                        ImageControl1.Source = Image_1;
                     }
 
                     if (images.ElementAtOrDefault(2) != null)
                     {
-                        BitmapImage img = ToImage(images[2].Data);
-                        ImageControl3.Source = img;
+                        Image_2 = ToImage(images[2].Data);
+                        ImageControl2.Source = Image_2;
                     }
 
                     if (images.ElementAtOrDefault(3) != null)
                     {
-                        BitmapImage img = ToImage(images[3].Data);
-                        ImageControl4.Source = img;
+                        Image_3 = ToImage(images[3].Data);
+                        ImageControl3.Source = Image_3;
                     }
                     if (images.ElementAtOrDefault(4) != null)
                     {
-                        BitmapImage img = ToImage(images[4].Data);
-                        ImageControl5.Source = img;
+                        Image_4 = ToImage(images[4].Data);
+                        ImageControl4.Source = Image_4;
+                    }
+                    if (images.ElementAtOrDefault(5) != null)
+                    {
+                        Image_5 = ToImage(images[5].Data);
+                        ImageControl5.Source = Image_5;
+                    }
+                    if (images.ElementAtOrDefault(6) != null)
+                    {
+                        Image_6 = ToImage(images[6].Data);
+                        ImageControl6.Source = Image_6;
+                    }
+                    if (images.ElementAtOrDefault(7) != null)
+                    {
+                        Image_7 = ToImage(images[7].Data);
+                        ImageControl7.Source = Image_7;
+                    }
+                    if (images.ElementAtOrDefault(8) != null)
+                    {
+                        Image_8 = ToImage(images[8].Data);
+                        ImageControl8.Source = Image_8;
+                    }
+                    if (images.ElementAtOrDefault(9) != null)
+                    {
+                        Image_9 = ToImage(images[9].Data);
+                        ImageControl9.Source = Image_9;
                     }
                 }
             }
@@ -308,6 +391,33 @@ namespace MDBS_server
                 image.StreamSource = ms;
                 image.EndInit();
                 return image;
+            }
+        }
+
+        private void ImageControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
+            {
+                var source = e.Source as FrameworkElement;
+
+                if (source != null)
+                {
+                    string elementName = source.Name;
+
+                    ImageWindow imageWindow = new ImageWindow();
+
+                    FieldInfo field = typeof(MainWindow).GetField("Image_" + elementName.Substring(12));
+                    var image = (BitmapImage)field.GetValue(null);
+                    imageWindow.FullImage.Source = image;
+                    imageWindow.WindowState = WindowState.Maximized;
+
+                    if (imageWindow.ShowDialog() == true)
+                    {
+                    }
+                    else
+                    {
+                    }
+                }
             }
         }
     }

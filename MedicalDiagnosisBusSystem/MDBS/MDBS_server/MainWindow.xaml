@@ -37,10 +37,10 @@
             </ComboBox-->
         </ToolBar>
         <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
-            <ListBoxItem Content="Входящие" Height="30"/>
-            <ListBoxItem Content="Исходящие" Height="30"/>
-            <ListBoxItem Content="Требуется ответ" Height="30"/>
-            <ListBoxItem Content="Архив" Height="30"/>
+            <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
+            <ListBoxItem Name="Outgoing" Content="Исходящие" Height="30"/>
+            <ListBoxItem Name="NeedAnswer" Content="Нужен ответ" Height="30"/>
+            <ListBoxItem Name="Archive" Content="Архив" Height="30"/>
         </ListBox>
         <Grid ShowGridLines="False">
             <Grid.RowDefinitions>
@@ -86,19 +86,34 @@
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="ImageControl1" />
+                        <Image Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="ImageControl2" />
+                        <Image Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="ImageControl3" />
+                        <Image Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="ImageControl4" />
+                        <Image Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="ImageControl5" />
+                        <Image Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
+                    </Border>
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                        <Image Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
+                    </Border>
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                        <Image Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
+                    </Border>
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                        <Image Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
+                    </Border>
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                        <Image Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
+                    </Border>
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                        <Image Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                 </DockPanel>
             </ScrollViewer>
