@@ -24,6 +24,8 @@ namespace MDBS_server
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Guid UserID;
+
         public static BitmapImage Image_0;
         public static BitmapImage Image_1;
         public static BitmapImage Image_2;
@@ -38,6 +40,16 @@ namespace MDBS_server
         public MainWindow()
         {
             InitializeComponent();
+
+            while (UserID == Guid.Empty)
+            {
+                var user = Authorization();
+
+                if (user != Guid.Empty)
+                {
+                    UserID = user;
+                }
+            }
 
             //var core = new CoreFunc();
             //var messages = core.GetIncomingMessages();
@@ -418,6 +430,20 @@ namespace MDBS_server
                     {
                     }
                 }
+            }
+        }
+
+        private Guid Authorization()
+        {
+            LoginWindow loginWindow = new LoginWindow();
+
+            if (loginWindow.ShowDialog() == true)
+            {
+                return LoginWindow.UserID;
+            }
+            else
+            {
+                return Guid.Empty;
             }
         }
     }

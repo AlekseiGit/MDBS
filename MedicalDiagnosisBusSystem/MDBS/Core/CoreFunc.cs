@@ -486,5 +486,34 @@ namespace Core
 
             return attachments;
         }
+
+        public Guid CheckUser(string login, string passwordHash)
+        {
+            Guid UserId = Guid.Empty;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_check_user";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@login", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+
+                cmd.Parameters["@login"].Value = login;
+                cmd.Parameters["@passwordHash"].Value = passwordHash;
+                cmd.Parameters["@user_id"].Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+
+                UserId = (Guid)cmd.Parameters["@user_id"].Value;
+            }
+
+            return UserId;
+        }
     }
 }
