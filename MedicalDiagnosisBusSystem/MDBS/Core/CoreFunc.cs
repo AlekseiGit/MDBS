@@ -12,8 +12,16 @@ namespace Core
 {
     public class CoreFunc
     {
-        public static string ConnectionString = @"Data Source=ALEX-PC\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
+        //public static string ConnectionString = @"Data Source=ALEX-PC\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
+        public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
         public SqlConnection DBConnection;
+        public Guid UserID;
+
+        public CoreFunc(Guid userId)
+        {
+            DBConnection = new SqlConnection(ConnectionString);
+            UserID = userId;
+        }
 
         public CoreFunc()
         {
@@ -30,7 +38,7 @@ namespace Core
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
 
-            var userId = new SqlParameter("@user_id", "5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+            var userId = new SqlParameter("@user_id", UserID);
 
             sqlCmd.Parameters.Add(userId);
 
@@ -74,7 +82,7 @@ namespace Core
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
 
-            var userId = new SqlParameter("@user_id", "5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+            var userId = new SqlParameter("@user_id", UserID);
 
             sqlCmd.Parameters.Add(userId);
 
@@ -118,7 +126,7 @@ namespace Core
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
 
-            var userId = new SqlParameter("@user_id", "5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+            var userId = new SqlParameter("@user_id", UserID);
 
             sqlCmd.Parameters.Add(userId);
 
@@ -162,7 +170,7 @@ namespace Core
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
 
-            var userId = new SqlParameter("@user_id", "5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+            var userId = new SqlParameter("@user_id", UserID);
 
             sqlCmd.Parameters.Add(userId);
 
@@ -448,9 +456,18 @@ namespace Core
             {
                 patientInfo.ID = (Guid)row["ID"];
                 patientInfo.FullName = row["FullName"].ToString();
-                patientInfo.Sex = (int)row["Sex"];
-                patientInfo.BirthDate = (DateTime)row["BirthDate"];
+                if ((int)row["Sex"] == 1)
+                {
+                    patientInfo.Sex = "М";
+                }
+                else if ((int)row["Sex"] == 2)
+                {
+                    patientInfo.Sex = "Ж";
+                }
+                patientInfo.Weight = (int)row["Weight"];
+                patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString();
                 patientInfo.MedicalCardNumber = row["MedicalCardNumber"].ToString();
+                patientInfo.CurrentTherapy = row["CurrentTherapy"].ToString();
                 patientInfo.Info = row["Info"].ToString();
                 patientInfo.Note = row["Note"].ToString();
             }
@@ -485,6 +502,50 @@ namespace Core
             }
 
             return attachments;
+        }
+
+        public List<Patient> GetPatients()
+        {
+            List<Patient> patients = new List<Patient>();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_patients";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                Patient patient = new Patient();
+
+                patient.ID = (Guid)row["ID"];
+                patient.FullName = row["FullName"].ToString();
+                if ((int)row["Sex"] == 1)
+                {
+                    patient.Sex = "М";
+                }
+                else if ((int)row["Sex"] == 2)
+                {
+                    patient.Sex = "Ж";
+                }
+                patient.Weight = (int)row["Weight"];
+                patient.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
+                patient.MedicalCardNumber = row["MedicalCardNumber"].ToString();
+                patient.CurrentTherapy = row["CurrentTherapy"].ToString();
+                patient.Info = row["Info"].ToString();
+                patient.Note = row["Note"].ToString();
+
+                patients.Add(patient);
+            }
+
+            DBConnection.Close();
+
+            return patients;
         }
 
         public Guid CheckUser(string login, string passwordHash)

@@ -9,9 +9,11 @@ namespace DataModels
     {
         public Guid ID { get; set; }
         public string FullName { get; set; }
-        public int Sex { get; set; }
-        public DateTime BirthDate { get; set; }
+        public string Sex { get; set; }
+        public int Weight { get; set; }
+        public string BirthDate { get; set; }
         public string MedicalCardNumber { get; set; }
+        public string CurrentTherapy { get; set; }
         public string Info { get; set; }
         public string Note { get; set; }
     }

@@ -93,5 +93,5 @@ BEGIN
 		end
 	end
 	
-	select distinct * from #msg order by [MessageDate] asc
+	select distinct * from #msg order by [MessageDate] desc
 END;

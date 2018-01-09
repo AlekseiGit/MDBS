@@ -46,29 +46,54 @@ namespace MDBS_server
             get { return DiagnosisBox.Text; }
         }
 
-        public string Img_one
+        public string Img_0
+        {
+            get { return Image0.Source.ToString(); }
+        }
+
+        public string Img_1
         {
             get { return Image1.Source.ToString(); }
         }
 
-        public string Img_two
+        public string Img_2
         {
             get { return Image2.Source.ToString(); }
         }
 
-        public string Img_three
+        public string Img_3
         {
             get { return Image3.Source.ToString(); }
         }
 
-        public string Img_four
+        public string Img_4
         {
             get { return Image4.Source.ToString(); }
         }
 
-        public string Img_five
+        public string Img_5
         {
             get { return Image5.Source.ToString(); }
+        }
+
+        public string Img_6
+        {
+            get { return Image6.Source.ToString(); }
+        }
+
+        public string Img_7
+        {
+            get { return Image7.Source.ToString(); }
+        }
+
+        public string Img_8
+        {
+            get { return Image8.Source.ToString(); }
+        }
+
+        public string Img_9
+        {
+            get { return Image9.Source.ToString(); }
         }
 
         private void AttachImage_Click(object sender, RoutedEventArgs e)

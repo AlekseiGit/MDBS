@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Телемедицына" Height="404" Width="699">
+        Title="Телемедицина" Height="404" Width="699">
     <DockPanel Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
+                <MenuItem Header="_Пациенты" Click="ShowPatients"/>
+                <MenuItem Header="_Добавить пациента" Click="NewMessage"/>
+                <Separator />
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
                 <Separator />
@@ -19,11 +22,13 @@
             <!--Button>
                 <Image Source="open-sign.png" MaxHeight="32"></Image>
             </Button-->
+            <Button Click="ShowPatients">Пациенты</Button>
+            <Separator></Separator>
+            <Button Click="AnswerMessage">Добавить пациента</Button>
             <Separator></Separator>
             <Button Click="NewMessage">Новое Сообщение</Button>
             <Separator></Separator>
             <Button Click="AnswerMessage">Ответить</Button>
-            <Separator></Separator>
             <!--CheckBox FontWeight="Bold">Bold</CheckBox>
             <CheckBox FontStyle="Italic">Italic</CheckBox>
             <CheckBox>
@@ -64,22 +69,30 @@
             <DockPanel Grid.Column="1" Grid.Row="1">
                 <StackPanel Name="PatientInfoPanel">
                     <DockPanel>
-                        <Label Width="70">Пациент:</Label>
+                        <Label Width="70" FontWeight="Bold">Пациент:</Label>
                         <Label Name="PatientCard"></Label>
                     </DockPanel>
                     <DockPanel>
-                        <Label Width="70">Пол:</Label>
+                        <Label Width="70" FontWeight="Bold">Пол:</Label>
                         <Label Name="PatientSex"></Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Width="180" FontWeight="Bold">Текущее лечение:</Label>
+                        <Label Name="PatientCurrentTherapy"></Label>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Width="180" FontWeight="Bold">Информация о пациенте:</Label>
+                        <Label Name="PatientInfo"></Label>
                     </DockPanel>
                 </StackPanel>
                 <StackPanel Name="PatientInfoPanel2">
                     <DockPanel>
-                        <Label Width="180">Дата рождения:</Label>
+                        <Label Width="180" FontWeight="Bold">Дата рождения:</Label>
                         <Label Name="PatientAge"></Label>
                     </DockPanel>
                     <DockPanel>
-                        <Label Width="180">Дополнительная информация:</Label>
-                        <Label Name="PatientInfo"></Label>
+                        <Label Width="180" FontWeight="Bold">Вес пациента:</Label>
+                        <Label Name="PatientWeight"></Label>
                     </DockPanel>
                 </StackPanel>
             </DockPanel>

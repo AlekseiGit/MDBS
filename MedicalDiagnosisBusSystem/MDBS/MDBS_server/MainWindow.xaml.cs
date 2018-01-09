@@ -104,7 +104,7 @@ namespace MDBS_server
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var core = new CoreFunc();
+            var core = new CoreFunc(UserID);
             var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
             var messages = new List<Message>();
 
@@ -142,6 +142,31 @@ namespace MDBS_server
             MessageGrid.Columns[1].Width = 120;
             MessageGrid.Columns[2].Width = 120;
             MessageGrid.Columns[3].Width = 120;
+        }
+
+        private void ShowPatients(object sender, RoutedEventArgs e)
+        {
+            PatientsWindow patientsWindow = new PatientsWindow();
+
+            if (patientsWindow.ShowDialog() == true)
+            {
+            }
+            else
+            {
+            }
+        }
+
+        private void NewPatient(object sender, RoutedEventArgs e)
+        {
+            MessageWindow msgWindow = new MessageWindow();
+
+            if (msgWindow.ShowDialog() == true)
+            {
+                //MessageBox.Show("Авторизация пройдена");
+            }
+            else
+            {
+            }
         }
 
         private void NewMessage(object sender, RoutedEventArgs e)
@@ -326,11 +351,10 @@ namespace MDBS_server
                 var images = core.GetAttachments((Guid)messageId);
 
                 PatientCard.Content = patientInfo.MedicalCardNumber;
-                if (patientInfo.Sex == 1)
-                    PatientSex.Content = "М";
-                else
-                    PatientSex.Content = "Ж";
+                PatientSex.Content = patientInfo.Sex;
+                PatientWeight.Content = patientInfo.Weight;
                 PatientAge.Content = patientInfo.BirthDate;
+                PatientCurrentTherapy.Content = patientInfo.CurrentTherapy;
                 PatientInfo.Content = patientInfo.Info;
 
                 if (images.Count > 0)
