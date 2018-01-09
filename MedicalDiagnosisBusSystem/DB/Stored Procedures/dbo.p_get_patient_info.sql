@@ -11,8 +11,10 @@ BEGIN
 		p.[ID],
 		p.[FullName],
 		p.[Sex],
+		p.[Weight],
 		p.[BirthDate],
 		p.[MedicalCardNumber],
+		p.[CurrentTherapy],
 		p.[Info],
 		p.[Note]
 	from dbo.patient p (nolock)

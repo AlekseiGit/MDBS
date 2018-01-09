@@ -12,8 +12,10 @@ CREATE TABLE [dbo].[Patient](
 	[ID] [uniqueidentifier] DEFAULT NEWSEQUENTIALID(),
 	[FullName] [nvarchar](200) NULL,
 	[Sex] [int] NULL, -- 0 - unknown; 1 - male; 2 - female
+	[Weight] [int] NULL, -- вес пациента в килограммах
 	[BirthDate] [datetime] NULL,
 	[MedicalCardNumber] [nvarchar](100) NULL,
+	[CurrentTherapy] [nvarchar](max) NULL, -- текущее лечение
 	[Info] [nvarchar](max) NULL, -- заполняется по шаблону
 	[Note] [nvarchar](200) NULL,
  CONSTRAINT [PK_Patient] PRIMARY KEY CLUSTERED
