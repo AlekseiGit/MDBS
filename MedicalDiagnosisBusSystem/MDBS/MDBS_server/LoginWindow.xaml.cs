@@ -23,6 +23,7 @@ namespace MDBS_server
         public LoginWindow()
         {
             InitializeComponent();
+            WindowStyle = WindowStyle.None;
         }
 
         public static Guid UserID { get; set; }
@@ -41,6 +42,11 @@ namespace MDBS_server
                 UserID = user;
                 this.DialogResult = true;
             }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
         }
     }
 }

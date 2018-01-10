@@ -15,7 +15,7 @@
             <ComboBox Name="ToBox" SelectedIndex="0">
                 <ComboBoxItem>Московская Клиника</ComboBoxItem>
             </ComboBox>
-            <Label>Пациент</Label>
+            <Label>Номер карты пациент</Label>
             <TextBox Name="PatientBox"></TextBox>
             <Label>Сообщение</Label>
             <TextBox Name="InfoBox"></TextBox>

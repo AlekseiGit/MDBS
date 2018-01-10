@@ -15,7 +15,7 @@
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
                 <Separator />
-                <MenuItem Header="_Выход" />
+                <MenuItem Header="_Выход" Click="Exit"/>
             </MenuItem>
         </Menu>
         <ToolBar DockPanel.Dock="Top" MaxHeight="32">

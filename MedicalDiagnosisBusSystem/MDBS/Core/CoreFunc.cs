@@ -465,7 +465,7 @@ namespace Core
                     patientInfo.Sex = "Ж";
                 }
                 patientInfo.Weight = (int)row["Weight"];
-                patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString();
+                patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patientInfo.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patientInfo.CurrentTherapy = row["CurrentTherapy"].ToString();
                 patientInfo.Info = row["Info"].ToString();
@@ -584,6 +584,37 @@ namespace Core
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public SystemData GetSystemData(Guid userId)
+        {
+            SystemData systemData = new SystemData();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_system_data";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            var patient = new SqlParameter("@user_id", userId);
+
+            sqlCmd.Parameters.Add(patient);
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                systemData.IncomingInfo = row["incoming_info"].ToString();
+                systemData.OutgoingInfo = row["outgoing_info"].ToString();
+                systemData.NeedAnswerStatus = (int)row["need_answer_status"];
+            }
+
+            DBConnection.Close();
+
+            return systemData;
         }
 
         public Guid CheckUser(string login, string passwordHash)

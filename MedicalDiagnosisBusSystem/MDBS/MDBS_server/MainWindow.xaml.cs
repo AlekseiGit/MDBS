@@ -16,6 +16,7 @@ using Core;
 using DataModels;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows.Threading;
 
 namespace MDBS_server
 {
@@ -25,6 +26,7 @@ namespace MDBS_server
     public partial class MainWindow : Window
     {
         public static Guid UserID;
+        CoreFunc Core;
 
         public static BitmapImage Image_0;
         public static BitmapImage Image_1;
@@ -41,14 +43,15 @@ namespace MDBS_server
         {
             InitializeComponent();
 
-            while (UserID == Guid.Empty)
-            {
-                var user = Authorization();
+            var user = Authorization();
 
-                if (user != Guid.Empty)
-                {
-                    UserID = user;
-                }
+            if (user != Guid.Empty)
+            {
+                UserID = user;
+            }
+            else
+            {
+                Exit(null, null);
             }
 
             //var core = new CoreFunc();
@@ -64,18 +67,42 @@ namespace MDBS_server
             }
 
             DialogGrid.RowHeight = 70;
-            RefreshInformation();
+
+            Core = new CoreFunc(UserID);
+
+            RefreshInformation(null, null);
+
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(RefreshInformation);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Start();
         }
 
-        public void RefreshInformation()
+        public void RefreshInformation(object sender, EventArgs e)
         {
-            Incoming.Content += " (--/--)";
-            Outgoing.Content += " (--/--)";
-            NeedAnswer.Content += " (--/--)";
-            //Archive.Content += " (--/--)";
+            var systemData = Core.GetSystemData(UserID);
 
-            NeedAnswer.Background = Brushes.LightGreen;
+            Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
+            Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
+            NeedAnswer.Content = "Нужен ответ (" + systemData.IncomingInfo + ")";
 
+            if (systemData.NeedAnswerStatus == 1)
+            {
+                NeedAnswer.Background = Brushes.LightGreen;
+            }
+            else if (systemData.NeedAnswerStatus == 2)
+            {
+                NeedAnswer.Background = Brushes.LightYellow;
+            }
+            if (systemData.NeedAnswerStatus == 3)
+            {
+                NeedAnswer.Background = Brushes.Pink;
+            }
+        }
+
+        public void Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void ItemsSourceChanged(object sender, EventArgs e)
@@ -116,7 +143,7 @@ namespace MDBS_server
             {
                 messages = core.GetOutgoingMessages();
             }
-            else if (categoryName.Contains("Требуется ответ"))
+            else if (categoryName.Contains("Нужен ответ"))
             {
                 messages = core.GetNeedAnswerMessages();
             }
@@ -314,13 +341,26 @@ namespace MDBS_server
             {
                 if (RowDataContaxt.Status == 0)
                 {
-                    //e.Row.Background = Brushes.LightGreen;
                     e.Row.FontWeight = FontWeight.FromOpenTypeWeight(900);
                 }
-                //else if (RowDataContaxt.Status == 1)
-                //{
-                //    e.Row.Background = Brushes.White;
-                //}
+
+                if (CategoryListBox.SelectedItem.ToString().Contains("Нужен ответ"))
+                {
+                    var diff = (DateTime.Now - DateTime.Parse(RowDataContaxt.MessageDate)).TotalDays;
+
+                    if (diff < 2)
+                    {
+                        e.Row.Background = Brushes.LightGreen;
+                    }
+                    else if (diff >= 2 && diff < 3)
+                    {
+                        e.Row.Background = Brushes.LightYellow;
+                    }
+                    else if (diff >= 3)
+                    {
+                        e.Row.Background = Brushes.Pink;
+                    }
+                }
             }
         }
 
@@ -330,7 +370,7 @@ namespace MDBS_server
 
             if (RowDataContaxt != null)
             {
-                if (RowDataContaxt.From == new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"))
+                if (RowDataContaxt.From == UserID)
                 {
                     e.Row.Background = Brushes.LightYellow;
                 }

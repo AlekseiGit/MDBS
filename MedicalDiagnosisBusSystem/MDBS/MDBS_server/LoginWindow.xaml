@@ -11,8 +11,8 @@
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,128,0,0" Text="Password" VerticalAlignment="Top" Width="77" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="118,75,0,0" Name="LoginBox" VerticalAlignment="Top" Width="247" />
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,123,0,0" Name="PasswordBox" VerticalAlignment="Top" Width="247" />
-        <Button Content="Войти" Height="23" HorizontalAlignment="Left" Margin="180,180,0,0" Name="button1" VerticalAlignment="Top" Width="104" Click="Login_Click" />
-        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="ErrorMessage" VerticalAlignment="Top" Width="247" Margin="118,230,0,0" OpacityMask="Crimson" Foreground="#FFE5572C"  />
-        
+        <Button Content="Войти" Height="23" HorizontalAlignment="Left" Margin="118,180,0,0" Name="Login" VerticalAlignment="Top" Width="104" Click="Login_Click" />
+        <Button Content="Отмена" Height="23" HorizontalAlignment="Left" Margin="250,180,0,0" Name="Cansel" VerticalAlignment="Top" Width="104" Click="Exit_Click" />
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="ErrorMessage" VerticalAlignment="Top" Width="247" Margin="118,230,0,0" OpacityMask="Crimson" Foreground="#FFE5572C"/>
     </Grid>
 </Window>
