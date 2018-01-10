@@ -548,6 +548,44 @@ namespace Core
             return patients;
         }
 
+        public void CreatePatient(
+            string fullName,
+            int sex,
+            int weight,
+            DateTime birthDate,
+            string medicalCardNumber,
+            string currentTherapy,
+            string info)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_new_patient";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@sex", SqlDbType.Int);
+                cmd.Parameters.Add("@weight", SqlDbType.Int);
+                cmd.Parameters.Add("@birthDate", SqlDbType.DateTime);
+                cmd.Parameters.Add("@medicalCardNumber", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@currentTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
+
+                cmd.Parameters["@fullName"].Value = fullName;
+                cmd.Parameters["@sex"].Value = sex;
+                cmd.Parameters["@weight"].Value = weight;
+                cmd.Parameters["@birthDate"].Value = birthDate;
+                cmd.Parameters["@medicalCardNumber"].Value = medicalCardNumber;
+                cmd.Parameters["@currentTherapy"].Value = currentTherapy;
+                cmd.Parameters["@info"].Value = info;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public Guid CheckUser(string login, string passwordHash)
         {
             Guid UserId = Guid.Empty;

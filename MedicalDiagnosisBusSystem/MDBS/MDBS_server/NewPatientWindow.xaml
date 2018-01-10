@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="NewPatientWindow" Height="300" Width="300">
+        Title="Новый пациент" Height="300" Width="800">
     <Grid>
-        
+        <StackPanel Name="PatientInfoPanel">
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Имя пациента:</Label>
+                <TextBox Name="PatientNameBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Номер карты пациента:</Label>
+                <TextBox Name="PatientCardBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Пол:</Label>
+                <ComboBox Name="SexBox" SelectedIndex="0">
+                    <ComboBoxItem>М</ComboBoxItem>
+                    <ComboBoxItem>Ж</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Дата рождения:</Label>
+                <DatePicker Name="PatientBirthDate" SelectedDateChanged="SelectedDateChanged"/>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Вес пациента:</Label>
+                <TextBox Name="PatientWeightBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Текущее лечение:</Label>
+                <TextBox Name="PatientCurrentTherapyBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Информация о пациенте:</Label>
+                <TextBox Name="PatientInfoBox"></TextBox>
+            </DockPanel>
+            <Button Click="CreatePatient_Click">Создать пациента</Button>
+        </StackPanel>
     </Grid>
 </Window>

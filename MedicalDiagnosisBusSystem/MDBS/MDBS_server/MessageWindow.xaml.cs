@@ -21,9 +21,12 @@ namespace MDBS_server
     /// </summary>
     public partial class MessageWindow : Window
     {
-        public MessageWindow()
+        Guid UserID;
+
+        public MessageWindow(Guid userId)
         {
             InitializeComponent();
+            UserID = userId;
         }
 
         public Guid To
@@ -146,7 +149,7 @@ namespace MDBS_server
                 this.Info,
                 this.Diagnosis,
                 this.Patient,
-                new Guid("1A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //user_id
+                UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //to_id
                 this.ImagePath1.Content.ToString(),
                 this.ImagePath2.Content.ToString(),

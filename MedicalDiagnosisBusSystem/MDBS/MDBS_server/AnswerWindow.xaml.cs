@@ -51,10 +51,6 @@ namespace MDBS_server
                 this.PatientId,
                 this.FromId,
                 this.ToId);
-                //new Guid("EDEA2C24-6EE0-4F08-AFA1-AB063B6E8A91"), //ParentMessageId
-                //new Guid("D2E8DE05-D963-4FBD-B6B9-257C60FB31DB"), //Patient
-                //new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //user_id
-                //new Guid("C16B50F6-7588-43D2-BAC5-08819FB3FA11")); //to_id
 
             this.DialogResult = true;
         }

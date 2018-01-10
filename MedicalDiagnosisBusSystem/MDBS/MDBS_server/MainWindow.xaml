@@ -10,7 +10,7 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
-                <MenuItem Header="_Добавить пациента" Click="NewMessage"/>
+                <MenuItem Header="_Добавить пациента" Click="NewPatient"/>
                 <Separator />
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
@@ -24,7 +24,7 @@
             </Button-->
             <Button Click="ShowPatients">Пациенты</Button>
             <Separator></Separator>
-            <Button Click="AnswerMessage">Добавить пациента</Button>
+            <Button Click="NewPatient">Добавить пациента</Button>
             <Separator></Separator>
             <Button Click="NewMessage">Новое Сообщение</Button>
             <Separator></Separator>

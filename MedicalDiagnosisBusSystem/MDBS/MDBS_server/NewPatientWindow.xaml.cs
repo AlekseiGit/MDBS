@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,53 @@ namespace MDBS_server
         public NewPatientWindow()
         {
             InitializeComponent();
+        }
+
+        public string FullName
+        {
+            get { return PatientNameBox.Text; }
+        }
+        public int Sex
+        {
+            get { return 1; }
+        }
+        public int Weight
+        {
+            get { return int.Parse(PatientWeightBox.Text); }
+        }
+        public DateTime BirthDate { get; set; }
+        public string MedicalCardNumber
+        {
+            get { return PatientCardBox.Text; }
+        }
+        public string CurrentTherapy
+        {
+            get { return PatientCurrentTherapyBox.Text; }
+        }
+        public string Info
+        {
+            get { return PatientInfoBox.Text; }
+        }
+        //public string Note { get; set; }
+
+        private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.BirthDate = PatientBirthDate.SelectedDate.Value;
+        }
+
+        private void CreatePatient_Click(object sender, RoutedEventArgs e)
+        {
+            var core = new CoreFunc();
+            core.CreatePatient(
+                this.FullName,
+                this.Sex,
+                this.Weight,
+                this.BirthDate,
+                this.MedicalCardNumber,
+                this.CurrentTherapy,
+                this.Info);
+
+            this.DialogResult = true;
         }
     }
 }

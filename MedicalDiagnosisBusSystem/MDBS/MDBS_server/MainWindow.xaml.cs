@@ -69,10 +69,10 @@ namespace MDBS_server
 
         public void RefreshInformation()
         {
-            Incoming.Content += " (27/511)";
-            Outgoing.Content += " (27/511)";
-            NeedAnswer.Content += " (27/511)";
-            Archive.Content += " (27/511)";
+            Incoming.Content += " (--/--)";
+            Outgoing.Content += " (--/--)";
+            NeedAnswer.Content += " (--/--)";
+            //Archive.Content += " (--/--)";
 
             NeedAnswer.Background = Brushes.LightGreen;
 
@@ -131,6 +131,25 @@ namespace MDBS_server
         public void FillMessageGrid(List<Message> messages)
         {
             MessageGrid.ItemsSource = messages;
+            DialogGrid.ItemsSource = null;
+
+            ImageControl0.Source = null;
+            ImageControl1.Source = null;
+            ImageControl2.Source = null;
+            ImageControl3.Source = null;
+            ImageControl4.Source = null;
+            ImageControl5.Source = null;
+            ImageControl6.Source = null;
+            ImageControl7.Source = null;
+            ImageControl8.Source = null;
+            ImageControl9.Source = null;
+
+            PatientCard.Content = "";
+            PatientSex.Content = "";
+            PatientWeight.Content = "";
+            PatientAge.Content = "";
+            PatientCurrentTherapy.Content = "";
+            PatientInfo.Content = "";
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
             MessageGrid.Columns[4].Visibility = Visibility.Collapsed;
@@ -158,9 +177,9 @@ namespace MDBS_server
 
         private void NewPatient(object sender, RoutedEventArgs e)
         {
-            MessageWindow msgWindow = new MessageWindow();
+            NewPatientWindow newPatientWindow = new NewPatientWindow();
 
-            if (msgWindow.ShowDialog() == true)
+            if (newPatientWindow.ShowDialog() == true)
             {
                 //MessageBox.Show("Авторизация пройдена");
             }
@@ -171,7 +190,7 @@ namespace MDBS_server
 
         private void NewMessage(object sender, RoutedEventArgs e)
         {
-            MessageWindow msgWindow = new MessageWindow();
+            MessageWindow msgWindow = new MessageWindow(UserID);
 
             if (msgWindow.ShowDialog() == true)
             {
