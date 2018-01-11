@@ -9,6 +9,7 @@ namespace DataModels
     {
         public string IncomingInfo { get; set; }
         public string OutgoingInfo { get; set; }
+        public string NeedAnswerInfo { get; set; }
         public int NeedAnswerStatus { get; set; }
     }
 }

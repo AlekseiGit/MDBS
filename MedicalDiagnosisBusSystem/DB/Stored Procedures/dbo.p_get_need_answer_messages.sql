@@ -25,7 +25,7 @@ BEGIN
 			on m.PatientID = p.ID
 	where
 		m.[To] = @user_id
-		and m.[Status] = 0
+		and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
 	order by
 		m.[MessageDate] desc
 END;

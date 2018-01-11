@@ -84,7 +84,7 @@ namespace MDBS_server
 
             Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
             Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
-            NeedAnswer.Content = "Нужен ответ (" + systemData.IncomingInfo + ")";
+            NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
 
             if (systemData.NeedAnswerStatus == 1)
             {
@@ -330,6 +330,13 @@ namespace MDBS_server
 
                 therapyPlanColumn.ElementStyle = style;
                 therapyPlanColumn.EditingElementStyle = style;
+
+                core.ReadMessage(messageId);
+                if (MessageGrid.CurrentItem != null)
+                {
+                    var row = MessageGrid.ItemContainerGenerator.ContainerFromItem(MessageGrid.CurrentItem) as DataGridRow;
+                    row.FontWeight = FontWeight.FromOpenTypeWeight(400);
+                }
             }
         }
 

@@ -10,6 +10,7 @@ BEGIN
 	declare
 		@incoming_info nvarchar(10),
 		@outgoing_info nvarchar(10),
+		@need_answer_info nvarchar(10),
 		@need_answer_date datetime,
 		@need_answer_status int
 
@@ -27,6 +28,10 @@ BEGIN
 	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
 	where m.[From] = @user_id and m.[MessageDate] >= getdate() - 60
 	
+	select @need_answer_info = count(*)
+	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
+	where m.[To] = @user_id and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
+
 	select @need_answer_date = min(m.MessageDate)
 	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
 	where m.[To] = @user_id and m.[Status] = 0
@@ -47,5 +52,6 @@ BEGIN
 	select
 		@incoming_info as [incoming_info],
 		@outgoing_info as [outgoing_info],
+		@need_answer_info as [need_answer_info],
 		@need_answer_status as [need_answer_status]
 END;

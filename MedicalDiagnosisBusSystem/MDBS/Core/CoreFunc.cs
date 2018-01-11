@@ -504,6 +504,19 @@ namespace Core
             return attachments;
         }
 
+        public void ReadMessage(Guid message_id)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                string sql = "update dbo.[Message] set [Status] = 1 where [ID] = @message_id";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@message_id", message_id);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
         public List<Patient> GetPatients()
         {
             List<Patient> patients = new List<Patient>();
@@ -609,6 +622,7 @@ namespace Core
             {
                 systemData.IncomingInfo = row["incoming_info"].ToString();
                 systemData.OutgoingInfo = row["outgoing_info"].ToString();
+                systemData.NeedAnswerInfo = row["need_answer_info"].ToString();
                 systemData.NeedAnswerStatus = (int)row["need_answer_status"];
             }
 
