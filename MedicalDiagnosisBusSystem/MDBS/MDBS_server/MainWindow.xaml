@@ -10,7 +10,6 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
-                <MenuItem Header="_Добавить пациента" Click="NewPatient"/>
                 <Separator />
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
@@ -23,8 +22,6 @@
                 <Image Source="open-sign.png" MaxHeight="32"></Image>
             </Button-->
             <Button Click="ShowPatients">Пациенты</Button>
-            <Separator></Separator>
-            <Button Click="NewPatient">Добавить пациента</Button>
             <Separator></Separator>
             <Button Click="NewMessage">Новое Сообщение</Button>
             <Separator></Separator>
@@ -44,6 +41,7 @@
         <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
             <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
             <ListBoxItem Name="Outgoing" Content="Исходящие" Height="30"/>
+            <ListBoxItem Name="Sending" Content="Отправляются" Height="30"/>
             <ListBoxItem Name="NeedAnswer" Content="Нужен ответ" Height="30"/>
             <ListBoxItem Name="Archive" Content="Архив" Height="30"/>
         </ListBox>
@@ -57,8 +55,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="1.7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid Name="MessageGrid" GridLinesVisibility="None" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow"/>
-            <DataGrid Name="DialogGrid" GridLinesVisibility="None" Grid.Column="1" Grid.Row="0" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow">
+            <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
                 <DataGrid.Resources>
                     <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
                         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -97,35 +95,35 @@
                 </StackPanel>
             </DockPanel>
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2">
-                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                 </DockPanel>

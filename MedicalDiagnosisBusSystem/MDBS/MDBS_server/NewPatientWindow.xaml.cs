@@ -23,6 +23,7 @@ namespace MDBS_server
         public NewPatientWindow()
         {
             InitializeComponent();
+            PatientBirthDate.SelectedDate = DateTime.Today;
         }
 
         public string FullName
@@ -31,11 +32,25 @@ namespace MDBS_server
         }
         public int Sex
         {
-            get { return 1; }
+            get
+            {
+                if (PatientSexBox.Text == "М")
+                    return 1;
+                else
+                    return 2;
+            }
         }
         public int Weight
         {
-            get { return int.Parse(PatientWeightBox.Text); }
+            get
+            {
+                int weight = 0;
+
+                if (int.TryParse(PatientWeightBox.Text, out weight) == true)
+                    return weight;
+                else
+                    return 0;
+            }
         }
         public DateTime BirthDate { get; set; }
         public string MedicalCardNumber
@@ -54,12 +69,27 @@ namespace MDBS_server
 
         private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.BirthDate = PatientBirthDate.SelectedDate.Value;
+            if (PatientBirthDate.SelectedDate.Value != null)
+                this.BirthDate = PatientBirthDate.SelectedDate.Value;
+            else
+                this.BirthDate = DateTime.Now;
         }
 
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
             var core = new CoreFunc();
+
+            if (string.IsNullOrEmpty(this.FullName))
+            {
+                MessageBox.Show("Имя пациента не заполнено!");
+                return;
+            }
+            else if (string.IsNullOrEmpty(this.MedicalCardNumber))
+            {
+                MessageBox.Show("Номер карты пациента не заполнен!");
+                return;
+            }
+
             core.CreatePatient(
                 this.FullName,
                 this.Sex,

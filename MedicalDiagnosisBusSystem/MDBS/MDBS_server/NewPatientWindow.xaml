@@ -18,7 +18,7 @@
             </DockPanel>
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Пол:</Label>
-                <ComboBox Name="SexBox" SelectedIndex="0">
+                <ComboBox Name="PatientSexBox" SelectedIndex="0">
                     <ComboBoxItem>М</ComboBoxItem>
                     <ComboBoxItem>Ж</ComboBoxItem>
                 </ComboBox>
