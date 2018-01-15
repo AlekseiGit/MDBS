@@ -36,6 +36,10 @@
                 <TextBox Name="PatientCurrentTherapyBox"></TextBox>
             </DockPanel>
             <DockPanel>
+                <Label Width="200" FontWeight="Bold">Количество таблеток:</Label>
+                <TextBox Name="PatientDrugsCountBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
                 <Label Width="200" FontWeight="Bold">Информация о пациенте:</Label>
                 <TextBox Name="PatientInfoBox"></TextBox>
             </DockPanel>

@@ -56,7 +56,7 @@ namespace Core
                 //msg.Diagnosis = row["Diagnosis"].ToString();
                 //msg.TherapyPlan = row["TherapyPlan"].ToString();
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
-                //msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
                 //msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
@@ -100,7 +100,7 @@ namespace Core
                 //msg.Diagnosis = row["Diagnosis"].ToString();
                 //msg.TherapyPlan = row["TherapyPlan"].ToString();
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
-                //msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
                 //msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
@@ -144,7 +144,7 @@ namespace Core
                 //msg.Diagnosis = row["Diagnosis"].ToString();
                 //msg.TherapyPlan = row["TherapyPlan"].ToString();
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
-                //msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
                 //msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
@@ -188,7 +188,7 @@ namespace Core
                 //msg.Diagnosis = row["Diagnosis"].ToString();
                 //msg.TherapyPlan = row["TherapyPlan"].ToString();
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
-                //msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
                 //msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
@@ -268,11 +268,16 @@ namespace Core
             string patientNumber,
             Guid userId,
             Guid toId,
-            string img_one,
-            string img_two,
-            string img_three,
-            string img_four,
-            string img_five)
+            string img_0,
+            string img_1,
+            string img_2,
+            string img_3,
+            string img_4,
+            string img_5,
+            string img_6,
+            string img_7,
+            string img_8,
+            string img_9)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -301,9 +306,9 @@ namespace Core
                 byte[] imageData_four;
                 byte[] imageData_five;
 
-                if (img_one != "...")
+                if (img_0 != "...")
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_one, FileMode.Open))
+                    using (System.IO.FileStream fs = new System.IO.FileStream(img_0, FileMode.Open))
                     {
                         imageData_one = new byte[fs.Length];
                         fs.Read(imageData_one, 0, imageData_one.Length);
@@ -315,9 +320,9 @@ namespace Core
                     }
                 }
 
-                if (img_two != "...")
+                if (img_1 != "...")
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_two, FileMode.Open))
+                    using (System.IO.FileStream fs = new System.IO.FileStream(img_1, FileMode.Open))
                     {
                         imageData_two = new byte[fs.Length];
                         fs.Read(imageData_two, 0, imageData_two.Length);
@@ -329,9 +334,9 @@ namespace Core
                     }
                 }
 
-                if (img_three != "...")
+                if (img_2 != "...")
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_three, FileMode.Open))
+                    using (System.IO.FileStream fs = new System.IO.FileStream(img_2, FileMode.Open))
                     {
                         imageData_three = new byte[fs.Length];
                         fs.Read(imageData_three, 0, imageData_three.Length);
@@ -343,9 +348,9 @@ namespace Core
                     }
                 }
 
-                if (img_four != "...")
+                if (img_3 != "...")
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_four, FileMode.Open))
+                    using (System.IO.FileStream fs = new System.IO.FileStream(img_3, FileMode.Open))
                     {
                         imageData_four = new byte[fs.Length];
                         fs.Read(imageData_four, 0, imageData_four.Length);
@@ -357,9 +362,9 @@ namespace Core
                     }
                 }
 
-                if (img_five != "...")
+                if (img_4 != "...")
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_five, FileMode.Open))
+                    using (System.IO.FileStream fs = new System.IO.FileStream(img_4, FileMode.Open))
                     {
                         imageData_five = new byte[fs.Length];
                         fs.Read(imageData_five, 0, imageData_five.Length);
@@ -465,6 +470,7 @@ namespace Core
                     patientInfo.Sex = "Ж";
                 }
                 patientInfo.Weight = (int)row["Weight"];
+                patientInfo.DrugsCount = row["DrugsCount"].ToString();
                 patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patientInfo.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patientInfo.CurrentTherapy = row["CurrentTherapy"].ToString();
@@ -547,6 +553,7 @@ namespace Core
                     patient.Sex = "Ж";
                 }
                 patient.Weight = (int)row["Weight"];
+                patient.DrugsCount = row["DrugsCount"].ToString();
                 patient.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patient.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patient.CurrentTherapy = row["CurrentTherapy"].ToString();
@@ -565,6 +572,7 @@ namespace Core
             string fullName,
             int sex,
             int weight,
+            string drugsCount,
             DateTime birthDate,
             string medicalCardNumber,
             string currentTherapy,
@@ -582,6 +590,7 @@ namespace Core
                 cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@sex", SqlDbType.Int);
                 cmd.Parameters.Add("@weight", SqlDbType.Int);
+                cmd.Parameters.Add("@drugsCount", SqlDbType.NVarChar, 10);
                 cmd.Parameters.Add("@birthDate", SqlDbType.DateTime);
                 cmd.Parameters.Add("@medicalCardNumber", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@currentTherapy", SqlDbType.NVarChar, 4000);
@@ -590,12 +599,26 @@ namespace Core
                 cmd.Parameters["@fullName"].Value = fullName;
                 cmd.Parameters["@sex"].Value = sex;
                 cmd.Parameters["@weight"].Value = weight;
+                cmd.Parameters["@drugsCount"].Value = drugsCount;
                 cmd.Parameters["@birthDate"].Value = birthDate;
                 cmd.Parameters["@medicalCardNumber"].Value = medicalCardNumber;
                 cmd.Parameters["@currentTherapy"].Value = currentTherapy;
                 cmd.Parameters["@info"].Value = info;
 
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeletePatient(Guid patient_id)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                string sql = "delete from dbo.[Patient] where [ID] = @patient_id";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@patient_id", patient_id);
+                command.ExecuteNonQuery();
+                connection.Close();
             }
         }
 

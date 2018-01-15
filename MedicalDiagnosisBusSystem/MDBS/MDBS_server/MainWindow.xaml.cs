@@ -174,20 +174,22 @@ namespace MDBS_server
             PatientCard.Content = "";
             PatientSex.Content = "";
             PatientWeight.Content = "";
+            PatientDrugsCount.Content = "";
             PatientAge.Content = "";
             PatientCurrentTherapy.Content = "";
             PatientInfo.Content = "";
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
-            MessageGrid.Columns[4].Visibility = Visibility.Collapsed;
+            MessageGrid.Columns[1].Visibility = Visibility.Collapsed;
+            MessageGrid.Columns[5].Visibility = Visibility.Collapsed;
 
-            MessageGrid.Columns[1].Header = "Пациент";
-            MessageGrid.Columns[2].Header = "От кого";
-            MessageGrid.Columns[3].Header = "Дата";
+            MessageGrid.Columns[2].Header = "Пациент";
+            MessageGrid.Columns[3].Header = "От кого";
+            MessageGrid.Columns[4].Header = "Дата";
 
-            MessageGrid.Columns[1].Width = 120;
             MessageGrid.Columns[2].Width = 120;
             MessageGrid.Columns[3].Width = 120;
+            MessageGrid.Columns[4].Width = 120;
         }
 
         private void ShowPatients(object sender, RoutedEventArgs e)
@@ -331,7 +333,19 @@ namespace MDBS_server
                 therapyPlanColumn.ElementStyle = style;
                 therapyPlanColumn.EditingElementStyle = style;
 
+                var patientId = message.PatientID;
+                var patientInfo = core.GetPatientInfo((Guid)patientId);
+
+                PatientCard.Content = patientInfo.MedicalCardNumber;
+                PatientSex.Content = patientInfo.Sex;
+                PatientWeight.Content = patientInfo.Weight;
+                PatientAge.Content = patientInfo.BirthDate;
+                PatientCurrentTherapy.Content = patientInfo.CurrentTherapy;
+                PatientDrugsCount.Content = patientInfo.DrugsCount;
+                PatientInfo.Content = patientInfo.Info;
+
                 core.ReadMessage(messageId);
+
                 if (MessageGrid.CurrentItem != null)
                 {
                     var row = MessageGrid.ItemContainerGenerator.ContainerFromItem(MessageGrid.CurrentItem) as DataGridRow;
@@ -411,17 +425,7 @@ namespace MDBS_server
                     return;
 
                 var messageId = dialog.ID;
-                var patientId = dialog.PatientID;
-
-                var patientInfo = core.GetPatientInfo((Guid)patientId);
                 var images = core.GetAttachments((Guid)messageId);
-
-                PatientCard.Content = patientInfo.MedicalCardNumber;
-                PatientSex.Content = patientInfo.Sex;
-                PatientWeight.Content = patientInfo.Weight;
-                PatientAge.Content = patientInfo.BirthDate;
-                PatientCurrentTherapy.Content = patientInfo.CurrentTherapy;
-                PatientInfo.Content = patientInfo.Info;
 
                 if (images.Count > 0)
                 {

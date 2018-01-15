@@ -34,7 +34,7 @@ BEGIN
 
 	select @need_answer_date = min(m.MessageDate)
 	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
-	where m.[To] = @user_id and m.[Status] = 0
+	where m.[To] = @user_id and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
 	
 	if (select datediff(day, @need_answer_date, getdate())) < 2
 	begin

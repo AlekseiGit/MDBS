@@ -13,6 +13,7 @@ CREATE TABLE [dbo].[Patient](
 	[FullName] [nvarchar](200) NULL,
 	[Sex] [int] NULL, -- 0 - unknown; 1 - male; 2 - female
 	[Weight] [int] NULL, -- вес пациента в килограммах
+	[DrugsCount] [nvarchar](100) NULL,
 	[BirthDate] [datetime] NULL,
 	[MedicalCardNumber] [nvarchar](100) NULL,
 	[CurrentTherapy] [nvarchar](max) NULL, -- текущее лечение

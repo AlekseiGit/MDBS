@@ -12,7 +12,7 @@ namespace DataModels
         //public string Diagnosis { get; set; }
         //public string TherapyPlan { get; set; }
         //public Guid ParentMessageID { get; set; }
-        //public Guid PatientID { get; set; }
+        public Guid PatientID { get; set; }
         public string PatientName { get; set; }
         //public Guid From { get; set; }
         //public Guid To { get; set; }

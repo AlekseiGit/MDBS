@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="Auto">
+        Title="Новое сообщение" Width="800" Height="580">
     <Grid Height="Auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -15,7 +15,7 @@
             <ComboBox Name="ToBox" SelectedIndex="0">
                 <ComboBoxItem>Московская Клиника</ComboBoxItem>
             </ComboBox>
-            <Label>Номер карты пациент</Label>
+            <Label>Номер карты пациента</Label>
             <TextBox Name="PatientBox"></TextBox>
             <Label>Сообщение</Label>
             <TextBox Name="InfoBox"></TextBox>
@@ -59,11 +59,16 @@
                     </Border>
                 </DockPanel>
             </ScrollViewer>
+            <Label Name="ImagePath0">...</Label>
             <Label Name="ImagePath1">...</Label>
             <Label Name="ImagePath2">...</Label>
             <Label Name="ImagePath3">...</Label>
             <Label Name="ImagePath4">...</Label>
             <Label Name="ImagePath5">...</Label>
+            <Label Name="ImagePath6">...</Label>
+            <Label Name="ImagePath7">...</Label>
+            <Label Name="ImagePath8">...</Label>
+            <Label Name="ImagePath9">...</Label>
             <Button Click="SendMessage_Click">Отправить</Button>
         </StackPanel>
     </Grid>

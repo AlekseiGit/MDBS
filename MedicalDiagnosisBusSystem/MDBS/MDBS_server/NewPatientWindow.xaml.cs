@@ -52,6 +52,10 @@ namespace MDBS_server
                     return 0;
             }
         }
+        public string DrugsCount
+        {
+            get { return PatientDrugsCountBox.Text; }
+        }
         public DateTime BirthDate { get; set; }
         public string MedicalCardNumber
         {
@@ -77,8 +81,6 @@ namespace MDBS_server
 
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
-            var core = new CoreFunc();
-
             if (string.IsNullOrEmpty(this.FullName))
             {
                 MessageBox.Show("Имя пациента не заполнено!");
@@ -90,10 +92,13 @@ namespace MDBS_server
                 return;
             }
 
+            var core = new CoreFunc();
+
             core.CreatePatient(
                 this.FullName,
                 this.Sex,
                 this.Weight,
+                this.DrugsCount,
                 this.BirthDate,
                 this.MedicalCardNumber,
                 this.CurrentTherapy,

@@ -79,6 +79,10 @@
                         <Label Name="PatientCurrentTherapy"></Label>
                     </DockPanel>
                     <DockPanel>
+                        <Label Width="180" FontWeight="Bold">Количество таблеток:</Label>
+                        <Label Name="PatientDrugsCount"></Label>
+                    </DockPanel>
+                    <DockPanel>
                         <Label Width="180" FontWeight="Bold">Информация о пациенте:</Label>
                         <Label Name="PatientInfo"></Label>
                     </DockPanel>

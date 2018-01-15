@@ -19,7 +19,7 @@ BEGIN
 		isnull(m.[To], '00000000-0000-0000-0000-000000000000') as [To],
 		m.[FromName],
 		m.[MessageDate],
-		m.[Status]
+		1 as [Status] --m.[Status]
 	from dbo.message m (nolock)
 		inner join dbo.Patient p (nolock)
 			on m.PatientID = p.ID

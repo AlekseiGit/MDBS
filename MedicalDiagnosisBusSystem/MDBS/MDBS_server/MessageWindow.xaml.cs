@@ -110,7 +110,9 @@ namespace MDBS_server
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
-                    if (ImagePath1.Content.ToString() == "...")
+                    if (ImagePath0.Content.ToString() == "...")
+                        ImagePath0.Content = filename;
+                    else if (ImagePath1.Content.ToString() == "...")
                         ImagePath1.Content = filename;
                     else if (ImagePath2.Content.ToString() == "...")
                         ImagePath2.Content = filename;
@@ -120,6 +122,14 @@ namespace MDBS_server
                         ImagePath4.Content = filename;
                     else if (ImagePath5.Content.ToString() == "...")
                         ImagePath5.Content = filename;
+                    else if (ImagePath6.Content.ToString() == "...")
+                        ImagePath6.Content = filename;
+                    else if (ImagePath7.Content.ToString() == "...")
+                        ImagePath7.Content = filename;
+                    else if (ImagePath8.Content.ToString() == "...")
+                        ImagePath8.Content = filename;
+                    else if (ImagePath9.Content.ToString() == "...")
+                        ImagePath9.Content = filename;
 
                     /*
                     BitmapImage bi = new BitmapImage();
@@ -144,18 +154,42 @@ namespace MDBS_server
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(this.Patient))
+            {
+                MessageBox.Show("Номер карты пациента не заполнен!");
+                return;
+            }
+            else if (string.IsNullOrEmpty(this.Info))
+            {
+                MessageBox.Show("Сообщение не заполнено!");
+                return;
+            }
+            else if (string.IsNullOrEmpty(this.Diagnosis))
+            {
+                MessageBox.Show("Диагноз пациента не заполнен!");
+                return;
+            }
+
             var core = new CoreFunc();
+
             core.SendMessage(
                 this.Info,
                 this.Diagnosis,
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //to_id
+                this.ImagePath0.Content.ToString(),
                 this.ImagePath1.Content.ToString(),
                 this.ImagePath2.Content.ToString(),
                 this.ImagePath3.Content.ToString(),
                 this.ImagePath4.Content.ToString(),
-                this.ImagePath5.Content.ToString());
+                this.ImagePath5.Content.ToString(),
+                this.ImagePath6.Content.ToString(),
+                this.ImagePath7.Content.ToString(),
+                this.ImagePath8.Content.ToString(),
+                this.ImagePath9.Content.ToString());
+
+            MessageBox.Show("Сообщение отправляется!");
 
             this.DialogResult = true;
         }

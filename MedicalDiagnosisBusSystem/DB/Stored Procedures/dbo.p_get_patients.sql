@@ -11,6 +11,7 @@ BEGIN
 		p.[FullName],
 		p.[Sex],
 		p.[Weight],
+		p.[DrugsCount],
 		p.[BirthDate],
 		p.[MedicalCardNumber],
 		p.[CurrentTherapy],

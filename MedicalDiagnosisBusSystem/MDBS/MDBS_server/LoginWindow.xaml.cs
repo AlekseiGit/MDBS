@@ -24,6 +24,7 @@ namespace MDBS_server
         {
             InitializeComponent();
             WindowStyle = WindowStyle.None;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public static Guid UserID { get; set; }
