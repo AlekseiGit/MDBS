@@ -654,9 +654,9 @@ namespace Core
             return systemData;
         }
 
-        public Guid CheckUser(string login, string passwordHash)
+        public User CheckUser(string login, string passwordHash)
         {
-            Guid UserId = Guid.Empty;
+            User CurrentUser = new User();
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -670,17 +670,23 @@ namespace Core
                 cmd.Parameters.Add("@login", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+                cmd.Parameters.Add("@user_name", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@user_num", SqlDbType.NVarChar, 100);
 
                 cmd.Parameters["@login"].Value = login;
                 cmd.Parameters["@passwordHash"].Value = passwordHash;
                 cmd.Parameters["@user_id"].Direction = ParameterDirection.Output;
+                cmd.Parameters["@user_name"].Direction = ParameterDirection.Output;
+                cmd.Parameters["@user_num"].Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQuery();
 
-                UserId = (Guid)cmd.Parameters["@user_id"].Value;
+                CurrentUser.ID = (Guid)cmd.Parameters["@user_id"].Value;
+                CurrentUser.FullName = cmd.Parameters["@user_name"].Value.ToString();
+                CurrentUser.DocNumber = cmd.Parameters["@user_num"].Value.ToString();
             }
 
-            return UserId;
+            return CurrentUser;
         }
     }
 }

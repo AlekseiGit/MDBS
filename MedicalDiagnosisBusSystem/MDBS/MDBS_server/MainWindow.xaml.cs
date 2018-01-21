@@ -45,9 +45,10 @@ namespace MDBS_server
 
             var user = Authorization();
 
-            if (user != Guid.Empty)
+            if (user.ID != Guid.Empty)
             {
-                UserID = user;
+                UserID = user.ID;
+                LoginLabel.Content = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
             }
             else
             {
@@ -138,18 +139,27 @@ namespace MDBS_server
             if (categoryName.Contains("Входящие"))
             {
                 messages = core.GetIncomingMessages();
+                MessageGridLabel.Content = "Входящие:";
             }
             else if (categoryName.Contains("Исходящие"))
             {
                 messages = core.GetOutgoingMessages();
+                MessageGridLabel.Content = "Исходящие:";
+            }
+            else if (categoryName.Contains("Отправляются"))
+            {
+                //messages = core.GetOutgoingMessages();
+                MessageGridLabel.Content = "Отправляются:";
             }
             else if (categoryName.Contains("Нужен ответ"))
             {
                 messages = core.GetNeedAnswerMessages();
+                MessageGridLabel.Content = "Нужен ответ:";
             }
             else if (categoryName.Contains("Архив"))
             {
                 messages = core.GetArchiveMessages();
+                MessageGridLabel.Content = "Архив:";
             }
 
             FillMessageGrid(messages);
@@ -237,13 +247,13 @@ namespace MDBS_server
                 AnswerWindow answerWindow = new AnswerWindow();
                 var dialogRow = DialogGrid.SelectedItems[0] as Dialog;
 
-                if (dialogRow.From == new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"))
+                if (dialogRow.From == UserID)
                     return;
 
                 answerWindow.ParentMessageId = dialogRow.ID;
                 answerWindow.PatientId = dialogRow.PatientID;
                 answerWindow.PatientName = dialogRow.PatientName;
-                answerWindow.FromId = new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+                answerWindow.FromId = UserID;
                 answerWindow.FromName = dialogRow.FromName;
                 answerWindow.ToId = dialogRow.From;
 
@@ -269,7 +279,7 @@ namespace MDBS_server
                 answerWindow.ParentMessageId = dialogRow.ID;
                 answerWindow.PatientId = dialogRow.PatientID;
                 answerWindow.PatientName = dialogRow.PatientName;
-                answerWindow.FromId = new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D");
+                answerWindow.FromId = UserID;
                 answerWindow.FromName = dialogRow.FromName;
                 answerWindow.ToId = dialogRow.From;
 
@@ -332,6 +342,8 @@ namespace MDBS_server
 
                 therapyPlanColumn.ElementStyle = style;
                 therapyPlanColumn.EditingElementStyle = style;
+
+                DialogGridLabel.Content = message.PatientName;
 
                 var patientId = message.PatientID;
                 var patientInfo = core.GetPatientInfo((Guid)patientId);
@@ -527,18 +539,23 @@ namespace MDBS_server
             }
         }
 
-        private Guid Authorization()
+        private User Authorization()
         {
             LoginWindow loginWindow = new LoginWindow();
 
             if (loginWindow.ShowDialog() == true)
             {
-                return LoginWindow.UserID;
+                return LoginWindow.CurrentUser;
             }
             else
             {
-                return Guid.Empty;
+                return new User();
             }
+        }
+
+        private void DockPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
         }
     }
 }

@@ -21,7 +21,7 @@
             <TextBox Name="InfoBox"></TextBox>
             <Label>Диагноз</Label>
             <TextBox Name="DiagnosisBox"></TextBox>
-            <Button Click="AttachImage_Click">Прикрепить изображение</Button>
+            <Button Width="300" Click="AttachImage_Click">Прикрепить изображение</Button>
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
                     <StackPanel>
@@ -69,7 +69,7 @@
             <Label Name="ImagePath7">...</Label>
             <Label Name="ImagePath8">...</Label>
             <Label Name="ImagePath9">...</Label>
-            <Button Click="SendMessage_Click">Отправить</Button>
+            <Button Width="300" Click="SendMessage_Click">Отправить</Button>
         </StackPanel>
     </Grid>
 </Window>

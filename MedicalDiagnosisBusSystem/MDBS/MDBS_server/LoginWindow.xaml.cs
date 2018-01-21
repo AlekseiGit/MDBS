@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Core;
+using DataModels;
 
 namespace MDBS_server
 {
@@ -27,7 +28,7 @@ namespace MDBS_server
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        public static Guid UserID { get; set; }
+        public static User CurrentUser { get; set; }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
@@ -38,9 +39,9 @@ namespace MDBS_server
 
             var user = core.CheckUser(login, passwordHash.ToString());
 
-            if (user != Guid.Empty)
+            if (user.ID != Guid.Empty)
             {
-                UserID = user;
+                CurrentUser = user;
                 this.DialogResult = true;
             }
         }

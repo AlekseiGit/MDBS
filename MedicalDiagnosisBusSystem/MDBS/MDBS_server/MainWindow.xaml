@@ -18,25 +18,24 @@
             </MenuItem>
         </Menu>
         <ToolBar DockPanel.Dock="Top" MaxHeight="32">
-            <!--Button>
-                <Image Source="open-sign.png" MaxHeight="32"></Image>
-            </Button-->
-            <Button Click="ShowPatients">Пациенты</Button>
-            <Separator></Separator>
-            <Button Click="NewMessage">Новое Сообщение</Button>
-            <Separator></Separator>
-            <Button Click="AnswerMessage">Ответить</Button>
-            <!--CheckBox FontWeight="Bold">Bold</CheckBox>
-            <CheckBox FontStyle="Italic">Italic</CheckBox>
-            <CheckBox>
-                <TextBlock TextDecorations="Underline">Underline</TextBlock>
-            </CheckBox>
-            <Separator></Separator>
-            <ComboBox SelectedIndex="1">
-                <ComboBoxItem>50%</ComboBoxItem>
-                <ComboBoxItem>100%</ComboBoxItem>
-                <ComboBoxItem>150%</ComboBoxItem>
-            </ComboBox-->
+            <DockPanel Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ToolBarPanel}}}">
+                <!--Button>
+                    <Image Source="open-sign.png" MaxHeight="32"></Image>
+                </Button-->
+                <Button Click="ShowPatients">Пациенты</Button>
+                <Separator></Separator>
+                <Button Click="NewMessage">Новое Сообщение</Button>
+                <Separator></Separator>
+                <Button Click="AnswerMessage">Ответить</Button>
+                <!--CheckBox FontWeight="Bold">Bold</CheckBox>
+                <CheckBox FontStyle="Italic">Italic</CheckBox>
+                <ComboBox SelectedIndex="1">
+                    <ComboBoxItem>50%</ComboBoxItem>
+                    <ComboBoxItem>100%</ComboBoxItem>
+                    <ComboBoxItem>150%</ComboBoxItem>
+                </ComboBox-->
+                <Label Name ="LoginLabel" DockPanel.Dock="Right" HorizontalAlignment="Right"></Label>
+            </DockPanel>
         </ToolBar>
         <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
             <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
@@ -45,7 +44,7 @@
             <ListBoxItem Name="NeedAnswer" Content="Нужен ответ" Height="30"/>
             <ListBoxItem Name="Archive" Content="Архив" Height="30"/>
         </ListBox>
-        <Grid ShowGridLines="False">
+        <Grid ShowGridLines="False" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="0.5*"></RowDefinition>
@@ -55,49 +54,67 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="1.7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
-                <DataGrid.Resources>
-                    <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
-                        <Setter Property="TextWrapping" Value="Wrap"/>
-                        <Setter Property="MaxWidth" Value="200"/>
-                    </Style>
-                </DataGrid.Resources>
-            </DataGrid>
-            <DockPanel Grid.Column="1" Grid.Row="1">
-                <StackPanel Name="PatientInfoPanel">
-                    <DockPanel>
-                        <Label Width="70" FontWeight="Bold">Пациент:</Label>
-                        <Label Name="PatientCard"></Label>
-                    </DockPanel>
-                    <DockPanel>
-                        <Label Width="70" FontWeight="Bold">Пол:</Label>
-                        <Label Name="PatientSex"></Label>
-                    </DockPanel>
-                    <DockPanel>
-                        <Label Width="180" FontWeight="Bold">Текущее лечение:</Label>
-                        <Label Name="PatientCurrentTherapy"></Label>
-                    </DockPanel>
-                    <DockPanel>
-                        <Label Width="180" FontWeight="Bold">Количество таблеток:</Label>
-                        <Label Name="PatientDrugsCount"></Label>
-                    </DockPanel>
-                    <DockPanel>
-                        <Label Width="180" FontWeight="Bold">Информация о пациенте:</Label>
-                        <Label Name="PatientInfo"></Label>
-                    </DockPanel>
-                </StackPanel>
-                <StackPanel Name="PatientInfoPanel2">
-                    <DockPanel>
-                        <Label Width="180" FontWeight="Bold">Дата рождения:</Label>
-                        <Label Name="PatientAge"></Label>
-                    </DockPanel>
-                    <DockPanel>
-                        <Label Width="180" FontWeight="Bold">Вес пациента:</Label>
-                        <Label Name="PatientWeight"></Label>
-                    </DockPanel>
-                </StackPanel>
-            </DockPanel>
+            <StackPanel>
+                <Label Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+                <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Label Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+                <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                    <DataGrid.Resources>
+                        <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                            <Setter Property="MaxWidth" Value="200"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Pink"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </StackPanel>
+            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <DockPanel Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                    <StackPanel Name="PatientInfoPanel">
+                        <DockPanel>
+                            <Label Width="70" FontWeight="Bold">Пациент:</Label>
+                            <Label Name="PatientCard"></Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="70" FontWeight="Bold">Пол:</Label>
+                            <Label Name="PatientSex"></Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold">Текущее лечение:</Label>
+                            <Label Name="PatientCurrentTherapy"></Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold">Количество таблеток:</Label>
+                            <Label Name="PatientDrugsCount"></Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold">Информация о пациенте:</Label>
+                            <Label Name="PatientInfo"></Label>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Name="PatientInfoPanel2">
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold">Дата рождения:</Label>
+                            <Label Name="PatientAge"></Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold">Вес пациента:</Label>
+                            <Label Name="PatientWeight"></Label>
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+            </ScrollViewer>
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                     <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
