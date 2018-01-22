@@ -58,7 +58,7 @@ namespace Core
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
                 msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
-                //msg.From = (Guid)row["From"];
+                msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
                 msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
@@ -102,7 +102,7 @@ namespace Core
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
                 msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
-                //msg.From = (Guid)row["From"];
+                msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
                 msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
@@ -146,7 +146,7 @@ namespace Core
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
                 msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
-                //msg.From = (Guid)row["From"];
+                msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
                 msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
@@ -190,7 +190,7 @@ namespace Core
                 //msg.ParentMessageID = (Guid)row["ParentMessageID"];
                 msg.PatientID = (Guid)row["PatientID"];
                 msg.PatientName = row["PatientName"].ToString();
-                //msg.From = (Guid)row["From"];
+                msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
                 msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");

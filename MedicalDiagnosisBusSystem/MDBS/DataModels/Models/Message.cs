@@ -14,7 +14,7 @@ namespace DataModels
         //public Guid ParentMessageID { get; set; }
         public Guid PatientID { get; set; }
         public string PatientName { get; set; }
-        //public Guid From { get; set; }
+        public Guid From { get; set; }
         //public Guid To { get; set; }
         public string FromName { get; set; }
         public string MessageDate { get; set; }

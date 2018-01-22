@@ -191,15 +191,16 @@ namespace MDBS_server
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
             MessageGrid.Columns[1].Visibility = Visibility.Collapsed;
-            MessageGrid.Columns[5].Visibility = Visibility.Collapsed;
+            MessageGrid.Columns[3].Visibility = Visibility.Collapsed;
+            MessageGrid.Columns[6].Visibility = Visibility.Collapsed;
 
             MessageGrid.Columns[2].Header = "Пациент";
-            MessageGrid.Columns[3].Header = "От кого";
-            MessageGrid.Columns[4].Header = "Дата";
+            MessageGrid.Columns[4].Header = "От кого";
+            MessageGrid.Columns[5].Header = "Дата";
 
             MessageGrid.Columns[2].Width = 120;
-            MessageGrid.Columns[3].Width = 120;
             MessageGrid.Columns[4].Width = 120;
+            MessageGrid.Columns[5].Width = 120;
         }
 
         private void ShowPatients(object sender, RoutedEventArgs e)
@@ -242,20 +243,20 @@ namespace MDBS_server
 
         private void AnswerMessage(object sender, RoutedEventArgs e)
         {
-            if (DialogGrid.SelectedItems.Count == 1)
+            if (MessageGrid.SelectedItems.Count == 1)
             {
                 AnswerWindow answerWindow = new AnswerWindow();
-                var dialogRow = DialogGrid.SelectedItems[0] as Dialog;
+                var messageRow = MessageGrid.SelectedItems[0] as Message;
 
-                if (dialogRow.From == UserID)
+                if (messageRow.From == UserID)
                     return;
 
-                answerWindow.ParentMessageId = dialogRow.ID;
-                answerWindow.PatientId = dialogRow.PatientID;
-                answerWindow.PatientName = dialogRow.PatientName;
+                answerWindow.ParentMessageId = messageRow.ID;
+                answerWindow.PatientId = messageRow.PatientID;
+                answerWindow.PatientName = messageRow.PatientName;
                 answerWindow.FromId = UserID;
-                answerWindow.FromName = dialogRow.FromName;
-                answerWindow.ToId = dialogRow.From;
+                answerWindow.FromName = messageRow.FromName;
+                answerWindow.ToId = messageRow.From;
 
                 if (answerWindow.ShowDialog() == true)
                 {
@@ -263,6 +264,10 @@ namespace MDBS_server
                 else
                 {
                 }
+            }
+            else
+            {
+                MessageBox.Show("Сначала нужно выделить сообщение, на которое вы хотите ответить!");
             }
         }
 
@@ -343,7 +348,7 @@ namespace MDBS_server
                 therapyPlanColumn.ElementStyle = style;
                 therapyPlanColumn.EditingElementStyle = style;
 
-                DialogGridLabel.Content = message.PatientName;
+                DialogGridLabel.Content = "История запросов по пациенту: " + message.PatientName;
 
                 var patientId = message.PatientID;
                 var patientInfo = core.GetPatientInfo((Guid)patientId);
@@ -363,6 +368,8 @@ namespace MDBS_server
                     var row = MessageGrid.ItemContainerGenerator.ContainerFromItem(MessageGrid.CurrentItem) as DataGridRow;
                     row.FontWeight = FontWeight.FromOpenTypeWeight(400);
                 }
+
+                AttachmentsUpdate((Guid)messageId);
             }
         }
 
@@ -416,6 +423,20 @@ namespace MDBS_server
 
         private void DialogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems != null && e.AddedItems.Count > 0)
+            {
+                var dialog = e.AddedItems[0] as Dialog;
+
+                if (dialog == null)
+                    return;
+
+                var messageId = dialog.ID;
+                AttachmentsUpdate((Guid)messageId);
+            }
+        }
+
+        public void AttachmentsUpdate(Guid messageId)
+        {
             var core = new CoreFunc();
 
             ImageControl0.Source = null;
@@ -429,71 +450,62 @@ namespace MDBS_server
             ImageControl8.Source = null;
             ImageControl9.Source = null;
 
-            if (e.AddedItems != null && e.AddedItems.Count > 0)
+            var images = core.GetAttachments(messageId);
+
+            if (images.Count > 0)
             {
-                var dialog = e.AddedItems[0] as Dialog;
-
-                if (dialog == null)
-                    return;
-
-                var messageId = dialog.ID;
-                var images = core.GetAttachments((Guid)messageId);
-
-                if (images.Count > 0)
+                if (images.ElementAtOrDefault(0) != null)
                 {
-                    if (images.ElementAtOrDefault(0) != null)
-                    {
-                        Image_0 = ToImage(images[0].Data);
-                        ImageControl0.Source = Image_0;
-                    }
+                    Image_0 = ToImage(images[0].Data);
+                    ImageControl0.Source = Image_0;
+                }
 
-                    if (images.ElementAtOrDefault(1) != null)
-                    {
-                        Image_1 = ToImage(images[1].Data);
-                        ImageControl1.Source = Image_1;
-                    }
+                if (images.ElementAtOrDefault(1) != null)
+                {
+                    Image_1 = ToImage(images[1].Data);
+                    ImageControl1.Source = Image_1;
+                }
 
-                    if (images.ElementAtOrDefault(2) != null)
-                    {
-                        Image_2 = ToImage(images[2].Data);
-                        ImageControl2.Source = Image_2;
-                    }
+                if (images.ElementAtOrDefault(2) != null)
+                {
+                    Image_2 = ToImage(images[2].Data);
+                    ImageControl2.Source = Image_2;
+                }
 
-                    if (images.ElementAtOrDefault(3) != null)
-                    {
-                        Image_3 = ToImage(images[3].Data);
-                        ImageControl3.Source = Image_3;
-                    }
-                    if (images.ElementAtOrDefault(4) != null)
-                    {
-                        Image_4 = ToImage(images[4].Data);
-                        ImageControl4.Source = Image_4;
-                    }
-                    if (images.ElementAtOrDefault(5) != null)
-                    {
-                        Image_5 = ToImage(images[5].Data);
-                        ImageControl5.Source = Image_5;
-                    }
-                    if (images.ElementAtOrDefault(6) != null)
-                    {
-                        Image_6 = ToImage(images[6].Data);
-                        ImageControl6.Source = Image_6;
-                    }
-                    if (images.ElementAtOrDefault(7) != null)
-                    {
-                        Image_7 = ToImage(images[7].Data);
-                        ImageControl7.Source = Image_7;
-                    }
-                    if (images.ElementAtOrDefault(8) != null)
-                    {
-                        Image_8 = ToImage(images[8].Data);
-                        ImageControl8.Source = Image_8;
-                    }
-                    if (images.ElementAtOrDefault(9) != null)
-                    {
-                        Image_9 = ToImage(images[9].Data);
-                        ImageControl9.Source = Image_9;
-                    }
+                if (images.ElementAtOrDefault(3) != null)
+                {
+                    Image_3 = ToImage(images[3].Data);
+                    ImageControl3.Source = Image_3;
+                }
+                if (images.ElementAtOrDefault(4) != null)
+                {
+                    Image_4 = ToImage(images[4].Data);
+                    ImageControl4.Source = Image_4;
+                }
+                if (images.ElementAtOrDefault(5) != null)
+                {
+                    Image_5 = ToImage(images[5].Data);
+                    ImageControl5.Source = Image_5;
+                }
+                if (images.ElementAtOrDefault(6) != null)
+                {
+                    Image_6 = ToImage(images[6].Data);
+                    ImageControl6.Source = Image_6;
+                }
+                if (images.ElementAtOrDefault(7) != null)
+                {
+                    Image_7 = ToImage(images[7].Data);
+                    ImageControl7.Source = Image_7;
+                }
+                if (images.ElementAtOrDefault(8) != null)
+                {
+                    Image_8 = ToImage(images[8].Data);
+                    ImageControl8.Source = Image_8;
+                }
+                if (images.ElementAtOrDefault(9) != null)
+                {
+                    Image_9 = ToImage(images[9].Data);
+                    ImageControl9.Source = Image_9;
                 }
             }
         }
