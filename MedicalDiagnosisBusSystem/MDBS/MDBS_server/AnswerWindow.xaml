@@ -19,7 +19,7 @@
             <TextBox Name="PatientBox"></TextBox>
             <Label>План лечения</Label>
             <TextBox Name="TherapyPlanBox" Height="150"></TextBox>
-            <Button Click="AnswerMessage_Click">Отправить</Button>
+            <Button Width="300" Click="AnswerMessage_Click">Отправить</Button>
         </StackPanel>
     </Grid>
 </Window>

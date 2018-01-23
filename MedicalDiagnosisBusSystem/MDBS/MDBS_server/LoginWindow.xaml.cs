@@ -44,6 +44,10 @@ namespace MDBS_server
                 CurrentUser = user;
                 this.DialogResult = true;
             }
+            else
+            {
+                ErrorMessage.Text = "Неправильный логин или пароль!";
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

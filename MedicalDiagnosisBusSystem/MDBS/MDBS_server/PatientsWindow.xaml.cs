@@ -30,6 +30,7 @@ namespace MDBS_server
 
             Patients = Core.GetPatients();
             PatientGrid.ItemsSource = Patients;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public void PatientGridColumnsGenerated(object sender, EventArgs e)
