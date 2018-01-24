@@ -44,7 +44,7 @@ BEGIN
 		(select [ID] from dbo.[Patient] where [MedicalCardNumber] = @patient_number),
 		@user_id,
 		@to_id,
-		(select [FullName] from dbo.[User] where [ID] = @user_id),
+		(select [FullName] + ' (' + substring(DocNumber, 3, 2) + ')' from dbo.[User] where [ID] = @user_id),
 		getdate(),
 		0)
 	

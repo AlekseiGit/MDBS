@@ -108,6 +108,15 @@ namespace MDBS_server
             Application.Current.Shutdown();
         }
 
+        public void Help(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                "Medical Diagnosis Bus System (MDBS)" + "\n" +
+                "Версия программы: 1.2(beta)" + "\n" +
+                "(с) 2018 все права защищены.",
+                "О программе");
+        }
+
         private void ItemsSourceChanged(object sender, EventArgs e)
         {
             int i = 0;
@@ -319,16 +328,17 @@ namespace MDBS_server
 
                 DialogGrid.Columns[0].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[4].Visibility = Visibility.Collapsed;
+                DialogGrid.Columns[5].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[6].Visibility = Visibility.Collapsed;
 
                 DialogGrid.Columns[1].Header = "Сообщение";
                 DialogGrid.Columns[2].Header = "Диагноз";
-                DialogGrid.Columns[3].Header = "План Лечения";
-                DialogGrid.Columns[5].Header = "Пациент";
+                DialogGrid.Columns[3].Header = "План лечения";
+                //DialogGrid.Columns[5].Header = "Пациент";
                 DialogGrid.Columns[7].Header = "От кого";
                 DialogGrid.Columns[8].Header = "Дата";
 
-                DialogGrid.Columns[1].Width = 90;
+                DialogGrid.Columns[1].Width = 170;
                 DialogGrid.Columns[2].Width = 170;
                 DialogGrid.Columns[3].Width = 170;
                 DialogGrid.Columns[4].Width = 90;

@@ -5,71 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="580">
-    <Grid Height="Auto">
+        Title="Новое сообщение" Width="800" Height="450">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Name="MessagPanel">
-            <Label>Кому</Label>
-            <ComboBox Name="ToBox" SelectedIndex="0">
-                <ComboBoxItem>Московская Клиника</ComboBoxItem>
-            </ComboBox>
-            <Label>Номер карты пациента</Label>
-            <TextBox Name="PatientBox"></TextBox>
-            <Label>Сообщение</Label>
-            <TextBox Name="InfoBox"></TextBox>
-            <Label>Диагноз</Label>
-            <TextBox Name="DiagnosisBox"></TextBox>
-            <Button Width="300" Click="AttachImage_Click">Прикрепить изображение</Button>
-            <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Кому</Label>
+                <ComboBox Name="ToBox" SelectedIndex="0">
+                    <ComboBoxItem>Московская Клиника</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Номер карты пациента</Label>
+                <TextBox Name="PatientBox"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Сообщение</Label>
+                <TextBox Name="InfoBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Диагноз</Label>
+                <TextBox Name="DiagnosisBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
+            </DockPanel>
+            <ScrollViewer IsTabStop="True" Height="130" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                     <StackPanel>
-                        <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                            <Image Name="Image0" />
+                        <Border BorderThickness="10" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                            <Image Name="Image0" Height="90"/>
                         </Border>
                         <!--Button Click="AttachImage_Click">Убрать изображение</Button-->
                     </StackPanel>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image1" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image1" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image2" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image2" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image3" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image3" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image4" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image4" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image5" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image5" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image6" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image6" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image7" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image7" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image8" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image8" Height="90"/>
                     </Border>
-                    <Border BorderThickness="10" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}">
-                        <Image Name="Image9" />
+                    <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                        <Image Name="Image9" Height="90"/>
                     </Border>
                 </DockPanel>
             </ScrollViewer>
-            <Label Name="ImagePath0">...</Label>
-            <Label Name="ImagePath1">...</Label>
-            <Label Name="ImagePath2">...</Label>
-            <Label Name="ImagePath3">...</Label>
-            <Label Name="ImagePath4">...</Label>
-            <Label Name="ImagePath5">...</Label>
-            <Label Name="ImagePath6">...</Label>
-            <Label Name="ImagePath7">...</Label>
-            <Label Name="ImagePath8">...</Label>
-            <Label Name="ImagePath9">...</Label>
-            <Button Width="300" Click="SendMessage_Click">Отправить</Button>
+            <DockPanel>
+                <Button Width="200" Click="AttachImage_Click" HorizontalAlignment="Right" Margin="280,20,0,0">Прикрепить изображение</Button>
+                <Button Width="200" Click="SendMessage_Click" HorizontalAlignment="Right" Margin="0,20,80,0">Отправить</Button>
+            </DockPanel>
         </StackPanel>
     </Grid>
 </Window>

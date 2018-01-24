@@ -5,21 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="350" Loaded="Window_Loaded">
-    <Grid>
+        Title="Новое сообщение" Width="800" Height="250" Loaded="Window_Loaded">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Name="MessagPanel">
-            <Label>Кому</Label>
-            <ComboBox Name="ToBox" SelectedIndex="0">
-                <ComboBoxItem></ComboBoxItem>
-            </ComboBox>
-            <Label>Пациент</Label>
-            <TextBox Name="PatientBox"></TextBox>
-            <Label>План лечения</Label>
-            <TextBox Name="TherapyPlanBox" Height="150"></TextBox>
-            <Button Width="300" Click="AnswerMessage_Click">Отправить</Button>
+            <DockPanel>
+                <Label Width="150" FontWeight="Bold">Кому</Label>
+                <ComboBox Name="ToBox" SelectedIndex="0">
+                    <ComboBoxItem></ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="150" FontWeight="Bold">Пациент</Label>
+                <TextBox Name="PatientBox" IsReadOnly="True"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="150" FontWeight="Bold">План лечения</Label>
+                <TextBox Name="TherapyPlanBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
+            </DockPanel>
+            <Button Width="200" Click="AnswerMessage_Click">Отправить</Button>
         </StackPanel>
     </Grid>
 </Window>

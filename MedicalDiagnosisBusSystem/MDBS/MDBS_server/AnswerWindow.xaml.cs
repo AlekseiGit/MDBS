@@ -23,6 +23,7 @@ namespace MDBS_server
         public AnswerWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public string TherapyPlan

@@ -23,10 +23,22 @@ namespace MDBS_server
     {
         Guid UserID;
 
+        string ImagePath0 = "";
+        string ImagePath1 = "";
+        string ImagePath2 = "";
+        string ImagePath3 = "";
+        string ImagePath4 = "";
+        string ImagePath5 = "";
+        string ImagePath6 = "";
+        string ImagePath7 = "";
+        string ImagePath8 = "";
+        string ImagePath9 = "";
+
         public MessageWindow(Guid userId)
         {
             InitializeComponent();
             UserID = userId;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public Guid To
@@ -110,44 +122,56 @@ namespace MDBS_server
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
-                    if (ImagePath0.Content.ToString() == "...")
-                        ImagePath0.Content = filename;
-                    else if (ImagePath1.Content.ToString() == "...")
-                        ImagePath1.Content = filename;
-                    else if (ImagePath2.Content.ToString() == "...")
-                        ImagePath2.Content = filename;
-                    else if (ImagePath3.Content.ToString() == "...")
-                        ImagePath3.Content = filename;
-                    else if (ImagePath4.Content.ToString() == "...")
-                        ImagePath4.Content = filename;
-                    else if (ImagePath5.Content.ToString() == "...")
-                        ImagePath5.Content = filename;
-                    else if (ImagePath6.Content.ToString() == "...")
-                        ImagePath6.Content = filename;
-                    else if (ImagePath7.Content.ToString() == "...")
-                        ImagePath7.Content = filename;
-                    else if (ImagePath8.Content.ToString() == "...")
-                        ImagePath8.Content = filename;
-                    else if (ImagePath9.Content.ToString() == "...")
-                        ImagePath9.Content = filename;
-
-                    /*
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.UriSource = new Uri(@"C:\DBI\j.jpg", UriKind.Relative);
-                    bi.EndInit();
-
-                    if (Image1.Source == null)
-                        Image1.Source = bi;
-                    else if (Image2.Source == null)
-                        Image2.Source = bi;
-                    else if (Image3.Source == null)
-                        Image3.Source = bi;
-                    else if (Image4.Source == null)
-                        Image4.Source = bi;
-                    else if (Image5.Source == null)
-                        Image5.Source = bi;
-                    */
+                    if (string.IsNullOrEmpty(ImagePath0))
+                    {
+                        Image0.Source = new BitmapImage(new Uri(filename));
+                        ImagePath0 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath1))
+                    {
+                        Image1.Source = new BitmapImage(new Uri(filename));
+                        ImagePath1 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath2))
+                    {
+                        Image2.Source = new BitmapImage(new Uri(filename));
+                        ImagePath2 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath3))
+                    {
+                        Image3.Source = new BitmapImage(new Uri(filename));
+                        ImagePath3 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath4))
+                    {
+                        Image4.Source = new BitmapImage(new Uri(filename));
+                        ImagePath4 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath5))
+                    {
+                        Image5.Source = new BitmapImage(new Uri(filename));
+                        ImagePath5 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath6))
+                    {
+                        Image6.Source = new BitmapImage(new Uri(filename));
+                        ImagePath6 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath7))
+                    {
+                        Image7.Source = new BitmapImage(new Uri(filename));
+                        ImagePath7 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath8))
+                    {
+                        Image8.Source = new BitmapImage(new Uri(filename));
+                        ImagePath8 = filename;
+                    }
+                    else if (string.IsNullOrEmpty(ImagePath9))
+                    {
+                        Image9.Source = new BitmapImage(new Uri(filename));
+                        ImagePath9 = filename;
+                    }
                 }
             }
         }
@@ -178,16 +202,16 @@ namespace MDBS_server
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //to_id
-                this.ImagePath0.Content.ToString(),
-                this.ImagePath1.Content.ToString(),
-                this.ImagePath2.Content.ToString(),
-                this.ImagePath3.Content.ToString(),
-                this.ImagePath4.Content.ToString(),
-                this.ImagePath5.Content.ToString(),
-                this.ImagePath6.Content.ToString(),
-                this.ImagePath7.Content.ToString(),
-                this.ImagePath8.Content.ToString(),
-                this.ImagePath9.Content.ToString());
+                ImagePath0,
+                ImagePath1,
+                ImagePath2,
+                ImagePath3,
+                ImagePath4,
+                ImagePath5,
+                ImagePath6,
+                ImagePath7,
+                ImagePath8,
+                ImagePath9);
 
             MessageBox.Show("Сообщение отправляется!");
 
