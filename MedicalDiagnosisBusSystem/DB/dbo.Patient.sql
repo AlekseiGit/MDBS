@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[Patient](
 	[Weight] [int] NULL, -- вес пациента в килограммах
 	[DrugsCount] [nvarchar](100) NULL,
 	[BirthDate] [datetime] NULL,
-	[MedicalCardNumber] [nvarchar](100) NULL,
+	[MedicalCardNumber] [nvarchar](100) NOT NULL,
 	[CurrentTherapy] [nvarchar](max) NULL, -- текущее лечение
 	[Info] [nvarchar](max) NULL, -- заполняется по шаблону
 	[Note] [nvarchar](200) NULL,
@@ -25,4 +25,11 @@ CREATE TABLE [dbo].[Patient](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+/****** Object:  Index [NonClusteredIndex-PatientCardNumber]    Script Date: 24.01.2018 17:17:58 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [NonClusteredIndex-PatientCardNumber] ON [dbo].[Patient]
+(
+	[MedicalCardNumber] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 GO

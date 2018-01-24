@@ -61,7 +61,7 @@ namespace Core
                 msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
-                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
                 msg.Status = (int)row["Status"];
 
                 messages.Add(msg);
@@ -105,7 +105,7 @@ namespace Core
                 msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
-                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
                 msg.Status = (int)row["Status"];
 
                 messages.Add(msg);
@@ -149,7 +149,7 @@ namespace Core
                 msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
-                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
                 msg.Status = (int)row["Status"];
 
                 messages.Add(msg);
@@ -193,7 +193,7 @@ namespace Core
                 msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
                 msg.FromName = row["FromName"].ToString();
-                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
                 msg.Status = (int)row["Status"];
 
                 messages.Add(msg);
@@ -235,7 +235,7 @@ namespace Core
                 dlg.PatientName = row["PatientName"].ToString();
                 dlg.From = (Guid)row["From"];
                 dlg.FromName = row["FromName"].ToString();
-                dlg.MessageDate = ((DateTime)row["MessageDate"]).ToString("yyyy-MM-dd   HH:mm");
+                dlg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
 
                 dialog.Add(dlg);
             }
@@ -646,7 +646,7 @@ namespace Core
                 systemData.IncomingInfo = row["incoming_info"].ToString();
                 systemData.OutgoingInfo = row["outgoing_info"].ToString();
                 systemData.NeedAnswerInfo = row["need_answer_info"].ToString();
-                systemData.NeedAnswerStatus = (int)row["need_answer_status"];
+                systemData.NeedAnswerDate = (DateTime)row["need_answer_date"];
             }
 
             DBConnection.Close();

@@ -11,8 +11,7 @@ BEGIN
 		@incoming_info nvarchar(10),
 		@outgoing_info nvarchar(10),
 		@need_answer_info nvarchar(10),
-		@need_answer_date datetime,
-		@need_answer_status int
+		@need_answer_date datetime
 
 	select @incoming_info = count(*)
 	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
@@ -35,23 +34,10 @@ BEGIN
 	select @need_answer_date = min(m.MessageDate)
 	from dbo.message m (nolock) inner join dbo.Patient p (nolock) on m.PatientID = p.ID
 	where m.[To] = @user_id and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
-	
-	if (select datediff(day, @need_answer_date, getdate())) < 2
-	begin
-		set @need_answer_status = 1
-	end
-	else if ((select datediff(day, @need_answer_date, getdate())) >= 2 and (select datediff(day, @need_answer_date, getdate())) < 3)
-	begin
-		set @need_answer_status = 2
-	end
-	else
-	begin
-		set @need_answer_status = 3
-	end
-	
+		
 	select
 		@incoming_info as [incoming_info],
 		@outgoing_info as [outgoing_info],
 		@need_answer_info as [need_answer_info],
-		@need_answer_status as [need_answer_status]
+		@need_answer_date as [need_answer_date]
 END;

@@ -87,15 +87,17 @@ namespace MDBS_server
             Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
             NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
 
-            if (systemData.NeedAnswerStatus == 1)
+            var diff = (DateTime.Now - systemData.NeedAnswerDate).TotalDays;
+
+            if (diff < 2)
             {
                 NeedAnswer.Background = Brushes.LightGreen;
             }
-            else if (systemData.NeedAnswerStatus == 2)
+            else if (diff >= 2 && diff < 3)
             {
                 NeedAnswer.Background = Brushes.LightYellow;
             }
-            if (systemData.NeedAnswerStatus == 3)
+            else if (diff >= 3)
             {
                 NeedAnswer.Background = Brushes.Pink;
             }
@@ -194,13 +196,13 @@ namespace MDBS_server
             MessageGrid.Columns[3].Visibility = Visibility.Collapsed;
             MessageGrid.Columns[6].Visibility = Visibility.Collapsed;
 
-            MessageGrid.Columns[2].Header = "Пациент";
+            MessageGrid.Columns[2].Header = "№ карты пациента";
             MessageGrid.Columns[4].Header = "От кого";
             MessageGrid.Columns[5].Header = "Дата";
 
             MessageGrid.Columns[2].Width = 120;
-            MessageGrid.Columns[4].Width = 120;
-            MessageGrid.Columns[5].Width = 120;
+            MessageGrid.Columns[4].Width = 160;
+            MessageGrid.Columns[5].Width = 100;
         }
 
         private void ShowPatients(object sender, RoutedEventArgs e)
@@ -348,7 +350,7 @@ namespace MDBS_server
                 therapyPlanColumn.ElementStyle = style;
                 therapyPlanColumn.EditingElementStyle = style;
 
-                DialogGridLabel.Content = "История запросов по пациенту: " + message.PatientName;
+                DialogGridLabel.Content = "История запросов и ответов по пациенту: " + message.PatientName;
 
                 var patientId = message.PatientID;
                 var patientInfo = core.GetPatientInfo((Guid)patientId);

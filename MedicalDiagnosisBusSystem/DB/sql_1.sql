@@ -13,20 +13,20 @@ declare
 @patient4 uniqueidentifier = newid(),
 @patient5 uniqueidentifier = newid()
 
-insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('5A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор1', '7701', '', '-521230454', '1')
-insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('4A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор2', '7702', '', '-521230454', '1')
-insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('3A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор3', '7801', '', '-521230454', '0')
+insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('5A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор1', '0777101', '', '-521230454', '1')
+insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('4A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор2', '0777102', '', '-521230454', '1')
+insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('3A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор3', '0778101', '', '-521230454', '0')
 
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)
-	values (@patient1, 'Пациент 1', 1, 27, '10', '19850319', '7700275', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
+	values (@patient1, 'Пациент 1', 1, 27, '10', '19850319', '077710001', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)
-	values (@patient2, 'Пациент 2', 1, 90, '2', '19770102', '7700984', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
+	values (@patient2, 'Пациент 2', 1, 90, '2', '19770102', '077710002', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)
-	values (@patient3, 'Пациент 3', 2, 92, '12', '19810808', '7700031', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
+	values (@patient3, 'Пациент 3', 2, 92, '12', '19810808', '076310001', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)
-	values (@patient4, 'Пациент 4', 2, 41, '4', '19921206', '7705681', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
+	values (@patient4, 'Пациент 4', 2, 41, '4', '19921206', '077810001', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)
-	values (@patient5, 'Пациент 5', 1, 12, '4', '19880721', '7700221', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
+	values (@patient5, 'Пациент 5', 1, 12, '4', '19880721', '077810002', 'Текущее лечение этого пациента', 'Некоторая информация об этом пациенте', 'Небольшая заметка')
 
 /*
 insert into [Message] (Info, Diagnosis, TherapyPlan, ParentMessageID, PatientID, [From], [To], FromName, MessageDate, Status)
