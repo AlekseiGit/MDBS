@@ -45,6 +45,12 @@ namespace MDBS_server
 
         private void AnswerMessage_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(this.TherapyPlan))
+            {
+                MessageBox.Show("План лечения пациента не заполнен!");
+                return;
+            }
+
             var core = new CoreFunc();
             core.AnswerMessage(
                 this.TherapyPlan,

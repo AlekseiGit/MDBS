@@ -24,6 +24,7 @@ namespace MDBS_server
         {
             InitializeComponent();
             PatientBirthDate.SelectedDate = DateTime.Today;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         public string FullName
@@ -69,7 +70,10 @@ namespace MDBS_server
         {
             get { return PatientInfoBox.Text; }
         }
-        //public string Note { get; set; }
+        public string Note
+        {
+            get { return PatientNoteBox.Text; }
+        }
 
         private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -102,7 +106,8 @@ namespace MDBS_server
                 this.BirthDate,
                 this.MedicalCardNumber,
                 this.CurrentTherapy,
-                this.Info);
+                this.Info,
+                this.Note);
 
             this.DialogResult = true;
         }

@@ -81,25 +81,32 @@ namespace MDBS_server
 
         public void RefreshInformation(object sender, EventArgs e)
         {
-            var systemData = Core.GetSystemData(UserID);
-
-            Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
-            Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
-            NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
-
-            var diff = (DateTime.Now - systemData.NeedAnswerDate).TotalDays;
-
-            if (diff < 2)
+            try
             {
-                NeedAnswer.Background = Brushes.LightGreen;
+                var systemData = Core.GetSystemData(UserID);
+
+                Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
+                Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
+                NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
+
+                var diff = (DateTime.Now - systemData.NeedAnswerDate).TotalDays;
+
+                if (diff < 2)
+                {
+                    NeedAnswer.Background = Brushes.LightGreen;
+                }
+                else if (diff >= 2 && diff < 3)
+                {
+                    NeedAnswer.Background = Brushes.LightYellow;
+                }
+                else if (diff >= 3)
+                {
+                    NeedAnswer.Background = Brushes.Pink;
+                }
             }
-            else if (diff >= 2 && diff < 3)
+            catch
             {
-                NeedAnswer.Background = Brushes.LightYellow;
-            }
-            else if (diff >= 3)
-            {
-                NeedAnswer.Background = Brushes.Pink;
+                return;
             }
         }
 
@@ -373,7 +380,8 @@ namespace MDBS_server
                 PatientDrugsCount.Content = patientInfo.DrugsCount;
                 PatientInfo.Content = patientInfo.Info;
 
-                core.ReadMessage(messageId);
+                if (message.From != UserID)
+                    core.ReadMessage(messageId);
 
                 if (MessageGrid.CurrentItem != null)
                 {
@@ -391,7 +399,9 @@ namespace MDBS_server
 
             if (RowDataContaxt != null)
             {
-                if (RowDataContaxt.Status == 0)
+                var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
+
+                if (RowDataContaxt.Status == 0 && categoryName.Contains("Входящие"))
                 {
                     e.Row.FontWeight = FontWeight.FromOpenTypeWeight(900);
                 }

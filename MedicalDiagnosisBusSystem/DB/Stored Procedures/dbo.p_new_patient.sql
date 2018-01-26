@@ -10,7 +10,8 @@ CREATE PROCEDURE dbo.p_new_patient
 @birthDate datetime,
 @medicalCardNumber nvarchar(100),
 @currentTherapy nvarchar(max),
-@info nvarchar(max)
+@info nvarchar(max),
+@note nvarchar(200)
 
 AS
 BEGIN
@@ -37,5 +38,5 @@ BEGIN
 		@medicalCardNumber,
 		@currentTherapy,
 		@info,
-		'')
+		@note)
 END;

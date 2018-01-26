@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новый пациент" Height="300" Width="800">
+        Title="Новый пациент" Height="320" Width="800">
     <Grid>
         <StackPanel Name="PatientInfoPanel">
             <DockPanel>
@@ -43,7 +43,11 @@
                 <Label Width="200" FontWeight="Bold">Информация о пациенте:</Label>
                 <TextBox Name="PatientInfoBox"></TextBox>
             </DockPanel>
-            <Button Click="CreatePatient_Click">Создать пациента</Button>
+            <DockPanel>
+                <Label Width="200" FontWeight="Bold">Доп. информация о пациенте:</Label>
+                <TextBox Name="PatientNoteBox"></TextBox>
+            </DockPanel>
+            <Button Width="200" Click="CreatePatient_Click">Создать пациента</Button>
         </StackPanel>
     </Grid>
 </Window>
