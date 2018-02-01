@@ -23,9 +23,12 @@ BEGIN
 	from dbo.message m (nolock)
 		inner join dbo.Patient p (nolock)
 			on m.PatientID = p.ID
+		left join dbo.message mm (nolock)
+			on mm.[ParentMessageID] = m.[ID]
 	where
 		m.[To] = @user_id
-		and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
+		and mm.[ID] is null
+		--and (select count(*) from dbo.message msg (nolock) where msg.[ParentMessageID] = m.[ID]) = 0
 	order by
 		m.[MessageDate] asc
 END;
