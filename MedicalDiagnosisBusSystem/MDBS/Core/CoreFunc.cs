@@ -483,6 +483,53 @@ namespace Core
             return patientInfo;
         }
 
+        public void EditPatientInfo(
+            Guid patientId,
+            string fullName,
+            int sex,
+            int weight,
+            string drugsCount,
+            DateTime birthDate,
+            string medicalCardNumber,
+            string currentTherapy,
+            string info,
+            string note)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_edit_patient";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@patient_id", SqlDbType.UniqueIdentifier);
+                cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@sex", SqlDbType.Int);
+                cmd.Parameters.Add("@weight", SqlDbType.Int);
+                cmd.Parameters.Add("@drugsCount", SqlDbType.NVarChar, 10);
+                cmd.Parameters.Add("@birthDate", SqlDbType.DateTime);
+                cmd.Parameters.Add("@medicalCardNumber", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@currentTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@note", SqlDbType.NVarChar, 4000);
+
+                cmd.Parameters["@patient_id"].Value = patientId;
+                cmd.Parameters["@fullName"].Value = fullName;
+                cmd.Parameters["@sex"].Value = sex;
+                cmd.Parameters["@weight"].Value = weight;
+                cmd.Parameters["@drugsCount"].Value = drugsCount;
+                cmd.Parameters["@birthDate"].Value = birthDate;
+                cmd.Parameters["@medicalCardNumber"].Value = medicalCardNumber;
+                cmd.Parameters["@currentTherapy"].Value = currentTherapy;
+                cmd.Parameters["@info"].Value = info;
+                cmd.Parameters["@note"].Value = note;
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Attachments> GetAttachments(Guid message_id)
         {            
             List<Attachments> attachments = new List<Attachments>();

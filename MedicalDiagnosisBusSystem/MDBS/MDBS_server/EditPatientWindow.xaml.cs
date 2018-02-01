@@ -16,10 +16,13 @@ using System.Windows.Shapes;
 namespace MDBS_server
 {
     /// <summary>
-    /// Interaction logic for NewPatientWindow.xaml
+    /// Interaction logic for EditPatientWindow.xaml
     /// </summary>
-    public partial class NewPatientWindow : Window
+    public partial class EditPatientWindow : Window
     {
+        CoreFunc Core = new CoreFunc();
+        Guid PatientId;
+
         public string FullName
         {
             get { return PatientNameBox.Text; }
@@ -68,11 +71,30 @@ namespace MDBS_server
             get { return PatientNoteBox.Text; }
         }
 
-        public NewPatientWindow()
+        public EditPatientWindow(Guid patientId)
         {
             InitializeComponent();
-            PatientBirthDate.SelectedDate = DateTime.Today;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            PatientId = patientId;
+            var patientInfo = Core.GetPatientInfo(patientId);
+
+            PatientNameBox.Text = patientInfo.FullName;
+            PatientCardBox.Text = patientInfo.MedicalCardNumber;
+            if (patientInfo.Sex == "M")
+            {
+                PatientSexBox.SelectedIndex = 0;
+            }
+            else if (patientInfo.Sex == "Ж")
+            {
+                PatientSexBox.SelectedIndex = 1;
+            }
+            PatientBirthDate.SelectedDate = DateTime.ParseExact(patientInfo.BirthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            PatientWeightBox.Text = patientInfo.Weight.ToString();
+            PatientCurrentTherapyBox.Text = patientInfo.CurrentTherapy;
+            PatientDrugsCountBox.Text = patientInfo.DrugsCount;
+            PatientInfoBox.Text = patientInfo.Info;
+            PatientNoteBox.Text = patientInfo.Note;
         }
 
         private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -83,7 +105,7 @@ namespace MDBS_server
                 this.BirthDate = DateTime.Now;
         }
 
-        private void CreatePatient_Click(object sender, RoutedEventArgs e)
+        private void UpdatePatient_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.FullName))
             {
@@ -96,9 +118,8 @@ namespace MDBS_server
                 return;
             }
 
-            var core = new CoreFunc();
-
-            core.CreatePatient(
+            Core.EditPatientInfo(
+                PatientId,
                 this.FullName,
                 this.Sex,
                 this.Weight,

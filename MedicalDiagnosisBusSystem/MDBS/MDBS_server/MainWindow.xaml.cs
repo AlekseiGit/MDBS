@@ -150,6 +150,11 @@ namespace MDBS_server
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            RefreshMessageGrid();
+        }
+
+        private void RefreshMessageGrid()
+        {
             var core = new CoreFunc(UserID);
             var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
             var messages = new List<Message>();
@@ -233,26 +238,13 @@ namespace MDBS_server
             }
         }
 
-        private void NewPatient(object sender, RoutedEventArgs e)
-        {
-            NewPatientWindow newPatientWindow = new NewPatientWindow();
-
-            if (newPatientWindow.ShowDialog() == true)
-            {
-                //MessageBox.Show("Авторизация пройдена");
-            }
-            else
-            {
-            }
-        }
-
         private void NewMessage(object sender, RoutedEventArgs e)
         {
             MessageWindow msgWindow = new MessageWindow(UserID);
 
             if (msgWindow.ShowDialog() == true)
             {
-                //MessageBox.Show("Авторизация пройдена");
+                RefreshMessageGrid();
             }
             else
             {
@@ -278,6 +270,7 @@ namespace MDBS_server
 
                 if (answerWindow.ShowDialog() == true)
                 {
+                    RefreshMessageGrid();
                 }
                 else
                 {
@@ -585,11 +578,6 @@ namespace MDBS_server
             {
                 return new User();
             }
-        }
-
-        private void DockPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
         }
     }
 }

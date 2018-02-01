@@ -79,9 +79,9 @@ namespace MDBS_server
 
             if (newPatientWindow.ShowDialog() == true)
             {
+                MessageBox.Show("Пациент создан!");
                 Patients = Core.GetPatients();
                 PatientGrid.ItemsSource = Patients;
-                MessageBox.Show("Пациент создан!");
             }
             else
             {
@@ -90,6 +90,26 @@ namespace MDBS_server
 
         public void EditPatient(object sender, EventArgs e)
         {
+            if (PatientGrid.SelectedItems.Count == 1)
+            {
+                var patient = PatientGrid.SelectedItems[0] as Patient;
+
+                EditPatientWindow editPatientWindow = new EditPatientWindow(patient.ID);
+
+                if (editPatientWindow.ShowDialog() == true)
+                {
+                    MessageBox.Show("Информация о пациенте изменена!");
+                    Patients = Core.GetPatients();
+                    PatientGrid.ItemsSource = Patients;
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пациент не выбран!");
+            }
         }
 
         public void DeletePatient(object sender, EventArgs e)
@@ -101,10 +121,10 @@ namespace MDBS_server
                 MessageBoxResult result = MessageBox.Show("Удалить выбранного пациента?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
+                    MessageBox.Show("Пациент удален!");
                     Core.DeletePatient(patient.ID);
                     Patients = Core.GetPatients();
                     PatientGrid.ItemsSource = Patients;
-                    MessageBox.Show("Пациент удален!");
                 }
             }
             else
