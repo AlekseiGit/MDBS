@@ -122,56 +122,60 @@ namespace MDBS_server
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
+                    BitmapImage img = new BitmapImage(new Uri(filename));
+
                     if (string.IsNullOrEmpty(ImagePath0))
                     {
-                        Image0.Source = new BitmapImage(new Uri(filename));
+                        Image0.Source = img;
                         ImagePath0 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath1))
                     {
-                        Image1.Source = new BitmapImage(new Uri(filename));
+                        Image1.Source = img;
                         ImagePath1 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath2))
                     {
-                        Image2.Source = new BitmapImage(new Uri(filename));
+                        Image2.Source = img;
                         ImagePath2 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath3))
                     {
-                        Image3.Source = new BitmapImage(new Uri(filename));
+                        Image3.Source = img;
                         ImagePath3 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath4))
                     {
-                        Image4.Source = new BitmapImage(new Uri(filename));
+                        Image4.Source = img;
                         ImagePath4 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath5))
                     {
-                        Image5.Source = new BitmapImage(new Uri(filename));
+                        Image5.Source = img;
                         ImagePath5 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath6))
                     {
-                        Image6.Source = new BitmapImage(new Uri(filename));
+                        Image6.Source = img;
                         ImagePath6 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath7))
                     {
-                        Image7.Source = new BitmapImage(new Uri(filename));
+                        Image7.Source = img;
                         ImagePath7 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath8))
                     {
-                        Image8.Source = new BitmapImage(new Uri(filename));
+                        Image8.Source = img;
                         ImagePath8 = filename;
                     }
                     else if (string.IsNullOrEmpty(ImagePath9))
                     {
-                        Image9.Source = new BitmapImage(new Uri(filename));
+                        Image9.Source = img;
                         ImagePath9 = filename;
                     }
+
+                    img.StreamSource.Dispose();
                 }
             }
         }

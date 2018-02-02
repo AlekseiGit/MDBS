@@ -9,16 +9,26 @@ CREATE PROCEDURE dbo.p_send_message
 @patient_number nvarchar(100),
 @user_id uniqueidentifier,
 @to_id uniqueidentifier,
-@img_one_send int = 0,
-@img_two_send int = 0,
-@img_three_send int = 0,
-@img_four_send int = 0,
-@img_five_send int = 0,
-@img_one [varbinary](max) = null,
-@img_two [varbinary](max) = null,
-@img_three [varbinary](max) = null,
-@img_four [varbinary](max) = null,
-@img_five [varbinary](max) = null
+@img_0_send int = 0,
+@img_1_send int = 0,
+@img_2_send int = 0,
+@img_3_send int = 0,
+@img_4_send int = 0,
+@img_5_send int = 0,
+@img_6_send int = 0,
+@img_7_send int = 0,
+@img_8_send int = 0,
+@img_9_send int = 0,
+@img_0 [varbinary](max) = null,
+@img_1 [varbinary](max) = null,
+@img_2 [varbinary](max) = null,
+@img_3 [varbinary](max) = null,
+@img_4 [varbinary](max) = null,
+@img_5 [varbinary](max) = null,
+@img_6 [varbinary](max) = null,
+@img_7 [varbinary](max) = null,
+@img_8 [varbinary](max) = null,
+@img_9 [varbinary](max) = null
 
 AS
 BEGIN
@@ -48,63 +58,63 @@ BEGIN
 		getdate(),
 		0)
 	
-	if (@img_one_send = 1)
+	if (@img_0_send = 1)
 	begin
-		insert into dbo.[Attachments]
-			([MessageID],
-			[Data],
-			[Comment])
-		values
-			(@message_id,
-			@img_one,
-			'')
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_0, '')
 	end
 	
-	if (@img_two_send = 1)
+	if (@img_1_send = 1)
 	begin
-		insert into dbo.[Attachments]
-			([MessageID],
-			[Data],
-			[Comment])
-		values
-			(@message_id,
-			@img_two,
-			'')
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_1, '')
 	end
 	
-	if (@img_three_send = 1)
+	if (@img_2_send = 1)
 	begin
-		insert into dbo.[Attachments]
-			([MessageID],
-			[Data],
-			[Comment])
-		values
-			(@message_id,
-			@img_three,
-			'')
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_2, '')
 	end
 	
-	if (@img_four_send = 1)
+	if (@img_3_send = 1)
 	begin
-		insert into dbo.[Attachments]
-			([MessageID],
-			[Data],
-			[Comment])
-		values
-			(@message_id,
-			@img_four,
-			'')
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_3, '')
 	end
 	
-	if (@img_five_send = 1)
+	if (@img_4_send = 1)
 	begin
-		insert into dbo.[Attachments]
-			([MessageID],
-			[Data],
-			[Comment])
-		values
-			(@message_id,
-			@img_five,
-			'')
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_4, '')
+	end
+	
+	if (@img_5_send = 1)
+	begin
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_5, '')
+	end
+	
+	if (@img_6_send = 1)
+	begin
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_6, '')
+	end
+	
+	if (@img_7_send = 1)
+	begin
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_7, '')
+	end
+	
+	if (@img_8_send = 1)
+	begin
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_8, '')
+	end
+	
+	if (@img_9_send = 1)
+	begin
+		insert into dbo.[Attachments] ([MessageID], [Data], [Comment])
+		values (@message_id, @img_9, '')
 	end
 END;

@@ -300,109 +300,158 @@ namespace Core
                 cmd.Parameters["@user_id"].Value = userId;
                 cmd.Parameters["@to_id"].Value = toId;
 
-                byte[] imageData_one;
-                byte[] imageData_two;
-                byte[] imageData_three;
-                byte[] imageData_four;
-                byte[] imageData_five;
+                byte[] imageData_0;
+                byte[] imageData_1;
+                byte[] imageData_2;
+                byte[] imageData_3;
+                byte[] imageData_4;
+                byte[] imageData_5;
+                byte[] imageData_6;
+                byte[] imageData_7;
+                byte[] imageData_8;
+                byte[] imageData_9;
 
                 if (!string.IsNullOrEmpty(img_0))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_0, FileMode.Open))
+                    using (FileStream fs = new FileStream(img_0, FileMode.Open))
                     {
-                        imageData_one = new byte[fs.Length];
-                        fs.Read(imageData_one, 0, imageData_one.Length);
+                        imageData_0 = new byte[fs.Length];
+                        fs.Read(imageData_0, 0, imageData_0.Length);
 
-                        cmd.Parameters.Add("@img_one", SqlDbType.Image, 1000000);
-                        cmd.Parameters.Add("@img_one_send", SqlDbType.Int);
-                        cmd.Parameters["@img_one"].Value = imageData_one;
-                        cmd.Parameters["@img_one_send"].Value = 1;
+                        cmd.Parameters.Add("@img_0", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_0_send", SqlDbType.Int);
+                        cmd.Parameters["@img_0"].Value = imageData_0;
+                        cmd.Parameters["@img_0_send"].Value = 1;
                     }
                 }
 
                 if (!string.IsNullOrEmpty(img_1))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_1, FileMode.Open))
+                    using (FileStream fs = new FileStream(img_1, FileMode.Open))
                     {
-                        imageData_two = new byte[fs.Length];
-                        fs.Read(imageData_two, 0, imageData_two.Length);
+                        imageData_1 = new byte[fs.Length];
+                        fs.Read(imageData_1, 0, imageData_1.Length);
 
-                        cmd.Parameters.Add("@img_two", SqlDbType.Image, 1000000);
-                        cmd.Parameters.Add("@img_two_send", SqlDbType.Int);
-                        cmd.Parameters["@img_two"].Value = imageData_two;
-                        cmd.Parameters["@img_two_send"].Value = 1;
+                        cmd.Parameters.Add("@img_1", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_1_send", SqlDbType.Int);
+                        cmd.Parameters["@img_1"].Value = imageData_1;
+                        cmd.Parameters["@img_1_send"].Value = 1;
                     }
                 }
 
                 if (!string.IsNullOrEmpty(img_2))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_2, FileMode.Open))
+                    using (FileStream fs = new FileStream(img_2, FileMode.Open))
                     {
-                        imageData_three = new byte[fs.Length];
-                        fs.Read(imageData_three, 0, imageData_three.Length);
+                        imageData_2 = new byte[fs.Length];
+                        fs.Read(imageData_2, 0, imageData_2.Length);
 
-                        cmd.Parameters.Add("@img_three", SqlDbType.Image, 1000000);
-                        cmd.Parameters.Add("@img_three_send", SqlDbType.Int);
-                        cmd.Parameters["@img_three"].Value = imageData_three;
-                        cmd.Parameters["@img_three_send"].Value = 1;
+                        cmd.Parameters.Add("@img_2", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_2_send", SqlDbType.Int);
+                        cmd.Parameters["@img_2"].Value = imageData_2;
+                        cmd.Parameters["@img_2_send"].Value = 1;
                     }
                 }
 
                 if (!string.IsNullOrEmpty(img_3))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_3, FileMode.Open))
+                    using (FileStream fs = new FileStream(img_3, FileMode.Open))
                     {
-                        imageData_four = new byte[fs.Length];
-                        fs.Read(imageData_four, 0, imageData_four.Length);
+                        imageData_3 = new byte[fs.Length];
+                        fs.Read(imageData_3, 0, imageData_3.Length);
 
-                        cmd.Parameters.Add("@img_four", SqlDbType.Image, 1000000);
-                        cmd.Parameters.Add("@img_four_send", SqlDbType.Int);
-                        cmd.Parameters["@img_four"].Value = imageData_four;
-                        cmd.Parameters["@img_four_send"].Value = 1;
+                        cmd.Parameters.Add("@img_3", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_3_send", SqlDbType.Int);
+                        cmd.Parameters["@img_3"].Value = imageData_3;
+                        cmd.Parameters["@img_3_send"].Value = 1;
                     }
                 }
 
                 if (!string.IsNullOrEmpty(img_4))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(img_4, FileMode.Open))
+                    using (FileStream fs = new FileStream(img_4, FileMode.Open))
                     {
-                        imageData_five = new byte[fs.Length];
-                        fs.Read(imageData_five, 0, imageData_five.Length);
+                        imageData_4 = new byte[fs.Length];
+                        fs.Read(imageData_4, 0, imageData_4.Length);
 
-                        cmd.Parameters.Add("@img_five", SqlDbType.Image, 1000000);
-                        cmd.Parameters.Add("@img_five_send", SqlDbType.Int);
-                        cmd.Parameters["@img_five"].Value = imageData_five;
-                        cmd.Parameters["@img_five_send"].Value = 1;
+                        cmd.Parameters.Add("@img_4", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_4_send", SqlDbType.Int);
+                        cmd.Parameters["@img_4"].Value = imageData_4;
+                        cmd.Parameters["@img_4_send"].Value = 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(img_5))
+                {
+                    using (FileStream fs = new FileStream(img_5, FileMode.Open))
+                    {
+                        imageData_5 = new byte[fs.Length];
+                        fs.Read(imageData_5, 0, imageData_5.Length);
+
+                        cmd.Parameters.Add("@img_5", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_5_send", SqlDbType.Int);
+                        cmd.Parameters["@img_5"].Value = imageData_5;
+                        cmd.Parameters["@img_5_send"].Value = 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(img_6))
+                {
+                    using (FileStream fs = new FileStream(img_6, FileMode.Open))
+                    {
+                        imageData_6 = new byte[fs.Length];
+                        fs.Read(imageData_6, 0, imageData_6.Length);
+
+                        cmd.Parameters.Add("@img_6", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_6_send", SqlDbType.Int);
+                        cmd.Parameters["@img_6"].Value = imageData_6;
+                        cmd.Parameters["@img_6_send"].Value = 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(img_7))
+                {
+                    using (FileStream fs = new FileStream(img_7, FileMode.Open))
+                    {
+                        imageData_7 = new byte[fs.Length];
+                        fs.Read(imageData_7, 0, imageData_7.Length);
+
+                        cmd.Parameters.Add("@img_7", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_7_send", SqlDbType.Int);
+                        cmd.Parameters["@img_7"].Value = imageData_7;
+                        cmd.Parameters["@img_7_send"].Value = 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(img_8))
+                {
+                    using (FileStream fs = new FileStream(img_8, FileMode.Open))
+                    {
+                        imageData_8 = new byte[fs.Length];
+                        fs.Read(imageData_8, 0, imageData_8.Length);
+
+                        cmd.Parameters.Add("@img_8", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_8_send", SqlDbType.Int);
+                        cmd.Parameters["@img_8"].Value = imageData_8;
+                        cmd.Parameters["@img_8_send"].Value = 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(img_9))
+                {
+                    using (FileStream fs = new FileStream(img_9, FileMode.Open))
+                    {
+                        imageData_9 = new byte[fs.Length];
+                        fs.Read(imageData_9, 0, imageData_9.Length);
+
+                        cmd.Parameters.Add("@img_9", SqlDbType.Image, 1000000);
+                        cmd.Parameters.Add("@img_9_send", SqlDbType.Int);
+                        cmd.Parameters["@img_9"].Value = imageData_9;
+                        cmd.Parameters["@img_9_send"].Value = 1;
                     }
                 }
 
                 cmd.ExecuteNonQuery();
-
-                /*
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = @"INSERT INTO mdbs.dbo.Attachments (MessageID, Data, Comment) VALUES (@MessageID, @Data, @Comment)";
-                command.Parameters.Add("@MessageID", SqlDbType.UniqueIdentifier);
-                command.Parameters.Add("@Data", SqlDbType.Image, 1000000);
-                command.Parameters.Add("@Comment", SqlDbType.NVarChar, 100);
-
-                string filename = @"C:\DBI\j.jpg";
-                string title = "";
-                string shortFileName = filename.Substring(filename.LastIndexOf('\\') + 1);
-                byte[] imageData;
-                using (System.IO.FileStream fs = new System.IO.FileStream(filename, FileMode.Open))
-                {
-                    imageData = new byte[fs.Length];
-                    fs.Read(imageData, 0, imageData.Length);
-                }
-                command.Parameters["@MessageID"].Value = new Guid("31D366B4-BCE2-E711-9554-A9E995E70B55");
-                command.Parameters["@Data"].Value = imageData;
-                command.Parameters["@Comment"].Value = title;
-
-                command.ExecuteNonQuery();
-
-                connection.Close();
-                */
             }
         }
 
