@@ -17,6 +17,8 @@ using DataModels;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Threading;
+using System.Configuration;
+using System.Collections.ObjectModel;
 
 namespace MDBS_server
 {
@@ -571,10 +573,21 @@ namespace MDBS_server
 
         private User Authorization()
         {
-            LoginWindow loginWindow = new LoginWindow();
+            ObservableCollection<string> logins = new ObservableCollection<string>();
+            logins.Add(ConfigurationManager.AppSettings["login1"]);
+            logins.Add(ConfigurationManager.AppSettings["login2"]);
+            logins.Add(ConfigurationManager.AppSettings["login3"]);
+
+            LoginWindow loginWindow = new LoginWindow(logins);
 
             if (loginWindow.ShowDialog() == true)
             {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                configFile.AppSettings.Settings["login3"].Value = ConfigurationManager.AppSettings["login2"];
+                configFile.AppSettings.Settings["login2"].Value = ConfigurationManager.AppSettings["login1"];
+                configFile.AppSettings.Settings["login1"].Value = LoginWindow.CurrentUser.DocNumber;
+                configFile.Save();
+
                 return LoginWindow.CurrentUser;
             }
             else

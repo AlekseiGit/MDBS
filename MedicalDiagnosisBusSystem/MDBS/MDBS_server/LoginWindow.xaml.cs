@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Core;
 using DataModels;
+using System.Collections.ObjectModel;
 
 namespace MDBS_server
 {
@@ -21,11 +22,12 @@ namespace MDBS_server
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        public LoginWindow(ObservableCollection<string> logins)
         {
             InitializeComponent();
             WindowStyle = WindowStyle.None;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            LoginBox.ItemsSource = logins;
         }
 
         public static User CurrentUser { get; set; }
