@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +24,16 @@ namespace MDBS_server
     {
         Guid UserID;
 
-        string ImagePath0 = "";
-        string ImagePath1 = "";
-        string ImagePath2 = "";
-        string ImagePath3 = "";
-        string ImagePath4 = "";
-        string ImagePath5 = "";
-        string ImagePath6 = "";
-        string ImagePath7 = "";
-        string ImagePath8 = "";
-        string ImagePath9 = "";
+        byte[] Img0;
+        byte[] Img1;
+        byte[] Img2;
+        byte[] Img3;
+        byte[] Img4;
+        byte[] Img5;
+        byte[] Img6;
+        byte[] Img7;
+        byte[] Img8;
+        byte[] Img9;
 
         public MessageWindow(Guid userId)
         {
@@ -61,56 +62,6 @@ namespace MDBS_server
             get { return DiagnosisBox.Text; }
         }
 
-        public string Img_0
-        {
-            get { return Image0.Source.ToString(); }
-        }
-
-        public string Img_1
-        {
-            get { return Image1.Source.ToString(); }
-        }
-
-        public string Img_2
-        {
-            get { return Image2.Source.ToString(); }
-        }
-
-        public string Img_3
-        {
-            get { return Image3.Source.ToString(); }
-        }
-
-        public string Img_4
-        {
-            get { return Image4.Source.ToString(); }
-        }
-
-        public string Img_5
-        {
-            get { return Image5.Source.ToString(); }
-        }
-
-        public string Img_6
-        {
-            get { return Image6.Source.ToString(); }
-        }
-
-        public string Img_7
-        {
-            get { return Image7.Source.ToString(); }
-        }
-
-        public string Img_8
-        {
-            get { return Image8.Source.ToString(); }
-        }
-
-        public string Img_9
-        {
-            get { return Image9.Source.ToString(); }
-        }
-
         private void AttachImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -124,60 +75,74 @@ namespace MDBS_server
                 {
                     BitmapImage img = new BitmapImage(new Uri(filename));
 
-                    if (string.IsNullOrEmpty(ImagePath0))
+                    if (Img0 == null)
                     {
                         Image0.Source = img;
-                        ImagePath0 = filename;
+                        Img0 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath1))
+                    else if (Img1 == null)
                     {
                         Image1.Source = img;
-                        ImagePath1 = filename;
+                        Img1 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath2))
+                    else if (Img2 == null)
                     {
                         Image2.Source = img;
-                        ImagePath2 = filename;
+                        Img2 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath3))
+                    else if (Img3 == null)
                     {
                         Image3.Source = img;
-                        ImagePath3 = filename;
+                        Img3 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath4))
+                    else if (Img4 == null)
                     {
                         Image4.Source = img;
-                        ImagePath4 = filename;
+                        Img4 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath5))
+                    else if (Img5 == null)
                     {
                         Image5.Source = img;
-                        ImagePath5 = filename;
+                        Img5 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath6))
+                    else if (Img6 == null)
                     {
                         Image6.Source = img;
-                        ImagePath6 = filename;
+                        Img6 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath7))
+                    else if (Img7 == null)
                     {
                         Image7.Source = img;
-                        ImagePath7 = filename;
+                        Img7 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath8))
+                    else if (Img8 == null)
                     {
                         Image8.Source = img;
-                        ImagePath8 = filename;
+                        Img8 = File.ReadAllBytes(filename);
                     }
-                    else if (string.IsNullOrEmpty(ImagePath9))
+                    else if (Img9 == null)
                     {
                         Image9.Source = img;
-                        ImagePath9 = filename;
+                        Img9 = File.ReadAllBytes(filename);
                     }
-
-                    img.StreamSource.Dispose();
                 }
             }
+        }
+
+        public byte[] BitmapImageToByte(BitmapImage bitmapImage)
+        {
+            Stream stream = bitmapImage.StreamSource;
+            byte[] buffer = null;
+
+            if (stream != null && stream.Length > 0)
+            {
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    buffer = br.ReadBytes((Int32)stream.Length);
+                }
+            }
+
+            return buffer;
         }
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
@@ -205,17 +170,17 @@ namespace MDBS_server
                 this.Diagnosis,
                 this.Patient,
                 UserID,
-                new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), //to_id
-                ImagePath0,
-                ImagePath1,
-                ImagePath2,
-                ImagePath3,
-                ImagePath4,
-                ImagePath5,
-                ImagePath6,
-                ImagePath7,
-                ImagePath8,
-                ImagePath9);
+                new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // to do
+                Img0,
+                Img1,
+                Img2,
+                Img3,
+                Img4,
+                Img5,
+                Img6,
+                Img7,
+                Img8,
+                Img9);
 
             MessageBox.Show("Сообщение отправляется!");
 

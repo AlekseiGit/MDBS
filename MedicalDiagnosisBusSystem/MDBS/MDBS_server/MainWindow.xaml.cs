@@ -155,6 +155,9 @@ namespace MDBS_server
 
         private void RefreshMessageGrid()
         {
+            if ((ListBoxItem)this.CategoryListBox.SelectedItem == null)
+                return;
+
             var core = new CoreFunc(UserID);
             var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
             var messages = new List<Message>();
