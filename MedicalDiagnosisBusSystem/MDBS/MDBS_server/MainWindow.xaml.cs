@@ -27,9 +27,10 @@ namespace MDBS_server
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Guid UserID;
         CoreFunc Core;
+        public static Guid UserID;
 
+        public static BitmapImage[] Images = new BitmapImage[10];
         public static BitmapImage Image_0;
         public static BitmapImage Image_1;
         public static BitmapImage Image_2;
@@ -121,7 +122,7 @@ namespace MDBS_server
         {
             MessageBox.Show(
                 "Medical Diagnosis Bus System (MDBS)" + "\n" +
-                "Версия программы: 1.2(beta)" + "\n" +
+                "Версия программы: 1.2.2 (beta)" + "\n" +
                 "(с) 2018 все права защищены.",
                 "О программе");
         }
@@ -287,32 +288,6 @@ namespace MDBS_server
             }
         }
 
-        private void ShowFullSizeImage(object sender, RoutedEventArgs e)
-        {
-            if (DialogGrid.SelectedItems.Count == 1)
-            {
-                AnswerWindow answerWindow = new AnswerWindow();
-                var dialogRow = DialogGrid.SelectedItems[0] as Dialog;
-
-                if (dialogRow.From == new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"))
-                    return;
-
-                answerWindow.ParentMessageId = dialogRow.ID;
-                answerWindow.PatientId = dialogRow.PatientID;
-                answerWindow.PatientName = dialogRow.PatientName;
-                answerWindow.FromId = UserID;
-                answerWindow.FromName = dialogRow.FromName;
-                answerWindow.ToId = dialogRow.From;
-
-                if (answerWindow.ShowDialog() == true)
-                {
-                }
-                else
-                {
-                }
-            }
-        }
-
         private void MessageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var core = new CoreFunc();
@@ -459,6 +434,7 @@ namespace MDBS_server
         {
             var core = new CoreFunc();
 
+            Images = new BitmapImage[10];
             ImageControl0.Source = null;
             ImageControl1.Source = null;
             ImageControl2.Source = null;
@@ -476,56 +452,66 @@ namespace MDBS_server
             {
                 if (images.ElementAtOrDefault(0) != null)
                 {
-                    Image_0 = ToImage(images[0].Data);
-                    ImageControl0.Source = Image_0;
+                    //Image_0 = ToImage(images[0].Data);
+                    Images[0] = ToImage(images[0].Data);
+                    ImageControl0.Source = Images[0];
                 }
 
                 if (images.ElementAtOrDefault(1) != null)
                 {
-                    Image_1 = ToImage(images[1].Data);
-                    ImageControl1.Source = Image_1;
+                    //Image_1 = ToImage(images[1].Data);
+                    Images[1] = ToImage(images[1].Data);
+                    ImageControl1.Source = Images[1];
                 }
 
                 if (images.ElementAtOrDefault(2) != null)
                 {
-                    Image_2 = ToImage(images[2].Data);
-                    ImageControl2.Source = Image_2;
+                    //Image_2 = ToImage(images[2].Data);
+                    Images[2] = ToImage(images[2].Data);
+                    ImageControl2.Source = Images[2];
                 }
 
                 if (images.ElementAtOrDefault(3) != null)
                 {
-                    Image_3 = ToImage(images[3].Data);
-                    ImageControl3.Source = Image_3;
+                    //Image_3 = ToImage(images[3].Data);
+                    Images[3] = ToImage(images[3].Data);
+                    ImageControl3.Source = Images[3];
                 }
                 if (images.ElementAtOrDefault(4) != null)
                 {
-                    Image_4 = ToImage(images[4].Data);
-                    ImageControl4.Source = Image_4;
+                    //Image_4 = ToImage(images[4].Data);
+                    Images[4] = ToImage(images[4].Data);
+                    ImageControl4.Source = Images[4];
                 }
                 if (images.ElementAtOrDefault(5) != null)
                 {
-                    Image_5 = ToImage(images[5].Data);
-                    ImageControl5.Source = Image_5;
+                    //Image_5 = ToImage(images[5].Data);
+                    Images[5] = ToImage(images[5].Data);
+                    ImageControl5.Source = Images[5];
                 }
                 if (images.ElementAtOrDefault(6) != null)
                 {
-                    Image_6 = ToImage(images[6].Data);
-                    ImageControl6.Source = Image_6;
+                    //Image_6 = ToImage(images[6].Data);
+                    Images[6] = ToImage(images[6].Data);
+                    ImageControl6.Source = Images[6];
                 }
                 if (images.ElementAtOrDefault(7) != null)
                 {
-                    Image_7 = ToImage(images[7].Data);
-                    ImageControl7.Source = Image_7;
+                    //Image_7 = ToImage(images[7].Data);
+                    Images[7] = ToImage(images[7].Data);
+                    ImageControl7.Source = Images[7];
                 }
                 if (images.ElementAtOrDefault(8) != null)
                 {
-                    Image_8 = ToImage(images[8].Data);
-                    ImageControl8.Source = Image_8;
+                    //Image_8 = ToImage(images[8].Data);
+                    Images[8] = ToImage(images[8].Data);
+                    ImageControl8.Source = Images[8];
                 }
                 if (images.ElementAtOrDefault(9) != null)
                 {
-                    Image_9 = ToImage(images[9].Data);
-                    ImageControl9.Source = Image_9;
+                    //Image_9 = ToImage(images[9].Data);
+                    Images[9] = ToImage(images[9].Data);
+                    ImageControl9.Source = Images[9];
                 }
             }
         }
@@ -554,12 +540,11 @@ namespace MDBS_server
                 {
                     string elementName = source.Name;
 
-                    ImageWindow imageWindow = new ImageWindow();
+                    //FieldInfo field = typeof(MainWindow).GetField("Image_" + elementName.Substring(12));
+                    //var image = (BitmapImage)field.GetValue(null);
 
-                    FieldInfo field = typeof(MainWindow).GetField("Image_" + elementName.Substring(12));
-                    var image = (BitmapImage)field.GetValue(null);
-                    imageWindow.FullImage.Source = image;
-                    imageWindow.WindowState = WindowState.Maximized;
+                    ImageWindow imageWindow = new ImageWindow(Images, int.Parse(elementName.Substring(12)));
+                    //imageWindow.FullImage.Source = image;
 
                     if (imageWindow.ShowDialog() == true)
                     {

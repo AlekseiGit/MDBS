@@ -19,9 +19,38 @@ namespace MDBS_server
     /// </summary>
     public partial class ImageWindow : Window
     {
-        public ImageWindow()
+        BitmapImage[] Images = new BitmapImage[10];
+        int CurrentImage;
+
+        public ImageWindow(BitmapImage[] images, int currentImage)
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+
+            if (images[currentImage] != null)
+            {
+                FullImage.Source = images[currentImage];
+                Images = images;
+                CurrentImage = currentImage;
+            }
+        }
+
+        private void PrevImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentImage - 1 >=0 && CurrentImage - 1 <= 9 && Images[CurrentImage - 1] != null)
+            {
+                FullImage.Source = Images[CurrentImage - 1];
+                CurrentImage = CurrentImage - 1;
+            }
+        }
+
+        private void NextImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentImage + 1 >= 0 && CurrentImage + 1 <= 9 && Images[CurrentImage + 1] != null)
+            {
+                FullImage.Source = Images[CurrentImage + 1];
+                CurrentImage = CurrentImage + 1;
+            }
         }
     }
 }
