@@ -39,7 +39,7 @@ namespace MDBS_server
             var passwordHash = password.GetHashCode();
             var core = new CoreFunc();
 
-            var user = core.CheckUser(login, passwordHash.ToString(), 1);
+            var user = core.CheckUser(login, passwordHash.ToString(), 0);
 
             if (user.ID != Guid.Empty)
             {

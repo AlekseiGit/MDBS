@@ -5,13 +5,14 @@ GO
 CREATE PROCEDURE dbo.p_check_user
 @login nvarchar(200),
 @passwordHash nvarchar(200),
+@docStatus int,
 @user_id uniqueidentifier output,
 @user_name nvarchar(200) output,
 @user_num nvarchar(100) output
 
 AS
 BEGIN
-	if (select count(*) from dbo.[user] (nolock) where DocNumber = @login and PasswordHash = @passwordHash) = 1
+	if (select count(*) from dbo.[user] (nolock) where DocNumber = @login and PasswordHash = @passwordHash and DocStatus = @docStatus) = 1
 	begin
 		select
 			@user_id = u.ID,

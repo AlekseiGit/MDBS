@@ -70,7 +70,7 @@ namespace MDBS_server
                 dpd.AddValueChanged(MessageGrid, ItemsSourceChanged);
             }
 
-            DialogGrid.RowHeight = 70;
+            DialogGrid.MinRowHeight = 70;
 
             Core = new CoreFunc(UserID);
 

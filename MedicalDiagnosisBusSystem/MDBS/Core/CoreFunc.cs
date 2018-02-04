@@ -682,7 +682,7 @@ namespace Core
             return systemData;
         }
 
-        public User CheckUser(string login, string passwordHash)
+        public User CheckUser(string login, string passwordHash, int docStatus)
         {
             User CurrentUser = new User();
 
@@ -697,12 +697,14 @@ namespace Core
 
                 cmd.Parameters.Add("@login", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 200);
+                cmd.Parameters.Add("@docStatus", SqlDbType.Int);
                 cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
                 cmd.Parameters.Add("@user_name", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@user_num", SqlDbType.NVarChar, 100);
 
                 cmd.Parameters["@login"].Value = login;
                 cmd.Parameters["@passwordHash"].Value = passwordHash;
+                cmd.Parameters["@docStatus"].Value = docStatus;
                 cmd.Parameters["@user_id"].Direction = ParameterDirection.Output;
                 cmd.Parameters["@user_name"].Direction = ParameterDirection.Output;
                 cmd.Parameters["@user_num"].Direction = ParameterDirection.Output;

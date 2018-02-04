@@ -11,7 +11,7 @@
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
                 <Separator />
-                <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
+                <!--MenuItem Header="_Новое сообщение" Click="NewMessage"/-->
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
                 <Separator />
                 <MenuItem Header="_Выход" Click="Exit"/>
@@ -27,7 +27,7 @@
                 </Button-->
                 <Button Click="ShowPatients">Пациенты</Button>
                 <Separator></Separator>
-                <Button Click="NewMessage">Новое Сообщение</Button>
+                <!--Button Click="NewMessage">Новое Сообщение</-->
                 <Separator></Separator>
                 <Button Click="AnswerMessage">Ответить</Button>
                 <!--CheckBox FontWeight="Bold">Bold</CheckBox>
