@@ -234,7 +234,7 @@ namespace MDBS_server
 
         private void ShowPatients(object sender, RoutedEventArgs e)
         {
-            PatientsWindow patientsWindow = new PatientsWindow();
+            PatientsWindow patientsWindow = new PatientsWindow(UserID);
 
             if (patientsWindow.ShowDialog() == true)
             {

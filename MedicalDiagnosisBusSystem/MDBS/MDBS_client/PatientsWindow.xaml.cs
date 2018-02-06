@@ -23,12 +23,14 @@ namespace MDBS_server
     {
         List<Patient> Patients = new List<Patient>();
         CoreFunc Core = new CoreFunc();
+        Guid UserID;
 
-        public PatientsWindow()
+        public PatientsWindow(Guid userId)
         {
             InitializeComponent();
 
-            Patients = Core.GetPatients();
+            UserID = userId;
+            Patients = Core.GetPatients(UserID);
             PatientGrid.ItemsSource = Patients;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
@@ -80,7 +82,7 @@ namespace MDBS_server
             if (newPatientWindow.ShowDialog() == true)
             {
                 MessageBox.Show("Пациент создан!");
-                Patients = Core.GetPatients();
+                Patients = Core.GetPatients(UserID);
                 PatientGrid.ItemsSource = Patients;
             }
             else
@@ -99,7 +101,7 @@ namespace MDBS_server
                 if (editPatientWindow.ShowDialog() == true)
                 {
                     MessageBox.Show("Информация о пациенте изменена!");
-                    Patients = Core.GetPatients();
+                    Patients = Core.GetPatients(UserID);
                     PatientGrid.ItemsSource = Patients;
                 }
                 else
@@ -123,7 +125,7 @@ namespace MDBS_server
                 {
                     MessageBox.Show("Пациент удален!");
                     Core.DeletePatient(patient.ID);
-                    Patients = Core.GetPatients();
+                    Patients = Core.GetPatients(UserID);
                     PatientGrid.ItemsSource = Patients;
                 }
             }

@@ -548,7 +548,7 @@ namespace Core
             }
         }
 
-        public List<Patient> GetPatients()
+        public List<Patient> GetPatients(Guid userID)
         {
             List<Patient> patients = new List<Patient>();
 
@@ -557,6 +557,9 @@ namespace Core
             sqlCmd.CommandText = "dbo.p_get_patients";
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
+
+            sqlCmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+            sqlCmd.Parameters["@user_id"].Value = userID;
 
             DBConnection.Open();
 
