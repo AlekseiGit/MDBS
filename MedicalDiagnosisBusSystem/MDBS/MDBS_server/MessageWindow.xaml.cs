@@ -163,9 +163,11 @@ namespace MDBS_server
                 return;
             }
 
+            Guid messageId = Guid.NewGuid();
             var core = new CoreFunc();
 
             core.SendMessage(
+                messageId,
                 this.Info,
                 this.Diagnosis,
                 this.Patient,

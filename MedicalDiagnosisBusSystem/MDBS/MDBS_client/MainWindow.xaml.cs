@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Windows.Threading;
 using System.Configuration;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace MDBS_server
 {
@@ -81,6 +82,26 @@ namespace MDBS_server
             dispatcherTimer.Tick += new EventHandler(RefreshInformation);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
+
+            UpdateFolderStructure();
+        }
+
+        public void UpdateFolderStructure()
+        {
+            if (!Directory.Exists(@".\Data\"))
+            {
+                Directory.CreateDirectory(@".\Data\");
+            }
+
+            var patients = Core.GetPatients(UserID);
+
+            foreach (var patient in patients)
+            {
+                if (!Directory.Exists(@".\Data\" + patient.MedicalCardNumber))
+                {
+                    Directory.CreateDirectory(@".\Data\" + patient.MedicalCardNumber);
+                }
+            }
         }
 
         public void RefreshInformation(object sender, EventArgs e)
@@ -365,7 +386,7 @@ namespace MDBS_server
                     row.FontWeight = FontWeight.FromOpenTypeWeight(400);
                 }
 
-                AttachmentsUpdate((Guid)messageId);
+                AttachmentsUpdate(message.PatientName, (Guid)messageId);
             }
         }
 
@@ -429,14 +450,12 @@ namespace MDBS_server
                     return;
 
                 var messageId = dialog.ID;
-                AttachmentsUpdate((Guid)messageId);
+                AttachmentsUpdate(dialog.PatientName, (Guid)messageId);
             }
         }
 
-        public void AttachmentsUpdate(Guid messageId)
+        public void AttachmentsUpdate(string patientNumber, Guid messageId)
         {
-            var core = new CoreFunc();
-
             Images = new BitmapImage[10];
             ImageControl0.Source = null;
             ImageControl1.Source = null;
@@ -449,70 +468,125 @@ namespace MDBS_server
             ImageControl8.Source = null;
             ImageControl9.Source = null;
 
+            if (Directory.Exists(@".\Data\" + patientNumber + @"\" + messageId.ToString()))
+            {
+                var imgs = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + @"Data\" + patientNumber + @"\" + messageId.ToString());
+
+                if (imgs.Length > 0)
+                {
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(0)))
+                    {
+                        Images[0] = new BitmapImage(new Uri(imgs[0]));
+                        ImageControl0.Source = Images[0];
+                    }
+
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(1)))
+                    {
+                        Images[1] = new BitmapImage(new Uri(imgs[1]));
+                        ImageControl1.Source = Images[1];
+                    }
+
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(2)))
+                    {
+                        Images[2] = new BitmapImage(new Uri(imgs[2]));
+                        ImageControl2.Source = Images[2];
+                    }
+
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(3)))
+                    {
+                        Images[3] = new BitmapImage(new Uri(imgs[3]));
+                        ImageControl3.Source = Images[3];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(4)))
+                    {
+                        Images[4] = new BitmapImage(new Uri(imgs[4]));
+                        ImageControl4.Source = Images[4];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(5)))
+                    {
+                        Images[5] = new BitmapImage(new Uri(imgs[5]));
+                        ImageControl5.Source = Images[5];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(6)))
+                    {
+                        Images[6] = new BitmapImage(new Uri(imgs[6]));
+                        ImageControl6.Source = Images[6];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(7)))
+                    {
+                        Images[7] = new BitmapImage(new Uri(imgs[7]));
+                        ImageControl7.Source = Images[7];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(8)))
+                    {
+                        Images[8] = new BitmapImage(new Uri(imgs[8]));
+                        ImageControl8.Source = Images[8];
+                    }
+                    if (!string.IsNullOrEmpty(imgs.ElementAtOrDefault(9)))
+                    {
+                        Images[9] = new BitmapImage(new Uri(imgs[9]));
+                        ImageControl9.Source = Images[9];
+                    }
+                }
+
+                return;
+            }
+
+            var core = new CoreFunc();
             var images = core.GetAttachments(messageId);
 
             if (images.Count > 0)
             {
                 if (images.ElementAtOrDefault(0) != null)
                 {
-                    //Image_0 = ToImage(images[0].Data);
                     Images[0] = ToImage(images[0].Data);
                     ImageControl0.Source = Images[0];
                 }
 
                 if (images.ElementAtOrDefault(1) != null)
                 {
-                    //Image_1 = ToImage(images[1].Data);
                     Images[1] = ToImage(images[1].Data);
                     ImageControl1.Source = Images[1];
                 }
 
                 if (images.ElementAtOrDefault(2) != null)
                 {
-                    //Image_2 = ToImage(images[2].Data);
                     Images[2] = ToImage(images[2].Data);
                     ImageControl2.Source = Images[2];
                 }
 
                 if (images.ElementAtOrDefault(3) != null)
                 {
-                    //Image_3 = ToImage(images[3].Data);
                     Images[3] = ToImage(images[3].Data);
                     ImageControl3.Source = Images[3];
                 }
                 if (images.ElementAtOrDefault(4) != null)
                 {
-                    //Image_4 = ToImage(images[4].Data);
                     Images[4] = ToImage(images[4].Data);
                     ImageControl4.Source = Images[4];
                 }
                 if (images.ElementAtOrDefault(5) != null)
                 {
-                    //Image_5 = ToImage(images[5].Data);
                     Images[5] = ToImage(images[5].Data);
                     ImageControl5.Source = Images[5];
                 }
                 if (images.ElementAtOrDefault(6) != null)
                 {
-                    //Image_6 = ToImage(images[6].Data);
                     Images[6] = ToImage(images[6].Data);
                     ImageControl6.Source = Images[6];
                 }
                 if (images.ElementAtOrDefault(7) != null)
                 {
-                    //Image_7 = ToImage(images[7].Data);
                     Images[7] = ToImage(images[7].Data);
                     ImageControl7.Source = Images[7];
                 }
                 if (images.ElementAtOrDefault(8) != null)
                 {
-                    //Image_8 = ToImage(images[8].Data);
                     Images[8] = ToImage(images[8].Data);
                     ImageControl8.Source = Images[8];
                 }
                 if (images.ElementAtOrDefault(9) != null)
                 {
-                    //Image_9 = ToImage(images[9].Data);
                     Images[9] = ToImage(images[9].Data);
                     ImageControl9.Source = Images[9];
                 }

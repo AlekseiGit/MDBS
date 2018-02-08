@@ -3,6 +3,7 @@ use MDBS
 GO
 
 CREATE PROCEDURE dbo.p_send_message
+@message_id uniqueidentifier,
 @info nvarchar(max),
 @diagnosis nvarchar(max),
 --@therapy_plan nvarchar(max),
@@ -32,7 +33,7 @@ CREATE PROCEDURE dbo.p_send_message
 
 AS
 BEGIN
-	declare @message_id uniqueidentifier = newid()
+	--declare @message_id uniqueidentifier = newid()
 	
 	insert into dbo.[Message]
 		([ID],

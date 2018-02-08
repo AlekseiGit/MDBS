@@ -263,6 +263,7 @@ namespace Core
         */
 
         public void SendMessage(
+            Guid messageId,
             string info,
             string diagnosis,
             string patientNumber,
@@ -288,12 +289,14 @@ namespace Core
                 cmd.CommandText = "dbo.p_send_message";
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.Add("@message_id", SqlDbType.UniqueIdentifier);
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@diagnosis", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@patient_number", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
                 cmd.Parameters.Add("@to_id", SqlDbType.UniqueIdentifier);
 
+                cmd.Parameters["@message_id"].Value = messageId;
                 cmd.Parameters["@info"].Value = info;
                 cmd.Parameters["@diagnosis"].Value = diagnosis;
                 cmd.Parameters["@patient_number"].Value = patientNumber;
@@ -560,6 +563,56 @@ namespace Core
 
             sqlCmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
             sqlCmd.Parameters["@user_id"].Value = userID;
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                Patient patient = new Patient();
+
+                patient.ID = (Guid)row["ID"];
+                patient.FullName = row["FullName"].ToString();
+                if ((int)row["Sex"] == 1)
+                {
+                    patient.Sex = "М";
+                }
+                else if ((int)row["Sex"] == 2)
+                {
+                    patient.Sex = "Ж";
+                }
+                patient.Weight = (int)row["Weight"];
+                patient.DrugsCount = row["DrugsCount"].ToString();
+                patient.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
+                patient.MedicalCardNumber = row["MedicalCardNumber"].ToString();
+                patient.CurrentTherapy = row["CurrentTherapy"].ToString();
+                patient.Info = row["Info"].ToString();
+                patient.Note = row["Note"].ToString();
+
+                patients.Add(patient);
+            }
+
+            DBConnection.Close();
+
+            return patients;
+        }
+
+        public List<Patient> GetPatientsByNumber(Guid userID, string cardNumber)
+        {
+            List<Patient> patients = new List<Patient>();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_patients_by_number";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            sqlCmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+            sqlCmd.Parameters.Add("@num", SqlDbType.NVarChar, 100);
+            sqlCmd.Parameters["@user_id"].Value = userID;
+            sqlCmd.Parameters["@num"].Value = cardNumber;
 
             DBConnection.Open();
 

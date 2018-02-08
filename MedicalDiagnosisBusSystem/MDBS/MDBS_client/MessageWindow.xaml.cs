@@ -35,6 +35,8 @@ namespace MDBS_server
         byte[] Img8;
         byte[] Img9;
 
+        string[] ImgPath = new string[10];
+
         public MessageWindow(Guid userId)
         {
             InitializeComponent();
@@ -73,56 +75,75 @@ namespace MDBS_server
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
-                    BitmapImage img = new BitmapImage(new Uri(filename));
+                    BitmapImage img = new BitmapImage();
+
+                    try
+                    {
+                        img = new BitmapImage(new Uri(filename));
+                    }
+                    catch
+                    {
+                        return;
+                    }
 
                     if (Img0 == null)
                     {
                         Image0.Source = img;
+                        ImgPath[0] = filename;
                         Img0 = File.ReadAllBytes(filename);
                     }
                     else if (Img1 == null)
                     {
                         Image1.Source = img;
+                        ImgPath[1] = filename;
                         Img1 = File.ReadAllBytes(filename);
                     }
                     else if (Img2 == null)
                     {
                         Image2.Source = img;
+                        ImgPath[2] = filename;
                         Img2 = File.ReadAllBytes(filename);
                     }
                     else if (Img3 == null)
                     {
                         Image3.Source = img;
+                        ImgPath[3] = filename;
                         Img3 = File.ReadAllBytes(filename);
                     }
                     else if (Img4 == null)
                     {
                         Image4.Source = img;
+                        ImgPath[4] = filename;
                         Img4 = File.ReadAllBytes(filename);
                     }
                     else if (Img5 == null)
                     {
                         Image5.Source = img;
+                        ImgPath[5] = filename;
                         Img5 = File.ReadAllBytes(filename);
                     }
                     else if (Img6 == null)
                     {
                         Image6.Source = img;
+                        ImgPath[6] = filename;
                         Img6 = File.ReadAllBytes(filename);
                     }
                     else if (Img7 == null)
                     {
                         Image7.Source = img;
+                        ImgPath[7] = filename;
                         Img7 = File.ReadAllBytes(filename);
                     }
                     else if (Img8 == null)
                     {
                         Image8.Source = img;
+                        ImgPath[8] = filename;
                         Img8 = File.ReadAllBytes(filename);
                     }
                     else if (Img9 == null)
                     {
                         Image9.Source = img;
+                        ImgPath[9] = filename;
                         Img9 = File.ReadAllBytes(filename);
                     }
                 }
@@ -163,9 +184,28 @@ namespace MDBS_server
                 return;
             }
 
+            Guid messageId = Guid.NewGuid();
+            string msgFolder = messageId.ToString();
+
+            Directory.CreateDirectory(@".\Data\" + this.Patient + @"\" + msgFolder);
+
+            for (int i=0; i<10; i++)
+            {
+                if (ImgPath[i] != null)
+                {
+                    File.Copy(ImgPath[i], @".\Data\" +
+                        this.Patient +
+                        @"\" + msgFolder +
+                        @"\" +
+                        i +
+                        ImgPath[i].Substring(ImgPath[i].IndexOf(".")));
+                }
+            }
+
             var core = new CoreFunc();
 
             core.SendMessage(
+                messageId,
                 this.Info,
                 this.Diagnosis,
                 this.Patient,
