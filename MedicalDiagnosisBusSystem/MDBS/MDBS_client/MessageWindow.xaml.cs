@@ -1,4 +1,5 @@
 ﻿using Core;
+using DataModels;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace MDBS_server
         byte[] Img9;
 
         string[] ImgPath = new string[10];
+
+        PatientsWindow PatientsWindow;
 
         public MessageWindow(Guid userId)
         {
@@ -164,6 +167,36 @@ namespace MDBS_server
             }
 
             return buffer;
+        }
+
+        private void ChoosePatient_Click(object sender, RoutedEventArgs e)
+        {
+            PatientsWindow = new PatientsWindow(UserID);
+
+            PatientsWindow.PatientGrid.MouseDoubleClick += PatientChoose;
+
+            if (PatientsWindow.ShowDialog() == true)
+            {
+            }
+            else
+            {
+            }
+        }
+
+        private void PatientChoose(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                var row = sender as DataGrid;
+                
+                if (row != null && row.SelectedItems.Count == 1)
+                {
+                    var patient = row.SelectedItems[0] as Patient;
+                    PatientBox.Text = patient.MedicalCardNumber;
+                }
+
+                PatientsWindow.Close();
+            }
         }
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)

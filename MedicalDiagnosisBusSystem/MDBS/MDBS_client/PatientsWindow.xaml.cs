@@ -137,15 +137,8 @@ namespace MDBS_server
 
         public void FindPatient(object sender, EventArgs e)
         {
-            //if (PatientGrid.SelectedItems.Count == 1)
-            //{
             Patients = Core.GetPatientsByNumber(UserID, PatientSearchBox.Text);
             PatientGrid.ItemsSource = Patients;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Пациент не выбран!");
-            //}
         }
     }
 }

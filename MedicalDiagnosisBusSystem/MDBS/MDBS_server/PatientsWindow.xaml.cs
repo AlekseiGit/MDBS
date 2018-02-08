@@ -134,5 +134,11 @@ namespace MDBS_server
                 MessageBox.Show("Пациент не выбран!");
             }
         }
+
+        public void FindPatient(object sender, EventArgs e)
+        {
+            Patients = Core.GetPatientsByNumber(UserID, PatientSearchBox.Text);
+            PatientGrid.ItemsSource = Patients;
+        }
     }
 }

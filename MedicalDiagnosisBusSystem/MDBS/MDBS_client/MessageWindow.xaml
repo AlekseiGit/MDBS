@@ -20,7 +20,7 @@
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Номер карты пациента</Label>
                 <TextBox Name="PatientBox" Width="200" IsReadOnly="True"></TextBox>
-                <Button Click="SendMessage_Click" Width="200" HorizontalAlignment="Left">Выбрать пациента</Button>
+                <Button Click="ChoosePatient_Click" Width="200" HorizontalAlignment="Left">Выбрать пациента</Button>
             </DockPanel>
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Сообщение</Label>
