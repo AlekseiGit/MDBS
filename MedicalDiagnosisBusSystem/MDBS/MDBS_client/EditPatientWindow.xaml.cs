@@ -71,6 +71,9 @@ namespace MDBS_server
             get { return PatientNoteBox.Text; }
         }
 
+        ///<summary>
+        /// Вызов формы редактирования выбранного пациента
+        ///</summary>
         public EditPatientWindow(Guid patientId)
         {
             InitializeComponent();
@@ -97,6 +100,9 @@ namespace MDBS_server
             PatientNoteBox.Text = patientInfo.Note;
         }
 
+        ///<summary>
+        /// Сохранение выбранной даты в переменную (вспомогательный обработчик)
+        ///</summary>
         private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PatientBirthDate.SelectedDate.Value != null)
@@ -105,6 +111,9 @@ namespace MDBS_server
                 this.BirthDate = DateTime.Now;
         }
 
+        ///<summary>
+        /// Обновление информации по выбранному пациенту
+        ///</summary>
         private void UpdatePatient_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.FullName))

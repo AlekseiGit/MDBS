@@ -67,6 +67,9 @@ namespace MDBS_server
             get { return DiagnosisBox.Text; }
         }
 
+        ///<summary>
+        /// Прикрепление вложений (изображений)
+        ///</summary>
         private void AttachImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -153,6 +156,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Конвертер изобрадения в массив байтов
+        ///</summary>
         public byte[] BitmapImageToByte(BitmapImage bitmapImage)
         {
             Stream stream = bitmapImage.StreamSource;
@@ -169,6 +175,9 @@ namespace MDBS_server
             return buffer;
         }
 
+        ///<summary>
+        /// Открытие окна с пациентами при выборе пациента, по которому делается запрос
+        ///</summary>
         private void ChoosePatient_Click(object sender, RoutedEventArgs e)
         {
             PatientsWindow = new PatientsWindow(UserID);
@@ -183,6 +192,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Обновление поля с картой пациента по выбранному пациенту
+        ///</summary>
         private void PatientChoose(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -199,6 +211,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Отправка сообщения/запроса в центр
+        ///</summary>
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.Patient))

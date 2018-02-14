@@ -145,7 +145,7 @@ namespace MDBS_server
         {
             MessageBox.Show(
                 "Medical Diagnosis Bus System (MDBS)" + "\n" +
-                "Версия программы: 1.2.2 (beta)" + "\n" +
+                "Версия программы: 1.2.3 (beta)" + "\n" +
                 "(с) 2018 все права защищены.",
                 "О программе");
         }

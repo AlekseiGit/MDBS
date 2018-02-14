@@ -32,6 +32,9 @@ namespace MDBS_server
 
         public static User CurrentUser { get; set; }
 
+        ///<summary>
+        /// Проверка/авторизация текущего пользователя
+        ///</summary>
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var login = LoginBox.Text;
@@ -52,6 +55,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Выход из приложения
+        ///</summary>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

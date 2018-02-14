@@ -122,7 +122,7 @@ namespace MDBS_server
         {
             MessageBox.Show(
                 "Medical Diagnosis Bus System (MDBS)" + "\n" +
-                "Версия программы: 1.2.2 (beta)" + "\n" +
+                "Версия программы: 1.2.3 (beta)" + "\n" +
                 "(с) 2018 все права защищены.",
                 "О программе");
         }
@@ -432,8 +432,6 @@ namespace MDBS_server
 
         public void AttachmentsUpdate(Guid messageId)
         {
-            var core = new CoreFunc();
-
             Images = new BitmapImage[10];
             ImageControl0.Source = null;
             ImageControl1.Source = null;
@@ -446,71 +444,64 @@ namespace MDBS_server
             ImageControl8.Source = null;
             ImageControl9.Source = null;
 
+            var core = new CoreFunc();
             var images = core.GetAttachments(messageId);
+            byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+            RC4 decoder = new RC4(key);
 
             if (images.Count > 0)
             {
                 if (images.ElementAtOrDefault(0) != null)
                 {
-                    //Image_0 = ToImage(images[0].Data);
-                    Images[0] = ToImage(images[0].Data);
+                    Images[0] = ToImage(decoder.Decode(images[0].Data, images[0].Data.Length));
                     ImageControl0.Source = Images[0];
                 }
 
                 if (images.ElementAtOrDefault(1) != null)
                 {
-                    //Image_1 = ToImage(images[1].Data);
-                    Images[1] = ToImage(images[1].Data);
+                    Images[1] = ToImage(decoder.Decode(images[1].Data, images[1].Data.Length));
                     ImageControl1.Source = Images[1];
                 }
 
                 if (images.ElementAtOrDefault(2) != null)
                 {
-                    //Image_2 = ToImage(images[2].Data);
-                    Images[2] = ToImage(images[2].Data);
+                    Images[2] = ToImage(decoder.Decode(images[2].Data, images[2].Data.Length));
                     ImageControl2.Source = Images[2];
                 }
 
                 if (images.ElementAtOrDefault(3) != null)
                 {
-                    //Image_3 = ToImage(images[3].Data);
-                    Images[3] = ToImage(images[3].Data);
+                    Images[3] = ToImage(decoder.Decode(images[3].Data, images[3].Data.Length));
                     ImageControl3.Source = Images[3];
                 }
                 if (images.ElementAtOrDefault(4) != null)
                 {
-                    //Image_4 = ToImage(images[4].Data);
-                    Images[4] = ToImage(images[4].Data);
+                    Images[4] = ToImage(decoder.Decode(images[4].Data, images[4].Data.Length));
                     ImageControl4.Source = Images[4];
                 }
                 if (images.ElementAtOrDefault(5) != null)
                 {
-                    //Image_5 = ToImage(images[5].Data);
-                    Images[5] = ToImage(images[5].Data);
+                    Images[5] = ToImage(decoder.Decode(images[5].Data, images[5].Data.Length));
                     ImageControl5.Source = Images[5];
                 }
                 if (images.ElementAtOrDefault(6) != null)
                 {
-                    //Image_6 = ToImage(images[6].Data);
-                    Images[6] = ToImage(images[6].Data);
+                    Images[6] = ToImage(decoder.Decode(images[6].Data, images[6].Data.Length));
                     ImageControl6.Source = Images[6];
                 }
                 if (images.ElementAtOrDefault(7) != null)
                 {
-                    //Image_7 = ToImage(images[7].Data);
-                    Images[7] = ToImage(images[7].Data);
+                    Images[7] = ToImage(decoder.Decode(images[7].Data, images[7].Data.Length));
                     ImageControl7.Source = Images[7];
                 }
                 if (images.ElementAtOrDefault(8) != null)
                 {
-                    //Image_8 = ToImage(images[8].Data);
-                    Images[8] = ToImage(images[8].Data);
+                    Images[8] = ToImage(decoder.Decode(images[8].Data, images[8].Data.Length));
                     ImageControl8.Source = Images[8];
                 }
                 if (images.ElementAtOrDefault(9) != null)
                 {
-                    //Image_9 = ToImage(images[9].Data);
-                    Images[9] = ToImage(images[9].Data);
+                    Images[9] = ToImage(decoder.Decode(images[9].Data, images[9].Data.Length));
                     ImageControl9.Source = Images[9];
                 }
             }
