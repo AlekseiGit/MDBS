@@ -12,7 +12,6 @@ namespace Core
 {
     public class CoreFunc
     {
-        //public static string ConnectionString = @"Data Source=ALEX-PC\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
         public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
         public SqlConnection DBConnection;
         public Guid UserID;
@@ -28,6 +27,9 @@ namespace Core
             DBConnection = new SqlConnection(ConnectionString);
         }
 
+        ///<summary>
+        /// Метод возвращает входящие сообщения для текущего пользователя
+        ///</summary>
         public List<Message> GetIncomingMessages()
         {
             List<Message> messages = new List<Message>();
@@ -72,6 +74,9 @@ namespace Core
             return messages;
         }
 
+        ///<summary>
+        /// Метод возвращает исходящие сообщения для текущего пользователя
+        ///</summary>
         public List<Message> GetOutgoingMessages()
         {
             List<Message> messages = new List<Message>();
@@ -116,6 +121,9 @@ namespace Core
             return messages;
         }
 
+        ///<summary>
+        /// Метод возвращает сообщения требующие ответа для текущего пользователя
+        ///</summary>
         public List<Message> GetNeedAnswerMessages()
         {
             List<Message> messages = new List<Message>();
@@ -160,6 +168,9 @@ namespace Core
             return messages;
         }
 
+        ///<summary>
+        /// Метод возвращает архивные сообщения для текущего пользователя
+        ///</summary>
         public List<Message> GetArchiveMessages()
         {
             List<Message> messages = new List<Message>();
@@ -204,6 +215,9 @@ namespace Core
             return messages;
         }
 
+        ///<summary>
+        /// Метод возвращает историю сообщений по пациенту, входящий параметр - id сообщения (пациент берется из этого сообщения)
+        ///</summary>
         public List<Dialog> GetDialog(Guid message_id)
         {
             List<Dialog> dialog = new List<Dialog>();
@@ -245,23 +259,12 @@ namespace Core
             return dialog;
         }
 
-        /*
-        public class Image
-        {
-            public Image(int id, string filename, string title, byte[] data)
-            {
-                Id = id;
-                FileName = filename;
-                Title = title;
-                Data = data;
-            }
-            public int Id { get; private set; }
-            public string FileName { get; private set; }
-            public string Title { get; private set; }
-            public byte[] Data { get; private set; }
-        }
-        */
-
+        ///<summary>
+        /// Метод отправки сообщения (запроса в центр)
+        /// messageId - id сообщения, info - инфо, diagnosis - диагноз,
+        /// patientNumber - номер карты пациента, userId - от кого, toId - кому,
+        /// img_0 - img_9 - вложения
+        ///</summary>
         public void SendMessage(
             Guid messageId,
             string info,
@@ -390,6 +393,11 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод отправки ответа филиалу
+        /// therapyPlan - план лечения, parentMessageId - сообщение на которое приходит ответ,
+        /// patientId - id пациента, userId - от кого, toId - кому
+        ///</summary>
         public void AnswerMessage(
             string therapyPlan,
             Guid parentMessageId,
@@ -422,6 +430,10 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод возвращает информацию по пациенту,
+        /// входной параметр - id пациента
+        ///</summary>
         public Patient GetPatientInfo(Guid patientId)
         {
             Patient patientInfo = new Patient();
@@ -467,6 +479,10 @@ namespace Core
             return patientInfo;
         }
 
+        ///<summary>
+        /// Метод обновляет информацию по пациенту,
+        /// входный параметры - id пациента и информация по нему
+        ///</summary>
         public void EditPatientInfo(
             Guid patientId,
             string fullName,
@@ -514,6 +530,10 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод возвращает вложения к выбранному сообщению,
+        /// входной параметр - id сообщения
+        ///</summary>
         public List<Attachments> GetAttachments(Guid message_id)
         {            
             List<Attachments> attachments = new List<Attachments>();
@@ -541,6 +561,10 @@ namespace Core
             return attachments;
         }
 
+        ///<summary>
+        /// Метод меняет статус сообщения на прочитанное,
+        /// входной параметр - id сообщения
+        ///</summary>
         public void ReadMessage(Guid message_id)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -554,6 +578,10 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод возвращает список пациентов, доступных текущему пользователю
+        /// входной параметр - id пользователя
+        ///</summary>
         public List<Patient> GetPatients(Guid userID)
         {
             List<Patient> patients = new List<Patient>();
@@ -602,6 +630,10 @@ namespace Core
             return patients;
         }
 
+        ///<summary>
+        /// Метод поиска пациентов по номеру карты,
+        /// входные параметры - id пользователя и номер карты
+        ///</summary>
         public List<Patient> GetPatientsByNumber(Guid userID, string cardNumber)
         {
             List<Patient> patients = new List<Patient>();
@@ -652,6 +684,10 @@ namespace Core
             return patients;
         }
 
+        ///<summary>
+        /// Метод создания пациента,
+        /// входные параметры - инфо по пациенту
+        ///</summary>
         public void CreatePatient(
             string fullName,
             int sex,
@@ -696,6 +732,10 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод удаляет выбранного пациента,
+        /// входной параметр - id пациента
+        ///</summary>
         public void DeletePatient(Guid patient_id)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -709,6 +749,10 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод возвращает системную информацию по текущему пользователю,
+        /// входной параметр - id пользователя
+        ///</summary>
         public SystemData GetSystemData(Guid userId)
         {
             SystemData systemData = new SystemData();
@@ -741,6 +785,10 @@ namespace Core
             return systemData;
         }
 
+        ///<summary>
+        /// Метод проверки/авторизации пользователя,
+        /// входные параметры: login - логин, passwordHash - хэш, docStatus - статус пользователя (филиал/центр)
+        ///</summary>
         public User CheckUser(string login, string passwordHash, int docStatus)
         {
             User CurrentUser = new User();

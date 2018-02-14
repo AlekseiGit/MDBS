@@ -35,6 +35,9 @@ namespace Core
             }
         }
 
+        ///<summary>
+        /// Метод шифровки массива байт
+        ///</summary>
         public byte[] Encode(byte[] dataB, int size)
         {      
             byte[] data = dataB.Take(size).ToArray();              
@@ -49,12 +52,14 @@ namespace Core
             return cipher;
         }
 
+        ///<summary>
+        /// Метод дешифровки массива байт
+        ///</summary>
         public byte[] Decode(byte[] dataB, int size)
         {
             return Encode(dataB, size);
         }
         
-        // Pseudo-Random Generation Algorithm 
         // Генератор псевдослучайной последовательности 
         private byte keyItem()
         {
