@@ -60,12 +60,6 @@ namespace MDBS_server
                 Exit(null, null);
             }
 
-            //var core = new CoreFunc();
-            //var messages = core.GetIncomingMessages();
-            //FillMessageGrid(messages);
-
-            //CategoryListBox.SelectedItem = CategoryListBox.Items.GetItemAt(0);
-
             var dpd = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, typeof(DataGrid));
             if (dpd != null)
             {
@@ -104,6 +98,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Обновление информации по категориям сообщений (входящие, исходящие...)
+        ///</summary>
         public void RefreshInformation(object sender, EventArgs e)
         {
             try
@@ -112,23 +109,6 @@ namespace MDBS_server
 
                 Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
                 Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
-                //NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
-                /*
-                var diff = (DateTime.Now - systemData.NeedAnswerDate).TotalDays;
-
-                if (diff < 2)
-                {
-                    NeedAnswer.Background = Brushes.LightGreen;
-                }
-                else if (diff >= 2 && diff < 3)
-                {
-                    NeedAnswer.Background = Brushes.LightYellow;
-                }
-                else if (diff >= 3)
-                {
-                    NeedAnswer.Background = Brushes.Pink;
-                }
-                */
             }
             catch
             {
@@ -136,11 +116,17 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Выход из приложения
+        ///</summary>
         public void Exit(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        ///<summary>
+        /// Вывод информации о программе
+        ///</summary>
         public void Help(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
@@ -174,11 +160,17 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Событие смены категории сообщений (обновляет список сообщений исходя из выбранной категории)
+        ///</summary>
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RefreshMessageGrid();
         }
 
+        ///<summary>
+        /// Обновление списка сообщений исходя из выбранной категории
+        ///</summary>
         private void RefreshMessageGrid()
         {
             if ((ListBoxItem)this.CategoryListBox.SelectedItem == null)
@@ -217,6 +209,10 @@ namespace MDBS_server
             FillMessageGrid(messages);
         }
 
+        ///<summary>
+        /// Заполнение таблицы сообщений
+        /// Входной параметр messages - список сообщений текущей категории
+        ///</summary>
         public void FillMessageGrid(List<Message> messages)
         {
             MessageGrid.ItemsSource = messages;
@@ -255,6 +251,9 @@ namespace MDBS_server
             MessageGrid.Columns[5].Width = 100;
         }
 
+        ///<summary>
+        /// Вызов формы со списком пациентов
+        ///</summary>
         private void ShowPatients(object sender, RoutedEventArgs e)
         {
             PatientsWindow patientsWindow = new PatientsWindow(UserID);
@@ -267,6 +266,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Вызов формы создания нового запроса
+        ///</summary>
         private void NewMessage(object sender, RoutedEventArgs e)
         {
             MessageWindow msgWindow = new MessageWindow(UserID);
@@ -279,39 +281,12 @@ namespace MDBS_server
             {
             }
         }
-        /*
-        private void AnswerMessage(object sender, RoutedEventArgs e)
-        {
-            if (MessageGrid.SelectedItems.Count == 1)
-            {
-                AnswerWindow answerWindow = new AnswerWindow();
-                var messageRow = MessageGrid.SelectedItems[0] as Message;
 
-                if (messageRow.From == UserID)
-                    return;
-
-                answerWindow.ParentMessageId = messageRow.ID;
-                answerWindow.PatientId = messageRow.PatientID;
-                answerWindow.PatientName = messageRow.PatientName;
-                answerWindow.FromId = UserID;
-                answerWindow.FromName = messageRow.FromName;
-                answerWindow.ToId = messageRow.From;
-
-                if (answerWindow.ShowDialog() == true)
-                {
-                    RefreshMessageGrid();
-                }
-                else
-                {
-                }
-            }
-            else
-            {
-                MessageBox.Show("Сначала нужно выделить сообщение, на которое вы хотите ответить!");
-            }
-        }
-        */
-
+        ///<summary>
+        /// Событие выбора сообщения
+        /// В результате обновляется таблица с историей запросов по пациенту из выбранного сообщения,
+        /// информация по этому пациенту и вложения к выбранному сообщению
+        ///</summary>
         private void MessageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var core = new CoreFunc();
@@ -390,6 +365,11 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Событие обновления таблицы сообщений по текущей категории
+        /// Для входящих проверяется стутус (жирным веделяются непрочитанные)
+        /// Для сообщений, требующих ответа проверяется дата (в зависимости от даты сообщения окрашиваются по цветам)
+        ///</summary>
         private void MessageGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             var RowDataContaxt = e.Row.DataContext as Message;
@@ -423,6 +403,10 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Событие обновления таблицы истории сообщений по пациенту
+        /// Окрашивание входящих и исходящих сообщений в разные цыета для удобства
+        ///</summary>
         private void DialogGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             var RowDataContaxt = e.Row.DataContext as Dialog;
@@ -440,6 +424,10 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Событие выбора сообщения из таблицы истории сообщений по пациенту
+        /// Обновление блока с вложениями по выбранному сообщению
+        ///</summary>
         private void DialogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems.Count > 0)
@@ -454,6 +442,10 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Обновление блока с вложениями по выбранному сообщению
+        /// Входной параметр messageId - Id выбранного сообщения
+        ///</summary>
         public void AttachmentsUpdate(string patientNumber, Guid messageId)
         {
             Images = new BitmapImage[10];
@@ -598,7 +590,7 @@ namespace MDBS_server
         // вынести в отдельный класс с тулзами
         public BitmapImage ToImage(byte[] array)
         {
-            using (var ms = new System.IO.MemoryStream(array))
+            using (var ms = new MemoryStream(array))
             {
                 var image = new BitmapImage();
                 image.BeginInit();
@@ -609,6 +601,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Открытие изображения в полном разрешении
+        ///</summary>
         private void ImageControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
@@ -619,11 +614,7 @@ namespace MDBS_server
                 {
                     string elementName = source.Name;
 
-                    //FieldInfo field = typeof(MainWindow).GetField("Image_" + elementName.Substring(12));
-                    //var image = (BitmapImage)field.GetValue(null);
-
                     ImageWindow imageWindow = new ImageWindow(Images, int.Parse(elementName.Substring(12)));
-                    //imageWindow.FullImage.Source = image;
 
                     if (imageWindow.ShowDialog() == true)
                     {
@@ -635,6 +626,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Открытие формы авторизации, подгрузка логинов последних авторизованных пользователей
+        ///</summary>
         private User Authorization()
         {
             ObservableCollection<string> logins = new ObservableCollection<string>();

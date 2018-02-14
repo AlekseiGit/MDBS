@@ -258,7 +258,7 @@ namespace MDBS_server
                 this.Diagnosis,
                 this.Patient,
                 UserID,
-                new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // to do
+                new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // Id главного пользователя (центра) todo
                 Img0,
                 Img1,
                 Img2,

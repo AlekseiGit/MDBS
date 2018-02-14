@@ -75,6 +75,9 @@ namespace MDBS_server
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
+        ///<summary>
+        /// Сохранение выбранной даты в переменную (вспомогательный обработчик)
+        ///</summary>
         private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PatientBirthDate.SelectedDate.Value != null)
@@ -83,6 +86,9 @@ namespace MDBS_server
                 this.BirthDate = DateTime.Now;
         }
 
+        ///<summary>
+        /// Создание нового пациента
+        ///</summary>
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.FullName))

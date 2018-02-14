@@ -43,6 +43,9 @@ namespace MDBS_server
 
         public Guid ToId { get; set; }
 
+        ///<summary>
+        /// Ответ филиалу на запрос
+        ///</summary>
         private void AnswerMessage_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.TherapyPlan))
@@ -62,6 +65,9 @@ namespace MDBS_server
             this.DialogResult = true;
         }
 
+        ///<summary>
+        /// Предзаполнение формы (От кого, пациент...)
+        ///</summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.ToBox.Items.Add(FromName);

@@ -35,6 +35,9 @@ namespace MDBS_server
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
+        ///<summary>
+        /// Формирование таблицы с пациентами
+        ///</summary>
         public void PatientGridColumnsGenerated(object sender, EventArgs e)
         {
             PatientGrid.Columns[0].Visibility = Visibility.Collapsed;
@@ -75,6 +78,9 @@ namespace MDBS_server
             noteColumn.EditingElementStyle = style;
         }
 
+        ///<summary>
+        /// Создание нового пациента
+        ///</summary>
         public void NewPatient(object sender, EventArgs e)
         {
             NewPatientWindow newPatientWindow = new NewPatientWindow();
@@ -90,6 +96,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Редактирование выбранного пациента
+        ///</summary>
         public void EditPatient(object sender, EventArgs e)
         {
             if (PatientGrid.SelectedItems.Count == 1)
@@ -114,6 +123,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Удалить выбранного пациента
+        ///</summary>
         public void DeletePatient(object sender, EventArgs e)
         {
             if (PatientGrid.SelectedItems.Count == 1)
@@ -135,6 +147,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Поиск пациента по номеру карты
+        ///</summary>
         public void FindPatient(object sender, EventArgs e)
         {
             Patients = Core.GetPatientsByNumber(UserID, PatientSearchBox.Text);

@@ -35,6 +35,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Открытие предыдущего (от текущего) изображения в большом разрешении
+        ///</summary>
         private void PrevImage_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentImage - 1 >=0 && CurrentImage - 1 <= 9 && Images[CurrentImage - 1] != null)
@@ -44,6 +47,9 @@ namespace MDBS_server
             }
         }
 
+        ///<summary>
+        /// Открытие следующего (от текущего) изображения в большом разрешении
+        ///</summary>
         private void NextImage_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentImage + 1 >= 0 && CurrentImage + 1 <= 9 && Images[CurrentImage + 1] != null)
