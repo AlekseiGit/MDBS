@@ -534,60 +534,62 @@ namespace MDBS_server
 
             var core = new CoreFunc();
             var images = core.GetAttachments(messageId);
+            byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+            RC4 decoder = new RC4(key);
 
             if (images.Count > 0)
             {
                 if (images.ElementAtOrDefault(0) != null)
                 {
-                    Images[0] = ToImage(images[0].Data);
+                    Images[0] = ToImage(decoder.Decode(images[0].Data, images[0].Data.Length));
                     ImageControl0.Source = Images[0];
                 }
 
                 if (images.ElementAtOrDefault(1) != null)
                 {
-                    Images[1] = ToImage(images[1].Data);
+                    Images[1] = ToImage(decoder.Decode(images[1].Data, images[1].Data.Length));
                     ImageControl1.Source = Images[1];
                 }
 
                 if (images.ElementAtOrDefault(2) != null)
                 {
-                    Images[2] = ToImage(images[2].Data);
+                    Images[2] = ToImage(decoder.Decode(images[2].Data, images[2].Data.Length));
                     ImageControl2.Source = Images[2];
                 }
 
                 if (images.ElementAtOrDefault(3) != null)
                 {
-                    Images[3] = ToImage(images[3].Data);
+                    Images[3] = ToImage(decoder.Decode(images[3].Data, images[3].Data.Length));
                     ImageControl3.Source = Images[3];
                 }
                 if (images.ElementAtOrDefault(4) != null)
                 {
-                    Images[4] = ToImage(images[4].Data);
+                    Images[4] = ToImage(decoder.Decode(images[4].Data, images[4].Data.Length));
                     ImageControl4.Source = Images[4];
                 }
                 if (images.ElementAtOrDefault(5) != null)
                 {
-                    Images[5] = ToImage(images[5].Data);
+                    Images[5] = ToImage(decoder.Decode(images[5].Data, images[5].Data.Length));
                     ImageControl5.Source = Images[5];
                 }
                 if (images.ElementAtOrDefault(6) != null)
                 {
-                    Images[6] = ToImage(images[6].Data);
+                    Images[6] = ToImage(decoder.Decode(images[6].Data, images[6].Data.Length));
                     ImageControl6.Source = Images[6];
                 }
                 if (images.ElementAtOrDefault(7) != null)
                 {
-                    Images[7] = ToImage(images[7].Data);
+                    Images[7] = ToImage(decoder.Decode(images[7].Data, images[7].Data.Length));
                     ImageControl7.Source = Images[7];
                 }
                 if (images.ElementAtOrDefault(8) != null)
                 {
-                    Images[8] = ToImage(images[8].Data);
+                    Images[8] = ToImage(decoder.Decode(images[8].Data, images[8].Data.Length));
                     ImageControl8.Source = Images[8];
                 }
                 if (images.ElementAtOrDefault(9) != null)
                 {
-                    Images[9] = ToImage(images[9].Data);
+                    Images[9] = ToImage(decoder.Decode(images[9].Data, images[9].Data.Length));
                     ImageControl9.Source = Images[9];
                 }
             }
@@ -600,7 +602,7 @@ namespace MDBS_server
             {
                 var image = new BitmapImage();
                 image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.CacheOption = BitmapCacheOption.OnLoad;
                 image.StreamSource = ms;
                 image.EndInit();
                 return image;

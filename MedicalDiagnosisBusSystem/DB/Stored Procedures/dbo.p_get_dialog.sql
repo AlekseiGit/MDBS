@@ -17,7 +17,7 @@ BEGIN
 		m.[TherapyPlan],
 		isnull(m.[ParentMessageID], '00000000-0000-0000-0000-000000000000') as [ParentMessageID],
 		isnull(m.[PatientID], '00000000-0000-0000-0000-000000000000') as [PatientID],
-		isnull(p.[FullName], '---') as [PatientName],
+		isnull(p.[MedicalCardNumber], '---') as [MedicalCardNumber],
 		isnull(m.[From], '00000000-0000-0000-0000-000000000000') as [From],
 		isnull(m.[To], '00000000-0000-0000-0000-000000000000') as [To],
 		m.[FromName],
