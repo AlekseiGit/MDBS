@@ -20,10 +20,10 @@ namespace MDBS_server
     /// </summary>
     public partial class NewPatientWindow : Window
     {
-        public string FullName
+        /*public string FullName
         {
             get { return PatientNameBox.Text; }
-        }
+        }*/
         public int Sex
         {
             get
@@ -91,12 +91,7 @@ namespace MDBS_server
         ///</summary>
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.FullName))
-            {
-                MessageBox.Show("Имя пациента не заполнено!");
-                return;
-            }
-            else if (string.IsNullOrEmpty(this.MedicalCardNumber))
+            if (string.IsNullOrEmpty(this.MedicalCardNumber))
             {
                 MessageBox.Show("Номер карты пациента не заполнен!");
                 return;
@@ -105,7 +100,6 @@ namespace MDBS_server
             var core = new CoreFunc();
 
             core.CreatePatient(
-                this.FullName,
                 this.Sex,
                 this.Weight,
                 this.DrugsCount,

@@ -456,7 +456,7 @@ namespace Core
             foreach (DataRow row in table.Rows)
             {
                 patientInfo.ID = (Guid)row["ID"];
-                patientInfo.FullName = row["FullName"].ToString();
+                //patientInfo.FullName = row["FullName"].ToString();
                 if ((int)row["Sex"] == 1)
                 {
                     patientInfo.Sex = "М";
@@ -485,7 +485,6 @@ namespace Core
         ///</summary>
         public void EditPatientInfo(
             Guid patientId,
-            string fullName,
             int sex,
             int weight,
             string drugsCount,
@@ -505,7 +504,7 @@ namespace Core
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@patient_id", SqlDbType.UniqueIdentifier);
-                cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
+                //cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@sex", SqlDbType.Int);
                 cmd.Parameters.Add("@weight", SqlDbType.Int);
                 cmd.Parameters.Add("@drugsCount", SqlDbType.NVarChar, 10);
@@ -516,7 +515,7 @@ namespace Core
                 cmd.Parameters.Add("@note", SqlDbType.NVarChar, 4000);
 
                 cmd.Parameters["@patient_id"].Value = patientId;
-                cmd.Parameters["@fullName"].Value = fullName;
+                //cmd.Parameters["@fullName"].Value = fullName;
                 cmd.Parameters["@sex"].Value = sex;
                 cmd.Parameters["@weight"].Value = weight;
                 cmd.Parameters["@drugsCount"].Value = drugsCount;
@@ -546,6 +545,9 @@ namespace Core
                 command.Parameters.AddWithValue("@message_id", message_id);
                 SqlDataReader reader = command.ExecuteReader();
 
+                byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+                RC4 decoder = new RC4(key);
+
                 while (reader.Read())
                 {
                     Guid id = reader.GetGuid(0);
@@ -553,7 +555,7 @@ namespace Core
                     byte[] data = (byte[])reader.GetValue(2);
                     string comment = reader.GetString(3);
 
-                    Attachments attachment = new Attachments(id, messageID, data, comment);
+                    Attachments attachment = new Attachments(id, messageID, decoder.Decode(data, data.Length), comment);
                     attachments.Add(attachment);
                 }
             }
@@ -605,7 +607,7 @@ namespace Core
                 Patient patient = new Patient();
 
                 patient.ID = (Guid)row["ID"];
-                patient.FullName = row["FullName"].ToString();
+                //patient.FullName = row["FullName"].ToString();
                 if ((int)row["Sex"] == 1)
                 {
                     patient.Sex = "М";
@@ -659,7 +661,7 @@ namespace Core
                 Patient patient = new Patient();
 
                 patient.ID = (Guid)row["ID"];
-                patient.FullName = row["FullName"].ToString();
+                //patient.FullName = row["FullName"].ToString();
                 if ((int)row["Sex"] == 1)
                 {
                     patient.Sex = "М";
@@ -689,7 +691,6 @@ namespace Core
         /// входные параметры - инфо по пациенту
         ///</summary>
         public void CreatePatient(
-            string fullName,
             int sex,
             int weight,
             string drugsCount,
@@ -708,7 +709,7 @@ namespace Core
                 cmd.CommandText = "dbo.p_new_patient";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
+                //cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 200);
                 cmd.Parameters.Add("@sex", SqlDbType.Int);
                 cmd.Parameters.Add("@weight", SqlDbType.Int);
                 cmd.Parameters.Add("@drugsCount", SqlDbType.NVarChar, 10);
@@ -718,7 +719,7 @@ namespace Core
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@note", SqlDbType.NVarChar, 200);
 
-                cmd.Parameters["@fullName"].Value = fullName;
+                //cmd.Parameters["@fullName"].Value = fullName;
                 cmd.Parameters["@sex"].Value = sex;
                 cmd.Parameters["@weight"].Value = weight;
                 cmd.Parameters["@drugsCount"].Value = drugsCount;

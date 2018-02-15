@@ -23,10 +23,10 @@ namespace MDBS_server
         CoreFunc Core = new CoreFunc();
         Guid PatientId;
 
-        public string FullName
+        /*public string FullName
         {
             get { return PatientNameBox.Text; }
-        }
+        }*/
         public int Sex
         {
             get
@@ -82,7 +82,7 @@ namespace MDBS_server
             PatientId = patientId;
             var patientInfo = Core.GetPatientInfo(patientId);
 
-            PatientNameBox.Text = patientInfo.FullName;
+            //PatientNameBox.Text = patientInfo.FullName;
             PatientCardBox.Text = patientInfo.MedicalCardNumber;
             if (patientInfo.Sex == "M")
             {
@@ -116,12 +116,7 @@ namespace MDBS_server
         ///</summary>
         private void UpdatePatient_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.FullName))
-            {
-                MessageBox.Show("Имя пациента не заполнено!");
-                return;
-            }
-            else if (string.IsNullOrEmpty(this.MedicalCardNumber))
+            if (string.IsNullOrEmpty(this.MedicalCardNumber))
             {
                 MessageBox.Show("Номер карты пациента не заполнен!");
                 return;
@@ -129,7 +124,6 @@ namespace MDBS_server
 
             Core.EditPatientInfo(
                 PatientId,
-                this.FullName,
                 this.Sex,
                 this.Weight,
                 this.DrugsCount,

@@ -42,29 +42,27 @@ namespace MDBS_server
         {
             PatientGrid.Columns[0].Visibility = Visibility.Collapsed;
 
-            PatientGrid.Columns[1].Header = "Пациент";
+            PatientGrid.Columns[1].Header = "Медицинская карта";
             PatientGrid.Columns[2].Header = "Пол";
             PatientGrid.Columns[3].Header = "Вес";
             PatientGrid.Columns[4].Header = "Кол-во таблеток";
             PatientGrid.Columns[5].Header = "Дата рождения";
-            PatientGrid.Columns[6].Header = "Медицинская карта";
-            PatientGrid.Columns[7].Header = "Текущее лечение";
-            PatientGrid.Columns[8].Header = "Информация";
-            PatientGrid.Columns[9].Header = "Доп. информация";
+            PatientGrid.Columns[6].Header = "Текущее лечение";
+            PatientGrid.Columns[7].Header = "Информация";
+            PatientGrid.Columns[8].Header = "Доп. информация";
 
             PatientGrid.Columns[1].Width = 120;
             PatientGrid.Columns[2].Width = 50;
             PatientGrid.Columns[3].Width = 50;
             PatientGrid.Columns[4].Width = 120;
             PatientGrid.Columns[5].Width = 120;
-            PatientGrid.Columns[6].Width = 120;
+            PatientGrid.Columns[6].Width = 150;
             PatientGrid.Columns[7].Width = 150;
             PatientGrid.Columns[8].Width = 150;
-            PatientGrid.Columns[9].Width = 150;
 
-            DataGridTextColumn curTherapyColumn = PatientGrid.Columns[7] as DataGridTextColumn;
-            DataGridTextColumn infoColumn = PatientGrid.Columns[8] as DataGridTextColumn;
-            DataGridTextColumn noteColumn = PatientGrid.Columns[9] as DataGridTextColumn;
+            DataGridTextColumn curTherapyColumn = PatientGrid.Columns[6] as DataGridTextColumn;
+            DataGridTextColumn infoColumn = PatientGrid.Columns[7] as DataGridTextColumn;
+            DataGridTextColumn noteColumn = PatientGrid.Columns[8] as DataGridTextColumn;
 
             Style style = PatientGrid.Resources["wordWrapStyle"] as Style;
 

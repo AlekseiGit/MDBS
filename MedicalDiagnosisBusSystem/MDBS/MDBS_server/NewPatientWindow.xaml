@@ -8,10 +8,10 @@
         Title="Новый пациент" Height="320" Width="800">
     <Grid>
         <StackPanel Name="PatientInfoPanel">
-            <DockPanel>
+            <!--DockPanel>
                 <Label Width="200" FontWeight="Bold">Имя пациента:</Label>
                 <TextBox Name="PatientNameBox"></TextBox>
-            </DockPanel>
+            </-->
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Номер карты пациента:</Label>
                 <TextBox Name="PatientCardBox"></TextBox>

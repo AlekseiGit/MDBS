@@ -3,7 +3,6 @@ use MDBS
 GO
 
 CREATE PROCEDURE dbo.p_new_patient
-@fullName nvarchar(200),
 @sex int,
 @weight int,
 @drugsCount nvarchar(10),
@@ -19,7 +18,6 @@ BEGIN
 	
 	insert into dbo.[Patient]
 		([ID],
-		[FullName],
 		[Sex],
 		[Weight],
 		[DrugsCount],
@@ -30,7 +28,6 @@ BEGIN
 		[Note])
 	values
 		(@patient_id,
-		@fullName,
 		@sex,
 		@weight,
 		@drugsCount,
