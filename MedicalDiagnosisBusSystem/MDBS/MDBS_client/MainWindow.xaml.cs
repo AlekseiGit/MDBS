@@ -268,6 +268,21 @@ namespace MDBS_server
         }
 
         ///<summary>
+        /// Вызов формы со списком пользователей
+        ///</summary>
+        private void ShowUsers(object sender, RoutedEventArgs e)
+        {
+            MDBS_client.UsersWindow usersWindow = new MDBS_client.UsersWindow(UserID);
+
+            if (usersWindow.ShowDialog() == true)
+            {
+            }
+            else
+            {
+            }
+        }
+
+        ///<summary>
         /// Вызов формы создания нового запроса
         ///</summary>
         private void NewMessage(object sender, RoutedEventArgs e)

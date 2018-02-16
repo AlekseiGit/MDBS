@@ -20,8 +20,6 @@ namespace MDBS_client
     /// </summary>
     public partial class NewUserWindow : Window
     {
-        CoreFunc Сore = new CoreFunc();
-
         public string FullName
         {
             get { return UserNameBox.Text; }
@@ -46,8 +44,9 @@ namespace MDBS_client
         {
             InitializeComponent();
 
-            LoginBox.Text = "";
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            var core = new CoreFunc();
+            LoginBox.Text = core.NewDocNumber(UserID);
         }
 
         ///<summary>
@@ -74,8 +73,9 @@ namespace MDBS_client
             }
 
             var passwordHash = Password.GetHashCode();
+            var core = new CoreFunc();
 
-            Сore.CreateUser(
+            core.CreateUser(
                 this.FullName,
                 this.Login,
                 passwordHash.ToString());

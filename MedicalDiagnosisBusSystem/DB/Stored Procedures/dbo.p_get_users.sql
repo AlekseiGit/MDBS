@@ -2,7 +2,7 @@ use MDBS
 
 GO
 
-CREATE PROCEDURE dbo.p_get_patients
+CREATE PROCEDURE dbo.p_get_users
 @user_id uniqueidentifier
 
 AS
@@ -23,18 +23,11 @@ BEGIN
 		select @code = left(DocNumber, 5) from dbo.[User] where ID = @user_id
 
 		select
-			p.[ID],
-			p.[FullName],
-			p.[Sex],
-			p.[Weight],
-			p.[DrugsCount],
-			p.[BirthDate],
-			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[Info],
-			p.[Note]
-		from dbo.patient p (nolock)
-		where left(p.[MedicalCardNumber], 5) = @code
-		order by p.[MedicalCardNumber] asc
+			u.[ID],
+			u.[FullName],
+			u.[DocNumber]
+		from dbo.[user] u (nolock)
+		where left(u.[DocNumber], 5) = @code
+		order by u.[DocNumber] asc
 	end
 END;

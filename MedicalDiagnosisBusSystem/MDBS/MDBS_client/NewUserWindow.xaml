@@ -14,7 +14,7 @@
             </DockPanel>
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Логин:</Label>
-                <TextBox Name="LoginBox"></TextBox>
+                <TextBox Name="LoginBox" IsReadOnly="True"></TextBox>
             </DockPanel>
             <DockPanel>
                 <Label Width="200" FontWeight="Bold">Пароль:</Label>

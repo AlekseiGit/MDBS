@@ -9,10 +9,10 @@
     <DockPanel Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
+                <MenuItem Header="_Пользователи" Click="ShowUsers"/>
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
-                <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <Separator />
-                <MenuItem Header="_Создать нового пользователя" Click="CreateNewUser"/>
+                <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <Separator />
                 <MenuItem Header="_Выход" Click="Exit"/>
             </MenuItem>
@@ -25,6 +25,7 @@
                 <!--Button>
                     <Image Source="open-sign.png" MaxHeight="32"></Image>
                 </Button-->
+                <Button Click="ShowUsers">Пользователи</Button>
                 <Button Click="ShowPatients">Пациенты</Button>
                 <Separator></Separator>
                 <Button Click="NewMessage">Новое Сообщение</Button>

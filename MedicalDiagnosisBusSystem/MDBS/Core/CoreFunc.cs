@@ -587,6 +587,44 @@ namespace Core
         }
 
         ///<summary>
+        /// Метод возвращает список пользователей соответствующего филиала
+        /// входной параметр - id пользователя
+        ///</summary>
+        public List<User> GetUsers(Guid userID)
+        {
+            List<User> users = new List<User>();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_users";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            sqlCmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+            sqlCmd.Parameters["@user_id"].Value = userID;
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                User user = new User();
+
+                user.ID = (Guid)row["ID"];
+                user.FullName = row["FullName"].ToString();
+                user.DocNumber = row["DocNumber"].ToString();
+
+                users.Add(user);
+            }
+
+            DBConnection.Close();
+
+            return users;
+        }
+
+        ///<summary>
         /// Метод возвращает список пациентов, доступных текущему пользователю
         /// входной параметр - id пользователя
         ///</summary>
@@ -824,6 +862,39 @@ namespace Core
             DBConnection.Close();
 
             return systemData;
+        }
+
+        ///<summary>
+        /// Метод генерации нового номера доктора
+        /// входные параметры: UserID - id пользователя
+        ///</summary>
+        public string NewDocNumber(Guid UserID)
+        {
+            string docNumber = "";
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_get_docnumber";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
+                cmd.Parameters.Add("@new_docnumber", SqlDbType.NVarChar, 100);
+
+                cmd.Parameters["@user_id"].Value = UserID;
+                cmd.Parameters["@new_docnumber"].Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+
+                docNumber = cmd.Parameters["@new_docnumber"].Value.ToString();
+
+                connection.Close();
+            }
+
+            return docNumber;
         }
 
         ///<summary>
