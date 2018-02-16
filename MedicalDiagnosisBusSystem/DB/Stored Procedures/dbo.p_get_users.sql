@@ -10,18 +10,11 @@ BEGIN
 	if (select DocStatus from dbo.[User] where ID = @user_id) = 1
 	begin
 		select
-			p.[ID],
-			p.[FullName],
-			p.[Sex],
-			p.[Weight],
-			p.[DrugsCount],
-			p.[BirthDate],
-			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[Info],
-			p.[Note]
-		from dbo.patient p (nolock)
-		order by p.[MedicalCardNumber] asc
+			u.[ID],
+			u.[FullName],
+			u.[DocNumber]
+		from dbo.[user] u (nolock)
+		order by u.[DocNumber] asc
 	end
 	else
 	begin

@@ -10,9 +10,9 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
-                <Separator />
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
-                <!--MenuItem Header="_Ответить" Click="AnswerMessage"/-->
+                <Separator />
+                <MenuItem Header="_Создать нового пользователя" Click="CreateNewUser"/>
                 <Separator />
                 <MenuItem Header="_Выход" Click="Exit"/>
             </MenuItem>

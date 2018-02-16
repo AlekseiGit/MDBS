@@ -427,6 +427,8 @@ namespace Core
                 cmd.Parameters["@to_id"].Value = toId;
 
                 cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
 
@@ -526,6 +528,8 @@ namespace Core
                 cmd.Parameters["@note"].Value = note;
 
                 cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
 
@@ -558,6 +562,8 @@ namespace Core
                     Attachments attachment = new Attachments(id, messageID, decoder.Decode(data, data.Length), comment);
                     attachments.Add(attachment);
                 }
+
+                connection.Close();
             }
 
             return attachments;
@@ -730,6 +736,40 @@ namespace Core
                 cmd.Parameters["@note"].Value = note;
 
                 cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        ///<summary>
+        /// Метод создания пользователя,
+        /// входные параметры - инфо по пользователю
+        ///</summary>
+        public void CreateUser(
+            string fullName,
+            string docNumber,
+            string passwordHash)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_new_user";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@fullName", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@docNumber", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 200);
+
+                cmd.Parameters["@fullName"].Value = fullName;
+                cmd.Parameters["@docNumber"].Value = docNumber;
+                cmd.Parameters["@passwordHash"].Value = passwordHash;
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
 
@@ -822,6 +862,8 @@ namespace Core
                 CurrentUser.ID = (Guid)cmd.Parameters["@user_id"].Value;
                 CurrentUser.FullName = cmd.Parameters["@user_name"].Value.ToString();
                 CurrentUser.DocNumber = cmd.Parameters["@user_num"].Value.ToString();
+
+                connection.Close();
             }
 
             return CurrentUser;

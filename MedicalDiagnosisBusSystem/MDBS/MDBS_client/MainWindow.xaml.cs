@@ -105,7 +105,8 @@ namespace MDBS_server
         {
             try
             {
-                var systemData = Core.GetSystemData(UserID);
+                var core = new CoreFunc(UserID);
+                var systemData = core.GetSystemData(UserID);
 
                 Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
                 Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
@@ -276,6 +277,21 @@ namespace MDBS_server
             if (msgWindow.ShowDialog() == true)
             {
                 RefreshMessageGrid();
+            }
+            else
+            {
+            }
+        }
+
+        ///<summary>
+        /// Вызов формы создания нового пользователя
+        ///</summary>
+        private void CreateNewUser(object sender, RoutedEventArgs e)
+        {
+            MDBS_client.NewUserWindow msgWindow = new MDBS_client.NewUserWindow(UserID);
+
+            if (msgWindow.ShowDialog() == true)
+            {
             }
             else
             {
