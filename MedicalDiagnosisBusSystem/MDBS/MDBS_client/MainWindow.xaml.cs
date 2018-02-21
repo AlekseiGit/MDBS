@@ -20,6 +20,7 @@ using System.Windows.Threading;
 using System.Configuration;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Drawing.Printing;
 
 namespace MDBS_server
 {
@@ -135,6 +136,53 @@ namespace MDBS_server
                 "Версия программы: 1.2.3 (beta)" + "\n" +
                 "(с) 2018 все права защищены.",
                 "О программе");
+        }
+
+        ///<summary>
+        /// Печать диагноза
+        ///</summary>
+        private void DiagnosisPrint(object sender, RoutedEventArgs e)
+        {
+            if (DialogGrid.SelectedItems.Count == 1)
+            {
+                var dialogRow = DialogGrid.SelectedItems[0] as Dialog;
+
+                if (!string.IsNullOrEmpty(dialogRow.TherapyPlan))
+                {
+                    FlowDocument doc = new FlowDocument();
+                    Section sec = new Section();
+                    Paragraph p1 = new Paragraph();
+                    Paragraph p2 = new Paragraph();
+
+                    //Bold bld = new Bold();
+                    //bld.Inlines.Add(new Run("First Paragraph"));
+                    //Italic italicBld = new Italic();
+                    //italicBld.Inlines.Add(bld);
+                    //Underline underlineItalicBld = new Underline();
+                    //underlineItalicBld.Inlines.Add(italicBld);
+
+                    p1.Inlines.Add("План лечения для пациента " + dialogRow.PatientName + " (" + dialogRow.MessageDate + ")");
+                    p2.Inlines.Add(dialogRow.TherapyPlan);
+
+                    sec.Blocks.Add(p1);
+                    sec.Blocks.Add(p2);
+                    doc.Blocks.Add(sec);
+                    doc.Name = "Doc";
+
+                    PrintDialog printDlg = new PrintDialog();
+
+                    IDocumentPaginatorSource idpSource = doc;
+
+                    if (printDlg.ShowDialog() == true)
+                    {
+                        printDlg.PrintDocument(idpSource.DocumentPaginator, "");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Сначала нужно выделить сообщение c диагнозом, которое вы хотите распечатать!");
+            }
         }
 
         private void ItemsSourceChanged(object sender, EventArgs e)

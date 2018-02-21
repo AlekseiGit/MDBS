@@ -14,6 +14,8 @@
                 <Separator />
                 <MenuItem Header="_Новое сообщение" Click="NewMessage"/>
                 <Separator />
+                <MenuItem Header="_Печать диагноза" Click="DiagnosisPrint"/>
+                <Separator />
                 <MenuItem Header="_Выход" Click="Exit"/>
             </MenuItem>
             <MenuItem Header="_Справка">
@@ -30,6 +32,7 @@
                 <Separator></Separator>
                 <Button Click="NewMessage">Новое Сообщение</Button>
                 <Separator></Separator>
+                <Button Click="DiagnosisPrint">Печать диагноза</Button>
                 <!--Button Click="AnswerMessage">Ответить</-->
                 <!--CheckBox FontWeight="Bold">Bold</CheckBox>
                 <CheckBox FontStyle="Italic">Italic</CheckBox>

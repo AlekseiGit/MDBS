@@ -12,7 +12,7 @@ namespace Core
 {
     public class CoreFunc
     {
-        public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
         public SqlConnection DBConnection;
         public Guid UserID;
 
