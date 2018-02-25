@@ -62,10 +62,12 @@ namespace MDBS_server
             get { return InfoBox.Text; }
         }
 
+        /*
         public string Diagnosis
         {
             get { return DiagnosisBox.Text; }
         }
+        */
 
         ///<summary>
         /// Прикрепление вложений (изображений)
@@ -226,11 +228,13 @@ namespace MDBS_server
                 MessageBox.Show("Сообщение не заполнено!");
                 return;
             }
+            /*
             else if (string.IsNullOrEmpty(this.Diagnosis))
             {
                 MessageBox.Show("Диагноз пациента не заполнен!");
                 return;
             }
+            */
 
             Guid messageId = Guid.NewGuid();
             string msgFolder = messageId.ToString();
@@ -255,20 +259,21 @@ namespace MDBS_server
             core.SendMessage(
                 messageId,
                 this.Info,
-                this.Diagnosis,
+                "", //this.Diagnosis,
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // Id главного пользователя (центра) todo
-                Img0,
-                Img1,
-                Img2,
-                Img3,
-                Img4,
-                Img5,
-                Img6,
-                Img7,
-                Img8,
-                Img9);
+                ImgPath.Where(i => i != null).Count());
+                //Img0,
+                //Img1,
+                //Img2,
+                //Img3,
+                //Img4,
+                //Img5,
+                //Img6,
+                //Img7,
+                //Img8,
+                //Img9);
 
             MessageBox.Show("Сообщение отправляется!");
 

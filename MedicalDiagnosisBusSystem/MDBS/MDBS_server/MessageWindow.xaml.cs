@@ -182,16 +182,17 @@ namespace MDBS_server
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // Id главного пользователя (центра) todo
-                Img0,
-                Img1,
-                Img2,
-                Img3,
-                Img4,
-                Img5,
-                Img6,
-                Img7,
-                Img8,
-                Img9);
+                0);
+                //Img0,
+                //Img1,
+                //Img2,
+                //Img3,
+                //Img4,
+                //Img5,
+                //Img6,
+                //Img7,
+                //Img8,
+                //Img9);
 
             MessageBox.Show("Сообщение отправляется!");
 

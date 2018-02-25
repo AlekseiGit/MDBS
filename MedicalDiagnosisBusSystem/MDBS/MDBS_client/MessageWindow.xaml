@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="450">
+        Title="Новое сообщение" Width="800" Height="380">
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,13 +23,13 @@
                 <Button Click="ChoosePatient_Click" Width="200" HorizontalAlignment="Left">Выбрать пациента</Button>
             </DockPanel>
             <DockPanel>
-                <Label Width="200" FontWeight="Bold">Сообщение</Label>
+                <Label Width="200" FontWeight="Bold">Проведенное лечение</Label>
                 <TextBox Name="InfoBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
             </DockPanel>
-            <DockPanel>
+            <!--DockPanel>
                 <Label Width="200" FontWeight="Bold">Диагноз</Label>
                 <TextBox Name="DiagnosisBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
-            </DockPanel>
+            </-->
             <ScrollViewer IsTabStop="True" Height="130" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                     <StackPanel>

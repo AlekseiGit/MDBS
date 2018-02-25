@@ -12,7 +12,9 @@ namespace Core
 {
     public class CoreFunc
     {
-        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        //public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
         public SqlConnection DBConnection;
         public Guid UserID;
 
@@ -272,16 +274,17 @@ namespace Core
             string patientNumber,
             Guid userId,
             Guid toId,
-            byte[] img_0,
-            byte[] img_1,
-            byte[] img_2,
-            byte[] img_3,
-            byte[] img_4,
-            byte[] img_5,
-            byte[] img_6,
-            byte[] img_7,
-            byte[] img_8,
-            byte[] img_9)
+            int imgsCount)
+            //byte[] img_0,
+            //byte[] img_1,
+            //byte[] img_2,
+            //byte[] img_3,
+            //byte[] img_4,
+            //byte[] img_5,
+            //byte[] img_6,
+            //byte[] img_7,
+            //byte[] img_8,
+            //byte[] img_9)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -298,6 +301,7 @@ namespace Core
                 cmd.Parameters.Add("@patient_number", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
                 cmd.Parameters.Add("@to_id", SqlDbType.UniqueIdentifier);
+                cmd.Parameters.Add("@imgs_count", SqlDbType.Int);
 
                 cmd.Parameters["@message_id"].Value = messageId;
                 cmd.Parameters["@info"].Value = info;
@@ -305,7 +309,9 @@ namespace Core
                 cmd.Parameters["@patient_number"].Value = patientNumber;
                 cmd.Parameters["@user_id"].Value = userId;
                 cmd.Parameters["@to_id"].Value = toId;
+                cmd.Parameters["@imgs_count"].Value = imgsCount;
 
+                /*
                 byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
                 RC4 encoder = new RC4(key);
 
@@ -388,7 +394,7 @@ namespace Core
                     cmd.Parameters["@img_9"].Value = encoder.Encode(img_9, img_9.Length);
                     cmd.Parameters["@img_9_send"].Value = 1;
                 }
-
+                */
                 cmd.ExecuteNonQuery();
             }
         }

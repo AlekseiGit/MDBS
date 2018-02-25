@@ -385,12 +385,13 @@ namespace MDBS_server
                 DialogGrid.ItemsSource = dialog;
 
                 DialogGrid.Columns[0].Visibility = Visibility.Collapsed;
+                DialogGrid.Columns[2].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[4].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[5].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[6].Visibility = Visibility.Collapsed;
 
-                DialogGrid.Columns[1].Header = "Сообщение";
-                DialogGrid.Columns[2].Header = "Диагноз";
+                DialogGrid.Columns[1].Header = "Проведенное лечение";
+                //DialogGrid.Columns[2].Header = "Диагноз";
                 DialogGrid.Columns[3].Header = "План лечения";
                 //DialogGrid.Columns[5].Header = "Пациент";
                 DialogGrid.Columns[7].Header = "От кого";
