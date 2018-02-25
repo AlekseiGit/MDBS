@@ -36,7 +36,8 @@ namespace MDBS_server
         byte[] Img8;
         byte[] Img9;
 
-        string[] ImgPath = new string[10];
+        string[] ImgsPath = new string[10];
+        string[] ImgsDataPath = new string[10];
 
         PatientsWindow PatientsWindow;
 
@@ -97,61 +98,61 @@ namespace MDBS_server
                     if (Img0 == null)
                     {
                         Image0.Source = img;
-                        ImgPath[0] = filename;
+                        ImgsPath[0] = filename;
                         Img0 = File.ReadAllBytes(filename);
                     }
                     else if (Img1 == null)
                     {
                         Image1.Source = img;
-                        ImgPath[1] = filename;
+                        ImgsPath[1] = filename;
                         Img1 = File.ReadAllBytes(filename);
                     }
                     else if (Img2 == null)
                     {
                         Image2.Source = img;
-                        ImgPath[2] = filename;
+                        ImgsPath[2] = filename;
                         Img2 = File.ReadAllBytes(filename);
                     }
                     else if (Img3 == null)
                     {
                         Image3.Source = img;
-                        ImgPath[3] = filename;
+                        ImgsPath[3] = filename;
                         Img3 = File.ReadAllBytes(filename);
                     }
                     else if (Img4 == null)
                     {
                         Image4.Source = img;
-                        ImgPath[4] = filename;
+                        ImgsPath[4] = filename;
                         Img4 = File.ReadAllBytes(filename);
                     }
                     else if (Img5 == null)
                     {
                         Image5.Source = img;
-                        ImgPath[5] = filename;
+                        ImgsPath[5] = filename;
                         Img5 = File.ReadAllBytes(filename);
                     }
                     else if (Img6 == null)
                     {
                         Image6.Source = img;
-                        ImgPath[6] = filename;
+                        ImgsPath[6] = filename;
                         Img6 = File.ReadAllBytes(filename);
                     }
                     else if (Img7 == null)
                     {
                         Image7.Source = img;
-                        ImgPath[7] = filename;
+                        ImgsPath[7] = filename;
                         Img7 = File.ReadAllBytes(filename);
                     }
                     else if (Img8 == null)
                     {
                         Image8.Source = img;
-                        ImgPath[8] = filename;
+                        ImgsPath[8] = filename;
                         Img8 = File.ReadAllBytes(filename);
                     }
                     else if (Img9 == null)
                     {
                         Image9.Source = img;
-                        ImgPath[9] = filename;
+                        ImgsPath[9] = filename;
                         Img9 = File.ReadAllBytes(filename);
                     }
                 }
@@ -243,14 +244,17 @@ namespace MDBS_server
 
             for (int i=0; i<10; i++)
             {
-                if (ImgPath[i] != null)
+                if (ImgsPath[i] != null)
                 {
-                    File.Copy(ImgPath[i], @".\Data\" +
+                    File.Copy(ImgsPath[i], @".\Data\" +
                         this.Patient +
                         @"\" + msgFolder +
                         @"\" +
                         i +
-                        ImgPath[i].Substring(ImgPath[i].IndexOf(".")));
+                        ImgsPath[i].Substring(ImgsPath[i].IndexOf(".")));
+
+                    ImgsDataPath[i] = @".\Data\" + this.Patient + @"\" + msgFolder +
+                        @"\" + i + ImgsPath[i].Substring(ImgsPath[i].IndexOf("."));
                 }
             }
 
@@ -263,7 +267,7 @@ namespace MDBS_server
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // Id главного пользователя (центра) todo
-                ImgPath.Where(i => i != null).Count());
+                ImgsDataPath);
                 //Img0,
                 //Img1,
                 //Img2,

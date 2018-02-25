@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[AttachmentsQueue](
 	[ID] [uniqueidentifier] DEFAULT NEWSEQUENTIALID(),
 	[MessageID] [uniqueidentifier] NULL,
 	[AttachmentID] [uniqueidentifier] NULL,
+	[FileName] [nvarchar](max) NULL,
 	[Checksumm] [nvarchar](max) NULL,
 	[Status] [int] NULL -- 0 - новый, 1 - прочитанный
  CONSTRAINT [PK_AttachmentsQueue] PRIMARY KEY CLUSTERED

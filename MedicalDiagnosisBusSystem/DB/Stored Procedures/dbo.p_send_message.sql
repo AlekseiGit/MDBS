@@ -8,8 +8,8 @@ CREATE PROCEDURE dbo.p_send_message
 @diagnosis nvarchar(max),
 @patient_number nvarchar(100),
 @user_id uniqueidentifier,
-@to_id uniqueidentifier,
-@imgs_count int
+@to_id uniqueidentifier
+--@imgs_count int
 
 AS
 BEGIN
@@ -35,7 +35,7 @@ BEGIN
 		(select [FullName] + ' (' + substring(DocNumber, 3, 2) + ')' from dbo.[User] where [ID] = @user_id),
 		getdate(),
 		0)
-	
+	/*
 	while (@imgs_count > 0)
 	begin
 		declare @attachment_id uniqueidentifier = newid()
@@ -48,4 +48,5 @@ BEGIN
 		
 		set @imgs_count = @imgs_count - 1
 	end
+	*/
 END;

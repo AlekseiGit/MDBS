@@ -71,11 +71,11 @@ namespace MDBS_server
 
             Core = new CoreFunc(UserID);
 
-            RefreshInformation(null, null);
+            SystemProcesses(null, null);
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(RefreshInformation);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Tick += new EventHandler(SystemProcesses);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 20);
             dispatcherTimer.Start();
 
             UpdateFolderStructure();
@@ -102,7 +102,7 @@ namespace MDBS_server
         ///<summary>
         /// Обновление информации по категориям сообщений (входящие, исходящие...)
         ///</summary>
-        public void RefreshInformation(object sender, EventArgs e)
+        public void SystemProcesses(object sender, EventArgs e)
         {
             try
             {
@@ -111,6 +111,8 @@ namespace MDBS_server
 
                 Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
                 Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
+
+                core.SendMessages();
             }
             catch
             {

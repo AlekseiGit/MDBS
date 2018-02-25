@@ -274,7 +274,7 @@ namespace Core
             string patientNumber,
             Guid userId,
             Guid toId,
-            int imgsCount)
+            string[] imgs)
             //byte[] img_0,
             //byte[] img_1,
             //byte[] img_2,
@@ -301,7 +301,6 @@ namespace Core
                 cmd.Parameters.Add("@patient_number", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
                 cmd.Parameters.Add("@to_id", SqlDbType.UniqueIdentifier);
-                cmd.Parameters.Add("@imgs_count", SqlDbType.Int);
 
                 cmd.Parameters["@message_id"].Value = messageId;
                 cmd.Parameters["@info"].Value = info;
@@ -309,7 +308,133 @@ namespace Core
                 cmd.Parameters["@patient_number"].Value = patientNumber;
                 cmd.Parameters["@user_id"].Value = userId;
                 cmd.Parameters["@to_id"].Value = toId;
-                cmd.Parameters["@imgs_count"].Value = imgsCount;
+
+                foreach (var img_name in imgs)
+                {
+                    if (img_name != null)
+                    {
+                        string sql = "declare @attachment_id uniqueidentifier = newid() " +
+                            "insert into dbo.[Attachments]([ID], [MessageID], [Data], [Comment]) " +
+                            "values(@attachment_id, @message_id, null, '') " +
+                            "insert into dbo.[AttachmentsQueue] ([MessageID], [AttachmentID], [FileName], [Checksumm], [Status]) " +
+                            "values(@message_id, @attachment_id, @file_name, null, 0)";
+
+                        SqlCommand command = new SqlCommand(sql, connection);
+                        command.Parameters.AddWithValue("@message_id", messageId);
+                        command.Parameters.AddWithValue("@file_name", img_name);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                /*
+                byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+                RC4 encoder = new RC4(key);
+
+                if (img_0 != null)
+                {
+                    cmd.Parameters.Add("@img_0", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_0_send", SqlDbType.Int);
+                    cmd.Parameters["@img_0"].Value = encoder.Encode(img_0, img_0.Length);
+                    cmd.Parameters["@img_0_send"].Value = 1;
+                }
+
+                if (img_1 != null)
+                {
+                    cmd.Parameters.Add("@img_1", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_1_send", SqlDbType.Int);
+                    cmd.Parameters["@img_1"].Value = encoder.Encode(img_1, img_1.Length);
+                    cmd.Parameters["@img_1_send"].Value = 1;
+                }
+
+                if (img_2 != null)
+                {
+                    cmd.Parameters.Add("@img_2", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_2_send", SqlDbType.Int);
+                    cmd.Parameters["@img_2"].Value = encoder.Encode(img_2, img_2.Length);
+                    cmd.Parameters["@img_2_send"].Value = 1;
+                }
+
+                if (img_3 != null)
+                {
+                    cmd.Parameters.Add("@img_3", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_3_send", SqlDbType.Int);
+                    cmd.Parameters["@img_3"].Value = encoder.Encode(img_3, img_3.Length);
+                    cmd.Parameters["@img_3_send"].Value = 1;
+                }
+
+                if (img_4 != null)
+                {
+                    cmd.Parameters.Add("@img_4", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_4_send", SqlDbType.Int);
+                    cmd.Parameters["@img_4"].Value = encoder.Encode(img_4, img_4.Length);
+                    cmd.Parameters["@img_4_send"].Value = 1;
+                }
+
+                if (img_5 != null)
+                {
+                    cmd.Parameters.Add("@img_5", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_5_send", SqlDbType.Int);
+                    cmd.Parameters["@img_5"].Value = encoder.Encode(img_5, img_5.Length);
+                    cmd.Parameters["@img_5_send"].Value = 1;
+                }
+
+                if (img_6 != null)
+                {
+                    cmd.Parameters.Add("@img_6", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_6_send", SqlDbType.Int);
+                    cmd.Parameters["@img_6"].Value = encoder.Encode(img_6, img_6.Length);
+                    cmd.Parameters["@img_6_send"].Value = 1;
+                }
+
+                if (img_7 != null)
+                {
+                    cmd.Parameters.Add("@img_7", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_7_send", SqlDbType.Int);
+                    cmd.Parameters["@img_7"].Value = encoder.Encode(img_7, img_7.Length);
+                    cmd.Parameters["@img_7_send"].Value = 1;
+                }
+
+                if (img_8 != null)
+                {
+                    cmd.Parameters.Add("@img_8", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_8_send", SqlDbType.Int);
+                    cmd.Parameters["@img_8"].Value = encoder.Encode(img_8, img_8.Length);
+                    cmd.Parameters["@img_8_send"].Value = 1;
+                }
+
+                if (img_9 != null)
+                {
+                    cmd.Parameters.Add("@img_9", SqlDbType.Image, 1000000);
+                    cmd.Parameters.Add("@img_9_send", SqlDbType.Int);
+                    cmd.Parameters["@img_9"].Value = encoder.Encode(img_9, img_9.Length);
+                    cmd.Parameters["@img_9_send"].Value = 1;
+                }
+                */
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        ///<summary>
+        /// Метод отправки сообщений из очереди
+        ///</summary>
+        public void SendMessages()
+        {
+
+
+
+            return;
+
+
+
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "dbo.p_send_message";
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 /*
                 byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
@@ -550,7 +675,10 @@ namespace Core
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                string sql = "select * from dbo.[Attachments] where [MessageID] = @message_id";
+                string sql = "select a.* " +
+                    "from dbo.[Attachments] a inner " +
+                    "join dbo.[AttachmentsQueue] aq on aq.[AttachmentID] = a.[ID] " +
+                    "where a.[MessageID] = @message_id and aq.[Checksumm] != null";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@message_id", message_id);
                 SqlDataReader reader = command.ExecuteReader();
@@ -862,7 +990,7 @@ namespace Core
                 systemData.IncomingInfo = row["incoming_info"].ToString();
                 systemData.OutgoingInfo = row["outgoing_info"].ToString();
                 systemData.NeedAnswerInfo = row["need_answer_info"].ToString();
-                systemData.NeedAnswerDate = (DateTime)row["need_answer_date"];
+                //systemData.NeedAnswerDate = (DateTime)row["need_answer_date"];
             }
 
             DBConnection.Close();
