@@ -51,7 +51,7 @@ namespace MDBS_server
             if (user.ID != Guid.Empty)
             {
                 UserID = user.ID;
-                LoginLabel.Content = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
+                LoginLabel.Header = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
             }
             else
             {
