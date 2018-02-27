@@ -546,11 +546,13 @@ namespace MDBS_server
         {
             using (var ms = new System.IO.MemoryStream(array))
             {
+                ms.Position = 0;
                 var image = new BitmapImage();
                 image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.CacheOption = BitmapCacheOption.OnLoad;
                 image.StreamSource = ms;
                 image.EndInit();
+
                 return image;
             }
         }

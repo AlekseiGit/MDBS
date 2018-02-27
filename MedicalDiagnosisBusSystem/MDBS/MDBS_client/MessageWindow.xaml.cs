@@ -25,19 +25,11 @@ namespace MDBS_server
     {
         Guid UserID;
 
-        byte[] Img0;
-        byte[] Img1;
-        byte[] Img2;
-        byte[] Img3;
-        byte[] Img4;
-        byte[] Img5;
-        byte[] Img6;
-        byte[] Img7;
-        byte[] Img8;
-        byte[] Img9;
+        //byte[][] ImgsData = new byte[10][];
+        //string[] ImgsPath = new string[10];
+        //string[] ImgsDataPath = new string[10];
 
-        string[] ImgsPath = new string[10];
-        string[] ImgsDataPath = new string[10];
+        MessageContainer[] MC = new MessageContainer[10];
 
         PatientsWindow PatientsWindow;
 
@@ -95,65 +87,115 @@ namespace MDBS_server
                         return;
                     }
 
-                    if (Img0 == null)
+                    if (MC[0] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image0.Source = img;
-                        ImgsPath[0] = filename;
-                        Img0 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[0] = mc;
                     }
-                    else if (Img1 == null)
+                    else if (MC[1] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image1.Source = img;
-                        ImgsPath[1] = filename;
-                        Img1 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[1] = mc;
                     }
-                    else if (Img2 == null)
+                    else if (MC[2] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image2.Source = img;
-                        ImgsPath[2] = filename;
-                        Img2 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[2] = mc;
                     }
-                    else if (Img3 == null)
+                    else if (MC[3] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image3.Source = img;
-                        ImgsPath[3] = filename;
-                        Img3 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[3] = mc;
                     }
-                    else if (Img4 == null)
+                    else if (MC[4] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image4.Source = img;
-                        ImgsPath[4] = filename;
-                        Img4 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[4] = mc;
                     }
-                    else if (Img5 == null)
+                    else if (MC[5] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image5.Source = img;
-                        ImgsPath[5] = filename;
-                        Img5 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[5] = mc;
                     }
-                    else if (Img6 == null)
+                    else if (MC[6] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image6.Source = img;
-                        ImgsPath[6] = filename;
-                        Img6 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[6] = mc;
                     }
-                    else if (Img7 == null)
+                    else if (MC[7] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image7.Source = img;
-                        ImgsPath[7] = filename;
-                        Img7 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[7] = mc;
                     }
-                    else if (Img8 == null)
+                    else if (MC[8] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image8.Source = img;
-                        ImgsPath[8] = filename;
-                        Img8 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[8] = mc;
                     }
-                    else if (Img9 == null)
+                    else if (MC[9] == null)
                     {
+                        var mc = new MessageContainer();
+
                         Image9.Source = img;
-                        ImgsPath[9] = filename;
-                        Img9 = File.ReadAllBytes(filename);
+                        mc.ImgsPath = filename;
+                        mc.ImgsData = File.ReadAllBytes(filename);
+                        mc.ImgsDataPath = "";
+
+                        MC[9] = mc;
                     }
                 }
             }
@@ -244,17 +286,17 @@ namespace MDBS_server
 
             for (int i=0; i<10; i++)
             {
-                if (ImgsPath[i] != null)
+                if (MC[i] != null)
                 {
-                    File.Copy(ImgsPath[i], @".\Data\" +
+                    File.Copy(MC[i].ImgsPath, @".\Data\" +
                         this.Patient +
                         @"\" + msgFolder +
                         @"\" +
                         i +
-                        ImgsPath[i].Substring(ImgsPath[i].IndexOf(".")));
+                        MC[i].ImgsPath.Substring(MC[i].ImgsPath.IndexOf(".")));
 
-                    ImgsDataPath[i] = @".\Data\" + this.Patient + @"\" + msgFolder +
-                        @"\" + i + ImgsPath[i].Substring(ImgsPath[i].IndexOf("."));
+                    MC[i].ImgsDataPath = @".\Data\" + this.Patient + @"\" + msgFolder +
+                        @"\" + i + MC[i].ImgsPath.Substring(MC[i].ImgsPath.IndexOf("."));
                 }
             }
 
@@ -267,7 +309,7 @@ namespace MDBS_server
                 this.Patient,
                 UserID,
                 new Guid("5A239C9B-E404-4AF3-A7BD-8D1C4925781D"), // Id главного пользователя (центра) todo
-                ImgsDataPath);
+                MC);
                 //Img0,
                 //Img1,
                 //Img2,

@@ -112,7 +112,7 @@ namespace MDBS_server
                 Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
                 Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
 
-                core.SendMessages();
+                core.SendMessages(UserID);
             }
             catch
             {

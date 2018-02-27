@@ -34,7 +34,7 @@ BEGIN
 		@to_id,
 		(select [FullName] + ' (' + substring(DocNumber, 3, 2) + ')' from dbo.[User] where [ID] = @user_id),
 		getdate(),
-		0)
+		-1)
 	/*
 	while (@imgs_count > 0)
 	begin
