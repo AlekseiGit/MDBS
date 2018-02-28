@@ -21,6 +21,7 @@ using System.Configuration;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Drawing.Printing;
+using MDBS_client;
 
 namespace MDBS_server
 {
@@ -133,11 +134,11 @@ namespace MDBS_server
         ///</summary>
         public void Help(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                "Medical Diagnosis Bus System (MDBS)" + "\n" +
-                "Версия программы: 1.2.3 (beta)" + "\n" +
-                "(с) 2018 все права защищены.",
-                "О программе");
+            AboutWindow aboutWindow = new AboutWindow();
+
+            if (aboutWindow.ShowDialog() == true)
+            {
+            }
         }
 
         ///<summary>

@@ -123,11 +123,19 @@ namespace MDBS_server
         ///</summary>
         public void Help(object sender, RoutedEventArgs e)
         {
+            AboutWindow aboutWindow = new AboutWindow();
+
+            if (aboutWindow.ShowDialog() == true)
+            {
+            }
+
+            /*
             MessageBox.Show(
                 "Medical Diagnosis Bus System (MDBS)" + "\n" +
                 "Версия программы: 1.0" + "\n" +
                 "(с) 2018 все права защищены.",
                 "О программе");
+            */
         }
 
         private void ItemsSourceChanged(object sender, EventArgs e)

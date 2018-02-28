@@ -15,8 +15,7 @@ namespace Core
     {
         //public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
         //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
-        public static string ConnectionString = @"Data Source=DESKTOP-73ON2N0\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
+        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
 
         public SqlConnection DBConnection;
         public Guid UserID;
