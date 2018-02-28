@@ -14,7 +14,7 @@ declare
 @patient5 uniqueidentifier = newid()
 
 insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('5A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор1', '0777101', '', '-521230454', '1')
-insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('4A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор2', '0777102', '', '-521230454', '0')
+insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('4A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор2', '0777102', '', '-521230454', '1')
 insert into [User] (ID, FullName, DocNumber, Password, PasswordHash, DocStatus) values ('3A239C9B-E404-4AF3-A7BD-8D1C4925781D', 'Доктор3', '0778101', '', '-521230454', '0')
 
 insert into [Patient] (ID, FullName, Sex, Weight, DrugsCount, BirthDate, MedicalCardNumber, CurrentTherapy, Info, Note)

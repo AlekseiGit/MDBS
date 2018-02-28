@@ -15,7 +15,9 @@ namespace Core
     {
         //public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
         //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
+        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
+        public static string ConnectionString = @"Data Source=DESKTOP-73ON2N0\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
+
         public SqlConnection DBConnection;
         public Guid UserID;
 
@@ -299,14 +301,13 @@ namespace Core
                 cmd.Parameters["@user_id"].Value = userId;
                 cmd.Parameters["@to_id"].Value = toId;
 
-                byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
-                RC4 encoder = new RC4(key);
-
-                //foreach (var img_name in imgsDataPath)
                 for (int i=0; i<10; i++)
                 {
                     if (MC[i] != null)
                     {
+                        byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+                        RC4 encoder = new RC4(key);
+
                         var enc = encoder.Encode(MC[i].ImgsData, MC[i].ImgsData.Length);
                         var checksumm = Convert.ToBase64String(enc);
 
@@ -417,7 +418,6 @@ namespace Core
         ///</summary>
         public void SendMessages(Guid UserID)
         {
-            return;
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -461,6 +461,7 @@ namespace Core
                     "where a.[ID] = @attachment_id";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@data", encoder.Encode(data, data.Length));
+                //command.Parameters.AddWithValue("@data", data);
                 command.Parameters.AddWithValue("@attachment_id", attachmentID);
                 command.ExecuteNonQuery();
 
@@ -619,22 +620,23 @@ namespace Core
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                string sql = "select * from dbo.[Attachments] where [MessageID] = @message_id";
+                string sql = "select a.* from dbo.[Attachments] a where a.[MessageID] = @message_id and a.[Data] is not null";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@message_id", message_id);
                 SqlDataReader reader = command.ExecuteReader();
 
-                byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
-                RC4 decoder = new RC4(key);
-
                 while (reader.Read())
                 {
+                    byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
+                    RC4 decoder = new RC4(key);
+
                     Guid id = reader.GetGuid(0);
                     Guid messageID = reader.GetGuid(1);
                     byte[] data = (byte[])reader.GetValue(2);
                     string comment = reader.GetString(3);
 
                     Attachments attachment = new Attachments(id, messageID, decoder.Decode(data, data.Length), comment);
+                    //Attachments attachment = new Attachments(id, messageID, data, comment);
                     attachments.Add(attachment);
                 }
 

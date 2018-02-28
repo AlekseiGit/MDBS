@@ -27,3 +27,31 @@ CREATE TABLE [dbo].[Message](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
+
+ALTER TABLE [dbo].[Message]  WITH CHECK ADD  CONSTRAINT [FK_Message_From] FOREIGN KEY([From])
+REFERENCES [dbo].[User] ([ID])
+GO
+
+ALTER TABLE [dbo].[Message] CHECK CONSTRAINT [FK_Message_From]
+GO
+
+ALTER TABLE [dbo].[Message]  WITH CHECK ADD  CONSTRAINT [FK_Message_To] FOREIGN KEY([To])
+REFERENCES [dbo].[User] ([ID])
+GO
+
+ALTER TABLE [dbo].[Message] CHECK CONSTRAINT [FK_Message_To]
+GO
+
+ALTER TABLE [dbo].[Message]  WITH CHECK ADD  CONSTRAINT [FK_Message_Patient] FOREIGN KEY([PatientID])
+REFERENCES [dbo].[Patient] ([ID])
+GO
+
+ALTER TABLE [dbo].[Message] CHECK CONSTRAINT [FK_Message_Patient]
+GO
+
+ALTER TABLE [dbo].[Message]  WITH CHECK ADD  CONSTRAINT [FK_Message_Message] FOREIGN KEY([ParentMessageID])
+REFERENCES [dbo].[Message] ([ID])
+GO
+
+ALTER TABLE [dbo].[Message] CHECK CONSTRAINT [FK_Message_Message]
+GO

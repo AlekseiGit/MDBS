@@ -20,3 +20,10 @@ CREATE TABLE [dbo].[Attachments](
 ) ON [PRIMARY]
 
 GO
+
+ALTER TABLE [dbo].[Attachments]  WITH CHECK ADD  CONSTRAINT [FK_Attachments_Message] FOREIGN KEY([MessageID])
+REFERENCES [dbo].[Message] ([ID])
+GO
+
+ALTER TABLE [dbo].[Attachments] CHECK CONSTRAINT [FK_Attachments_Message]
+GO
