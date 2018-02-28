@@ -325,90 +325,6 @@ namespace Core
                     }
                 }
 
-                /*
-                byte[] key = ASCIIEncoding.ASCII.GetBytes("key12");
-                RC4 encoder = new RC4(key);
-
-                if (img_0 != null)
-                {
-                    cmd.Parameters.Add("@img_0", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_0_send", SqlDbType.Int);
-                    cmd.Parameters["@img_0"].Value = encoder.Encode(img_0, img_0.Length);
-                    cmd.Parameters["@img_0_send"].Value = 1;
-                }
-
-                if (img_1 != null)
-                {
-                    cmd.Parameters.Add("@img_1", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_1_send", SqlDbType.Int);
-                    cmd.Parameters["@img_1"].Value = encoder.Encode(img_1, img_1.Length);
-                    cmd.Parameters["@img_1_send"].Value = 1;
-                }
-
-                if (img_2 != null)
-                {
-                    cmd.Parameters.Add("@img_2", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_2_send", SqlDbType.Int);
-                    cmd.Parameters["@img_2"].Value = encoder.Encode(img_2, img_2.Length);
-                    cmd.Parameters["@img_2_send"].Value = 1;
-                }
-
-                if (img_3 != null)
-                {
-                    cmd.Parameters.Add("@img_3", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_3_send", SqlDbType.Int);
-                    cmd.Parameters["@img_3"].Value = encoder.Encode(img_3, img_3.Length);
-                    cmd.Parameters["@img_3_send"].Value = 1;
-                }
-
-                if (img_4 != null)
-                {
-                    cmd.Parameters.Add("@img_4", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_4_send", SqlDbType.Int);
-                    cmd.Parameters["@img_4"].Value = encoder.Encode(img_4, img_4.Length);
-                    cmd.Parameters["@img_4_send"].Value = 1;
-                }
-
-                if (img_5 != null)
-                {
-                    cmd.Parameters.Add("@img_5", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_5_send", SqlDbType.Int);
-                    cmd.Parameters["@img_5"].Value = encoder.Encode(img_5, img_5.Length);
-                    cmd.Parameters["@img_5_send"].Value = 1;
-                }
-
-                if (img_6 != null)
-                {
-                    cmd.Parameters.Add("@img_6", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_6_send", SqlDbType.Int);
-                    cmd.Parameters["@img_6"].Value = encoder.Encode(img_6, img_6.Length);
-                    cmd.Parameters["@img_6_send"].Value = 1;
-                }
-
-                if (img_7 != null)
-                {
-                    cmd.Parameters.Add("@img_7", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_7_send", SqlDbType.Int);
-                    cmd.Parameters["@img_7"].Value = encoder.Encode(img_7, img_7.Length);
-                    cmd.Parameters["@img_7_send"].Value = 1;
-                }
-
-                if (img_8 != null)
-                {
-                    cmd.Parameters.Add("@img_8", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_8_send", SqlDbType.Int);
-                    cmd.Parameters["@img_8"].Value = encoder.Encode(img_8, img_8.Length);
-                    cmd.Parameters["@img_8_send"].Value = 1;
-                }
-
-                if (img_9 != null)
-                {
-                    cmd.Parameters.Add("@img_9", SqlDbType.Image, 1000000);
-                    cmd.Parameters.Add("@img_9_send", SqlDbType.Int);
-                    cmd.Parameters["@img_9"].Value = encoder.Encode(img_9, img_9.Length);
-                    cmd.Parameters["@img_9_send"].Value = 1;
-                }
-                */
                 cmd.ExecuteNonQuery();
             }
         }
@@ -422,7 +338,7 @@ namespace Core
             {
                 connection.Open();
 
-                string sql = "select top(20) aq.* " +
+                string sql = "select top(1) aq.* " +
                     "from dbo.[Message] m (nolock) " +
                     "inner join dbo.[Attachments] a (nolock) on a.MessageID = m.ID " +
                     "inner join dbo.[AttachmentsQueue] aq (nolock) on aq.[AttachmentID] = a.[ID] " +
@@ -620,7 +536,7 @@ namespace Core
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                string sql = "select a.* from dbo.[Attachments] a where a.[MessageID] = @message_id and a.[Data] is not null";
+                string sql = "select a.* from dbo.[Attachments] a (nolock) where a.[MessageID] = @message_id and a.[Data] is not null";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@message_id", message_id);
                 SqlDataReader reader = command.ExecuteReader();
