@@ -75,7 +75,7 @@ namespace MDBS_server
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(SystemProcesses);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 20);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
             dispatcherTimer.Start();
 
             UpdateFolderStructure();

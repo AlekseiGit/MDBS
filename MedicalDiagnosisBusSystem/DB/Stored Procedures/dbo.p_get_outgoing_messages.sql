@@ -25,7 +25,7 @@ BEGIN
 			on m.PatientID = p.ID
 	where
 		m.[From] = @user_id
-		and m.[Status] > 0
+		and m.[Status] >= 0
 		and m.[MessageDate] >= getdate() - 60
 	order by
 		m.[MessageDate] desc

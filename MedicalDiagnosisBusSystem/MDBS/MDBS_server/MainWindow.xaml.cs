@@ -72,7 +72,7 @@ namespace MDBS_server
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(RefreshInformation);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
             dispatcherTimer.Start();
         }
 

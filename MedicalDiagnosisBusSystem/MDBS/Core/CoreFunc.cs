@@ -342,7 +342,7 @@ namespace Core
                     "from dbo.[Message] m (nolock) " +
                     "inner join dbo.[Attachments] a (nolock) on a.MessageID = m.ID " +
                     "inner join dbo.[AttachmentsQueue] aq (nolock) on aq.[AttachmentID] = a.[ID] " +
-                    "where m.[From] = @user_id";// and aq.[Status] = 0";
+                    "where m.[From] = @user_id and aq.[Status] = 0";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@user_id", UserID);
                 SqlDataReader reader = command.ExecuteReader();
@@ -371,7 +371,8 @@ namespace Core
             {
                 connection.Open();
 
-                string sql = "update a " +
+                string sql = "EXEC [dbo].[p_attachments] " +
+                    "update a " +
                     "set a.[Data] = @data " +
                     "from dbo.[Attachments] a " +
                     "where a.[ID] = @attachment_id";
@@ -849,7 +850,7 @@ namespace Core
                 systemData.IncomingInfo = row["incoming_info"].ToString();
                 systemData.OutgoingInfo = row["outgoing_info"].ToString();
                 systemData.NeedAnswerInfo = row["need_answer_info"].ToString();
-                //systemData.NeedAnswerDate = (DateTime)row["need_answer_date"];
+                systemData.NeedAnswerDate = (DateTime)row["need_answer_date"];
             }
 
             DBConnection.Close();
