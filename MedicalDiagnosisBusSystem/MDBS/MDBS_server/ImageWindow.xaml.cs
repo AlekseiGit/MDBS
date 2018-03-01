@@ -32,6 +32,7 @@ namespace MDBS_server
                 FullImage.Source = images[currentImage];
                 Images = images;
                 CurrentImage = currentImage;
+                CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
             }
         }
 
@@ -44,6 +45,7 @@ namespace MDBS_server
             {
                 FullImage.Source = Images[CurrentImage - 1];
                 CurrentImage = CurrentImage - 1;
+                CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
             }
         }
 
@@ -56,6 +58,7 @@ namespace MDBS_server
             {
                 FullImage.Source = Images[CurrentImage + 1];
                 CurrentImage = CurrentImage + 1;
+                CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
             }
         }
     }
