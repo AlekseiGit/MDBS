@@ -13,11 +13,13 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Column="0" Grid.Row="0" Width="200" Click="PrevImage_Click" HorizontalAlignment="Center">Предыдущее изображение</Button>
-        <Button Grid.Column="1" Grid.Row="0" Width="200" Click="NextImage_Click" HorizontalAlignment="Center">Следующее изображение</Button>
-        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" CanContentScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <TextBox Name="CountBox" Grid.Column="1" Grid.Row="0" IsReadOnly="True" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"></TextBox>
+        <Button Grid.Column="2" Grid.Row="0" Width="200" Click="NextImage_Click" HorizontalAlignment="Center">Следующее изображение</Button>
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" CanContentScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <Image Stretch="None" Name="FullImage" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>
