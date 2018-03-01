@@ -1,17 +1,23 @@
-﻿<Window x:Class="MDBS_server.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MDBS_server.MainWindow"
         mc:Ignorable="d"
         Title="Телемедицина" Height="404" Width="699">
+
+
+
     <DockPanel Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
+
+        <!--
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пациенты" Click="ShowPatients"/>
                 <Separator />
-                <!--MenuItem Header="_Новое сообщение" Click="NewMessage"/-->
+                MenuItem Header="_Новое сообщение" Click="NewMessage"
                 <MenuItem Header="_Ответить" Click="AnswerMessage"/>
                 <Separator />
                 <MenuItem Header="_Выход" Click="Exit"/>
@@ -20,48 +26,85 @@
                 <MenuItem Header="_О программе" Click="Help"/>
             </MenuItem>
         </Menu>
+        
+        
+        
         <ToolBar DockPanel.Dock="Top" MaxHeight="32">
             <DockPanel Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ToolBarPanel}}}">
-                <!--Button>
+                Button>
                     <Image Source="open-sign.png" MaxHeight="32"></Image>
-                </Button-->
+                </Button
                 <Button Click="ShowPatients">Пациенты</Button>
                 <Separator></Separator>
-                <!--Button Click="NewMessage">Новое Сообщение</-->
+               Button Click="NewMessage">Новое Сообщение</
                 <Separator></Separator>
                 <Button Click="AnswerMessage">Ответить</Button>
-                <!--CheckBox FontWeight="Bold">Bold</CheckBox>
+                CheckBox FontWeight="Bold">Bold</CheckBox>
                 <CheckBox FontStyle="Italic">Italic</CheckBox>
                 <ComboBox SelectedIndex="1">
                     <ComboBoxItem>50%</ComboBoxItem>
                     <ComboBoxItem>100%</ComboBoxItem>
                     <ComboBoxItem>150%</ComboBoxItem>
-                </ComboBox-->
+                </ComboBox
                 <Label Name ="LoginLabel" DockPanel.Dock="Right" HorizontalAlignment="Right"></Label>
             </DockPanel>
         </ToolBar>
-        <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
-            <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
-            <ListBoxItem Name="Outgoing" Content="Исходящие" Height="30"/>
-            <ListBoxItem Name="Sending" Content="Отправляются" Height="30"/>
-            <ListBoxItem Name="NeedAnswer" Content="Нужен ответ" Height="30"/>
-            <ListBoxItem Name="Archive" Content="Архив" Height="30"/>
+        -->
+
+        <TabControl Height="84" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="0,0,0,0" BorderBrush="{x:Null}" DockPanel.Dock="Top">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Background" Value="#656565"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Style="{StaticResource ColorTab}" Header="Консультации" Width="120" Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Ответить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="0,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="AnswerMessage"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Style="{StaticResource ColorTab}" Header="Базы"  Width="120" Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Пациенты" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="0,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowPatients"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Style="{StaticResource ColorTab}" Header="Справка"  Width="120"  Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Помощь" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" BorderBrush="{x:Null}" Background="#FFF0F0F0"/>
+                    <Button Style="{StaticResource TransparentStyle}" Content="О программе" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="Help"  />
+                </Grid>
+            </TabItem>
+            <TabItem  Header="-" Visibility="Hidden" Height="40"   BorderBrush="{x:Null}" Width="20"/>
+
+            <TabItem  Style="{StaticResource LabelTab}"  x:Name ="LoginLabel" Header="Вы вошли как:" IsEnabled="False"   Padding="0,0,0,0" Margin="-2,-2,2,0" />
+
+        </TabControl>
+
+
+
+
+
+        <ListBox x:Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
+            <ListBoxItem x:Name="Incoming" Content="Входящие" Height="30"/>
+            <ListBoxItem x:Name="Outgoing" Content="Исходящие" Height="30"/>
+            <ListBoxItem x:Name="Sending" Content="Отправляются" Height="30"/>
+            <ListBoxItem x:Name="NeedAnswer" Content="Нужен ответ" Height="30"/>
+            <ListBoxItem x:Name="Archive" Content="Архив" Height="30"/>
         </ListBox>
-        <Grid ShowGridLines="False" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
+        <Grid ShowGridLines="False" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="0.5*"></RowDefinition>
-                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.7*"/>
             </Grid.ColumnDefinitions>
-            <Label Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
-            <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-            <Label Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
-            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Label x:Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            <DataGrid x:Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+            <Label x:Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            <DataGrid x:Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <DataGrid.Resources>
                     <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
                         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -81,71 +124,71 @@
             </DataGrid>
             <ScrollViewer Grid.Column="1" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Visible">
-                    <StackPanel Name="PatientInfoPanel">
+                    <StackPanel x:Name="PatientInfoPanel">
                         <DockPanel>
-                            <Label Width="70" FontWeight="Bold">Пациент:</Label>
-                            <Label Name="PatientCard"></Label>
+                            <Label Width="70" FontWeight="Bold" Content="Пациент:"/>
+                            <Label x:Name="PatientCard"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="70" FontWeight="Bold">Пол:</Label>
-                            <Label Name="PatientSex"></Label>
+                            <Label Width="70" FontWeight="Bold" Content="Пол:"/>
+                            <Label x:Name="PatientSex"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold">Текущее лечение:</Label>
-                            <Label Name="PatientCurrentTherapy"></Label>
+                            <Label Width="180" FontWeight="Bold" Content="Текущее лечение:"/>
+                            <Label x:Name="PatientCurrentTherapy"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold">Количество таблеток:</Label>
-                            <Label Name="PatientDrugsCount"></Label>
+                            <Label Width="180" FontWeight="Bold" Content="Количество таблеток:"/>
+                            <Label x:Name="PatientDrugsCount"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold">Информация о пациенте:</Label>
-                            <Label Name="PatientInfo"></Label>
+                            <Label Width="180" FontWeight="Bold" Content="Информация о пациенте:"/>
+                            <Label x:Name="PatientInfo"/>
                         </DockPanel>
                     </StackPanel>
-                    <StackPanel Name="PatientInfoPanel2">
+                    <StackPanel x:Name="PatientInfoPanel2">
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold">Дата рождения:</Label>
-                            <Label Name="PatientAge"></Label>
+                            <Label Width="180" FontWeight="Bold" Content="Дата рождения:"/>
+                            <Label x:Name="PatientAge"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold">Вес пациента:</Label>
-                            <Label Name="PatientWeight"></Label>
+                            <Label Width="180" FontWeight="Bold" Content="Вес пациента:"/>
+                            <Label x:Name="PatientWeight"/>
                         </DockPanel>
                     </StackPanel>
                 </DockPanel>
             </ScrollViewer>
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="3">
-                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <DockPanel x:Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
+                        <Image x:Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                 </DockPanel>
             </ScrollViewer>
