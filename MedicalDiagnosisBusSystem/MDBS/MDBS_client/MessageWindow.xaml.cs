@@ -24,6 +24,7 @@ namespace MDBS_server
     public partial class MessageWindow : Window
     {
         Guid UserID;
+        string UserDocNumber;
 
         //byte[][] ImgsData = new byte[10][];
         //string[] ImgsPath = new string[10];
@@ -33,10 +34,11 @@ namespace MDBS_server
 
         PatientsWindow PatientsWindow;
 
-        public MessageWindow(Guid userId)
+        public MessageWindow(Guid userId, string userDocNumber)
         {
             InitializeComponent();
             UserID = userId;
+            UserDocNumber = userDocNumber;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
@@ -225,7 +227,7 @@ namespace MDBS_server
         ///</summary>
         private void ChoosePatient_Click(object sender, RoutedEventArgs e)
         {
-            PatientsWindow = new PatientsWindow(UserID);
+            PatientsWindow = new PatientsWindow(UserID, UserDocNumber);
 
             PatientsWindow.PatientGrid.MouseDoubleClick += PatientChoose;
 

@@ -24,12 +24,14 @@ namespace MDBS_server
         List<Patient> Patients = new List<Patient>();
         CoreFunc Core = new CoreFunc();
         Guid UserID;
+        string DocNumber;
 
-        public PatientsWindow(Guid userId)
+        public PatientsWindow(Guid userId, string docNumber)
         {
             InitializeComponent();
 
             UserID = userId;
+            DocNumber = docNumber;
             Patients = Core.GetPatients(UserID);
             PatientGrid.ItemsSource = Patients;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -81,7 +83,7 @@ namespace MDBS_server
         ///</summary>
         public void NewPatient(object sender, EventArgs e)
         {
-            NewPatientWindow newPatientWindow = new NewPatientWindow();
+            NewPatientWindow newPatientWindow = new NewPatientWindow(DocNumber);
 
             if (newPatientWindow.ShowDialog() == true)
             {
