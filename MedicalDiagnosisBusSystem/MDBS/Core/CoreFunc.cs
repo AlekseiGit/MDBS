@@ -14,8 +14,8 @@ namespace Core
     public class CoreFunc
     {
         //public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
+        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
         //public static string ConnectionString = @"Data Source=DESKTOP-73ON2N0\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
 
 
@@ -115,6 +115,48 @@ namespace Core
                 msg.PatientName = row["PatientName"].ToString();
                 msg.From = (Guid)row["From"];
                 //msg.To = (Guid)row["To"];
+                msg.FromName = row["FromName"].ToString();
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
+                msg.Status = (int)row["Status"];
+
+                messages.Add(msg);
+            }
+
+            DBConnection.Close();
+
+            return messages;
+        }
+
+        ///<summary>
+        /// Метод возвращает сообщения в процессе отправки для текущего пользователя
+        ///</summary>
+        public List<Message> GetSendingMessages()
+        {
+            List<Message> messages = new List<Message>();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_sending_messages";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            var userId = new SqlParameter("@user_id", UserID);
+
+            sqlCmd.Parameters.Add(userId);
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                Message msg = new Message();
+
+                msg.ID = (Guid)row["ID"];
+                msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientName = row["PatientName"].ToString();
+                msg.From = (Guid)row["From"];
                 msg.FromName = row["FromName"].ToString();
                 msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
                 msg.Status = (int)row["Status"];
