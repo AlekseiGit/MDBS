@@ -14,8 +14,8 @@ namespace Core
     public class CoreFunc
     {
         //public static string ConnectionString = @"Server=tcp:iprs.ru,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
-        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
+        //public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS;User Id=mdbs;Password=1pa73%od9;";
+        public static string ConnectionString = @"Server=tcp:95.163.84.111,49172;Database=MDBS_TEST;User Id=mdbs;Password=1pa73%od9;";
         //public static string ConnectionString = @"Data Source=DESKTOP-73ON2N0\SQLEXPRESS;Initial Catalog=MDBS;Integrated Security=SSPI;";
 
 
@@ -339,7 +339,8 @@ namespace Core
             {
                 connection.Open();
 
-                string sql = "select top(1) aq.* " +
+                string sql = "EXEC [dbo].[p_attachments] " + 
+                    "select top(1) aq.* " +
                     "from dbo.[Message] m (nolock) " +
                     "inner join dbo.[Attachments] a (nolock) on a.MessageID = m.ID " +
                     "inner join dbo.[AttachmentsQueue] aq (nolock) on aq.[AttachmentID] = a.[ID] " +
