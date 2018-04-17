@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Вход в систему" Height="300" Width="450">
     <Grid>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,80,0,0" Text="Login" VerticalAlignment="Top" Width="67" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,128,0,0" Text="Password" VerticalAlignment="Top" Width="77" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,80,0,0" Text="Логин" VerticalAlignment="Top" Width="67" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,128,0,0" Text="Пароль" VerticalAlignment="Top" Width="77" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="118,75,0,0" Name="LoginBox" VerticalAlignment="Top" Width="247" IsEditable="True" />
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,123,0,0" Name="PasswordBox" VerticalAlignment="Top" Width="247" />
         <Button Content="Войти" Height="23" HorizontalAlignment="Left" Margin="118,180,0,0" Name="Login" VerticalAlignment="Top" Width="104" Click="Login_Click" />

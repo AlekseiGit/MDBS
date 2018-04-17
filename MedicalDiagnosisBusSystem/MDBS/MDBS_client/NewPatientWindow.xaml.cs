@@ -68,11 +68,12 @@ namespace MDBS_server
             get { return PatientNoteBox.Text; }
         }
 
-        public NewPatientWindow()
+        public NewPatientWindow(string docNumber)
         {
             InitializeComponent();
             PatientBirthDate.SelectedDate = DateTime.Today;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            PatientCardBoxPre.Text = docNumber.Substring(0, docNumber.Length - 2);
         }
 
         ///<summary>
@@ -97,6 +98,12 @@ namespace MDBS_server
                 return;
             }
 
+            if (this.MedicalCardNumber.Length != 4)
+            {
+                MessageBox.Show("Номер карты пациента должен состоять из префикса <" + PatientCardBoxPre.Text + "> и 4 цифр порядкового номера!");
+                return;
+            }
+
             var core = new CoreFunc();
 
             core.CreatePatient(
@@ -104,7 +111,7 @@ namespace MDBS_server
                 this.Weight,
                 this.DrugsCount,
                 this.BirthDate,
-                this.MedicalCardNumber,
+                PatientCardBoxPre.Text + this.MedicalCardNumber,
                 this.CurrentTherapy,
                 this.Info,
                 this.Note);

@@ -32,6 +32,7 @@ namespace MDBS_server
     {
         CoreFunc Core;
         public static Guid UserID;
+        public static string UserDocNumber;
 
         public static BitmapImage[] Images = new BitmapImage[10];
         public static BitmapImage Image_0;
@@ -55,6 +56,7 @@ namespace MDBS_server
             if (user.ID != Guid.Empty)
             {
                 UserID = user.ID;
+                UserDocNumber = user.DocNumber;
                 LoginLabel.Content = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
             }
             else
@@ -76,7 +78,7 @@ namespace MDBS_server
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(SystemProcesses);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             dispatcherTimer.Start();
 
             UpdateFolderStructure();
@@ -308,7 +310,7 @@ namespace MDBS_server
         ///</summary>
         private void ShowPatients(object sender, RoutedEventArgs e)
         {
-            PatientsWindow patientsWindow = new PatientsWindow(UserID);
+            PatientsWindow patientsWindow = new PatientsWindow(UserID, UserDocNumber);
 
             if (patientsWindow.ShowDialog() == true)
             {
@@ -338,7 +340,7 @@ namespace MDBS_server
         ///</summary>
         private void NewMessage(object sender, RoutedEventArgs e)
         {
-            MessageWindow msgWindow = new MessageWindow(UserID);
+            MessageWindow msgWindow = new MessageWindow(UserID, UserDocNumber);
 
             if (msgWindow.ShowDialog() == true)
             {

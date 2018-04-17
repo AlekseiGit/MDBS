@@ -339,7 +339,8 @@ namespace Core
             {
                 connection.Open();
 
-                string sql = "select top(1) aq.* " +
+                string sql = "EXEC [dbo].[p_attachments] " + 
+                    "select top(1) aq.* " +
                     "from dbo.[Message] m (nolock) " +
                     "inner join dbo.[Attachments] a (nolock) on a.MessageID = m.ID " +
                     "inner join dbo.[AttachmentsQueue] aq (nolock) on aq.[AttachmentID] = a.[ID] " +

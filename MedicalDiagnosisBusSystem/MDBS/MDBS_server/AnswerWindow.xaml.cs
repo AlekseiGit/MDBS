@@ -62,6 +62,8 @@ namespace MDBS_server
                 this.FromId,
                 this.ToId);
 
+            MessageBox.Show("Сообщение отправляется!");
+
             this.DialogResult = true;
         }
 
