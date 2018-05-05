@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock Height="55" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Width="350" Margin="0,150,0,0" FontSize="14">
             Режим «Телемедицина»<LineBreak/>
-            Medical Diagnosis Bus System (#MeD-B-S) v.1.0<LineBreak/>
+            Medical Diagnosis Bus System v.1.0 (#MeD-B-S)<LineBreak/>
         </TextBlock>
         <TextBlock Height="100" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Margin="100,210,10,0">
             ООО МЦ "Компания Александр"<LineBreak/>
