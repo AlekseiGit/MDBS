@@ -74,9 +74,7 @@
                 </Grid>
             </TabItem>
             <TabItem  Header="-" Visibility="Hidden" Height="40"   BorderBrush="{x:Null}" Width="20"/>
-
             <TabItem  Style="{StaticResource LabelTab}"  x:Name ="LoginLabel" Header="Вы вошли как:" IsEnabled="False"   Padding="0,0,0,0" Margin="-2,-2,2,0" />
-
         </TabControl>
 
 

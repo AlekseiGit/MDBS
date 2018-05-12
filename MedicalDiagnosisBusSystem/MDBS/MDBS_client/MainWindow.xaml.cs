@@ -57,7 +57,7 @@ namespace MDBS_server
             {
                 UserID = user.ID;
                 UserDocNumber = user.DocNumber;
-                LoginLabel.Content = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
+                LoginLabel.Header = "Вы вошли как: " + user.FullName + " (" + user.DocNumber + ")";
             }
             else
             {

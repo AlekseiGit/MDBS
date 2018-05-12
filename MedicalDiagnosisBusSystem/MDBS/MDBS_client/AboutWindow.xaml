@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_client"
         mc:Ignorable="d"
-        Title="О программе" Height="350" Width="620">
+        Title="О программе" Height="350" Width="620" ResizeMode="NoResize">
     <Grid>
         <TextBlock Height="55" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Width="350" Margin="0,150,0,0" FontSize="14">
             Режим «Телемедицина»<LineBreak/>

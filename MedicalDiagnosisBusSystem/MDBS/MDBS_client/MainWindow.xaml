@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Телемедицина" Height="404" Width="699">
     <DockPanel Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
+       
+        <!--
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Меню">
                 <MenuItem Header="_Пользователи" Click="ShowUsers"/>
@@ -24,26 +26,47 @@
         </Menu>
         <ToolBar DockPanel.Dock="Top" MaxHeight="32">
             <DockPanel Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ToolBarPanel}}}">
-                <!--Button>
-                    <Image Source="open-sign.png" MaxHeight="32"></Image>
-                </Button-->
                 <Button Click="ShowUsers">Пользователи</Button>
                 <Button Click="ShowPatients">Пациенты</Button>
                 <Separator></Separator>
                 <Button Click="NewMessage">Новое Сообщение</Button>
                 <Separator></Separator>
                 <Button Click="DiagnosisPrint">Печать диагноза</Button>
-                <!--Button Click="AnswerMessage">Ответить</-->
-                <!--CheckBox FontWeight="Bold">Bold</CheckBox>
-                <CheckBox FontStyle="Italic">Italic</CheckBox>
-                <ComboBox SelectedIndex="1">
-                    <ComboBoxItem>50%</ComboBoxItem>
-                    <ComboBoxItem>100%</ComboBoxItem>
-                    <ComboBoxItem>150%</ComboBoxItem>
-                </ComboBox-->
+
                 <Label Name ="LoginLabel" DockPanel.Dock="Right" HorizontalAlignment="Right"></Label>
             </DockPanel>
         </ToolBar>
+        -->
+
+        <TabControl Height="84" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="0,0,0,0" BorderBrush="{x:Null}" DockPanel.Dock="Top">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Background" Value="#656565"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Style="{StaticResource ColorTab}" Header="Консультации" Width="120" Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Новое сообщение" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="0,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="NewMessage"/>
+                    <Button Style="{StaticResource TransparentStyle}" Content="Печать диагноза" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="DiagnosisPrint"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Style="{StaticResource ColorTab}" Header="Базы"  Width="120" Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Пациенты" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="0,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowPatients"/>
+                    <Button Style="{StaticResource TransparentStyle}" Content="Пользователи" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowPatients"/>
+                </Grid>
+            </TabItem>
+            <TabItem  Style="{StaticResource ColorTab}" Header="Справка"  Width="120"  Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
+                <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
+                    <Button Style="{StaticResource TransparentStyle}" Content="Помощь" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" BorderBrush="{x:Null}" Background="#FFF0F0F0"/>
+                    <Button Style="{StaticResource TransparentStyle}" Content="О программе" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="Help"  />
+                </Grid>
+            </TabItem>
+            <TabItem  Header="-" Visibility="Hidden" Height="40"   BorderBrush="{x:Null}" Width="20"/>
+            <TabItem  Style="{StaticResource LabelTab}"  x:Name ="LoginLabel" Header="Вы вошли как:" IsEnabled="False"   Padding="0,0,0,0" Margin="-2,-2,2,0" />
+        </TabControl>
+
+
         <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
             <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
             <ListBoxItem Name="Outgoing" Content="Исходящие" Height="30"/>
