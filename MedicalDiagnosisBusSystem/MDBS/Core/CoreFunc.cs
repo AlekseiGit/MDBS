@@ -128,6 +128,48 @@ namespace Core
         }
 
         ///<summary>
+        /// Метод возвращает сообщения в процессе отправки для текущего пользователя
+        ///</summary>
+        public List<Message> GetSendingMessages()
+        {
+            List<Message> messages = new List<Message>();
+
+            SqlCommand sqlCmd = new SqlCommand();
+
+            sqlCmd.CommandText = "dbo.p_get_sending_messages";
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Connection = DBConnection;
+
+            var userId = new SqlParameter("@user_id", UserID);
+
+            sqlCmd.Parameters.Add(userId);
+
+            DBConnection.Open();
+
+            DataTable table = new DataTable();
+            table.Load(sqlCmd.ExecuteReader());
+
+            foreach (DataRow row in table.Rows)
+            {
+                Message msg = new Message();
+
+                msg.ID = (Guid)row["ID"];
+                msg.PatientID = (Guid)row["PatientID"];
+                msg.PatientName = row["PatientName"].ToString();
+                msg.From = (Guid)row["From"];
+                msg.FromName = row["FromName"].ToString();
+                msg.MessageDate = ((DateTime)row["MessageDate"]).ToString("dd.MM.yy  HH:mm");
+                msg.Status = (int)row["Status"];
+
+                messages.Add(msg);
+            }
+
+            DBConnection.Close();
+
+            return messages;
+        }
+
+        ///<summary>
         /// Метод возвращает сообщения требующие ответа для текущего пользователя
         ///</summary>
         public List<Message> GetNeedAnswerMessages()

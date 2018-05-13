@@ -246,7 +246,7 @@ namespace MDBS_server
             }
             else if (categoryName.Contains("Отправляются"))
             {
-                //messages = core.GetOutgoingMessages();
+                messages = core.GetSendingMessages();
                 MessageGridLabel.Content = "Отправляются:";
             }
             else if (categoryName.Contains("Нужен ответ"))

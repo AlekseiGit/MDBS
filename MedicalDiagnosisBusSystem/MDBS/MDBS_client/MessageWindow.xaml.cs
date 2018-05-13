@@ -76,6 +76,11 @@ namespace MDBS_server
 
             if (openFileDialog.ShowDialog() == true)
             {
+                if (openFileDialog.FileNames.Count() > 10)
+                {
+                    MessageBox.Show("К сообщению можно прикрепить только 10 изображений! Будут прикреплены только первые 10 изображений!");
+                }
+
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     BitmapImage img = new BitmapImage();
