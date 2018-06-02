@@ -9,6 +9,12 @@ CREATE PROCEDURE dbo.p_new_patient
 @birthDate datetime,
 @medicalCardNumber nvarchar(100),
 @currentTherapy nvarchar(max),
+@illStart datetime,
+@usedDrugs nvarchar(max),
+@remissionPeriod nvarchar(max),
+@lastExacerbation datetime,
+@appliedTherapy nvarchar(max),
+@surveyResults nvarchar(max),
 @info nvarchar(max),
 @note nvarchar(200)
 
@@ -24,6 +30,12 @@ BEGIN
 		[BirthDate],
 		[MedicalCardNumber],
 		[CurrentTherapy],
+		[IllStart],
+		[UsedDrugs],
+		[RemissionPeriod],
+		[LastExacerbation],
+		[AppliedTherapy],
+		[SurveyResults],
 		[Info],
 		[Note])
 	values
@@ -34,6 +46,12 @@ BEGIN
 		@birthDate,
 		@medicalCardNumber,
 		@currentTherapy,
+		@illStart,
+		@usedDrugs,
+		@remissionPeriod,
+		@lastExacerbation,
+		@appliedTherapy,
+		@surveyResults,
 		@info,
 		@note)
 END;

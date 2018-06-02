@@ -122,6 +122,7 @@ namespace MDBS_server
                 return;
             }
 
+            /*
             Core.EditPatientInfo(
                 PatientId,
                 this.Sex,
@@ -132,7 +133,7 @@ namespace MDBS_server
                 this.CurrentTherapy,
                 this.Info,
                 this.Note);
-
+            */
             this.DialogResult = true;
         }
     }

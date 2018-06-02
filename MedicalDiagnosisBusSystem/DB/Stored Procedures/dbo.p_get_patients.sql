@@ -18,6 +18,12 @@ BEGIN
 			p.[BirthDate],
 			p.[MedicalCardNumber],
 			p.[CurrentTherapy],
+			p.[IllStart],
+			p.[UsedDrugs],
+			p.[RemissionPeriod],
+			p.[LastExacerbation],
+			p.[AppliedTherapy],
+			p.[SurveyResults],
 			p.[Info],
 			p.[Note]
 		from dbo.patient p (nolock)
@@ -38,6 +44,12 @@ BEGIN
 			p.[BirthDate],
 			p.[MedicalCardNumber],
 			p.[CurrentTherapy],
+			p.[IllStart],
+			p.[UsedDrugs],
+			p.[RemissionPeriod],
+			p.[LastExacerbation],
+			p.[AppliedTherapy],
+			p.[SurveyResults],
 			p.[Info],
 			p.[Note]
 		from dbo.patient p (nolock)

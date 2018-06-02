@@ -91,9 +91,9 @@
         <Grid ShowGridLines="False" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -102,7 +102,7 @@
             <Label x:Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"/>
             <DataGrid x:Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
             <Label x:Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-            <DataGrid x:Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <DataGrid x:Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="3" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <DataGrid.Resources>
                     <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
                         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -120,7 +120,7 @@
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
-            <ScrollViewer Grid.Column="1" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <StackPanel x:Name="PatientInfoPanel">
                         <DockPanel>
@@ -132,12 +132,12 @@
                             <Label x:Name="PatientSex"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Текущее лечение:"/>
-                            <Label x:Name="PatientCurrentTherapy"/>
+                            <Label Width="180" FontWeight="Bold" Content="Возраст:"/>
+                            <Label x:Name="PatientAge"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Количество таблеток:"/>
-                            <Label x:Name="PatientDrugsCount"/>
+                            <Label Width="180" FontWeight="Bold" Content="Вес пациента:"/>
+                            <Label x:Name="PatientWeight"/>
                         </DockPanel>
                         <DockPanel>
                             <Label Width="180" FontWeight="Bold" Content="Информация о пациенте:"/>
@@ -146,17 +146,39 @@
                     </StackPanel>
                     <StackPanel x:Name="PatientInfoPanel2">
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Дата рождения:"/>
-                            <Label x:Name="PatientAge"/>
+                            <Label Width="180" FontWeight="Bold" Content="Текущее лечение:"/>
+                            <Label x:Name="PatientCurrentTherapy"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Вес пациента:"/>
-                            <Label x:Name="PatientWeight"/>
+                            <Label Width="180" FontWeight="Bold" Content="Количество таблеток:"/>
+                            <Label x:Name="PatientDrugsCount"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold" Content="Чем лечился:"/>
+                            <Label x:Name="PatientUsedDrugs"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold" Content="Период ремиссии:"/>
+                            <Label x:Name="PatientRemissionPeriod"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold" Content="Последнее обострение:"/>
+                            <Label x:Name="PatientLastExacerbation"/>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel x:Name="PatientInfoPanel3">
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold" Content="Проведенное лечение:"/>
+                            <Label x:Name="PatientAppliedTherapy"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="180" FontWeight="Bold" Content="Результаты обследования:"/>
+                            <Label x:Name="PatientSurveyResults"/>
                         </DockPanel>
                     </StackPanel>
                 </DockPanel>
             </ScrollViewer>
-            <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="3">
+            <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2">
                 <DockPanel x:Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                     <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                         <Image x:Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>

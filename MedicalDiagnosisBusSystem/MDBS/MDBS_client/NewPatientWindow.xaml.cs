@@ -59,6 +59,24 @@ namespace MDBS_server
         {
             get { return PatientCurrentTherapyBox.Text; }
         }
+        public DateTime IllStart { get; set; }
+        public string UsedDrugs
+        {
+            get { return PatientUsedDrugsBox.Text; }
+        }
+        public string RemissionPeriod
+        {
+            get { return PatientRemissionPeriodBox.Text; }
+        }
+        public DateTime LastExacerbation { get; set; }
+        public string AppliedTherapy
+        {
+            get { return PatientAppliedTherapyBox.Text; }
+        }
+        public string SurveyResults
+        {
+            get { return PatientSurveyResultsBox.Text; }
+        }
         public string Info
         {
             get { return PatientInfoBox.Text; }
@@ -71,7 +89,7 @@ namespace MDBS_server
         public NewPatientWindow(string docNumber)
         {
             InitializeComponent();
-            PatientBirthDate.SelectedDate = DateTime.Today;
+            //PatientBirthDate.SelectedDate = DateTime.Today;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             PatientCardBoxPre.Text = docNumber.Substring(0, docNumber.Length - 2);
         }
@@ -85,6 +103,22 @@ namespace MDBS_server
                 this.BirthDate = PatientBirthDate.SelectedDate.Value;
             else
                 this.BirthDate = DateTime.Now;
+        }
+
+        private void SelectedIllStartDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PatientIllStart.SelectedDate.Value != null)
+                this.IllStart = PatientIllStart.SelectedDate.Value;
+            else
+                this.IllStart = DateTime.Now;
+        }
+
+        private void SelectedLastExacerbationDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PatientLastExacerbation.SelectedDate.Value != null)
+                this.LastExacerbation = PatientLastExacerbation.SelectedDate.Value;
+            else
+                this.LastExacerbation = DateTime.Now;
         }
 
         ///<summary>
@@ -113,6 +147,12 @@ namespace MDBS_server
                 this.BirthDate,
                 PatientCardBoxPre.Text + this.MedicalCardNumber,
                 this.CurrentTherapy,
+                this.IllStart,
+                this.UsedDrugs,
+                this.RemissionPeriod,
+                this.LastExacerbation,
+                this.AppliedTherapy,
+                this.SurveyResults,
                 this.Info,
                 this.Note);
 

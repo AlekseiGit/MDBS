@@ -17,6 +17,12 @@ CREATE TABLE [dbo].[Patient](
 	[BirthDate] [datetime] NULL,
 	[MedicalCardNumber] [nvarchar](100) NOT NULL,
 	[CurrentTherapy] [nvarchar](max) NULL, -- текущее лечение
+	[IllStart] [datetime] NULL,
+	[UsedDrugs] [nvarchar](max) NULL,
+	[RemissionPeriod] [nvarchar](max) NULL,
+	[LastExacerbation] [datetime] NULL,
+	[AppliedTherapy] [nvarchar](max) NULL,
+	[SurveyResults] [nvarchar](max) NULL,
 	[Info] [nvarchar](max) NULL, -- заполняется по шаблону
 	[Note] [nvarchar](200) NULL,
  CONSTRAINT [PK_Patient] PRIMARY KEY CLUSTERED

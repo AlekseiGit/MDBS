@@ -10,6 +10,12 @@ CREATE PROCEDURE dbo.p_edit_patient
 @birthDate datetime,
 @medicalCardNumber nvarchar(100),
 @currentTherapy nvarchar(max),
+@illStart datetime,
+@usedDrugs nvarchar(max),
+@remissionPeriod nvarchar(max),
+@lastExacerbation datetime,
+@appliedTherapy nvarchar(max),
+@surveyResults nvarchar(max),
 @info nvarchar(max),
 @note nvarchar(max)
 
@@ -23,6 +29,12 @@ BEGIN
 		p.[BirthDate] = @birthDate,
 		p.[MedicalCardNumber] = @medicalCardNumber,
 		p.[CurrentTherapy] = @currentTherapy,
+		p.[IllStart] = @illStart,
+		p.[UsedDrugs] = @usedDrugs,
+		p.[RemissionPeriod] = @remissionPeriod,
+		p.[LastExacerbation] = @lastExacerbation,
+		p.[AppliedTherapy] = @appliedTherapy,
+		p.[SurveyResults] = @surveyResults,
 		p.[Info] = @info,
 		p.[Note] = @note
 	from dbo.[Patient] p

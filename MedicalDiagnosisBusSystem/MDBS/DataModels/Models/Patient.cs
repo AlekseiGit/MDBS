@@ -15,6 +15,12 @@ namespace DataModels
         public string DrugsCount { get; set; }
         public string BirthDate { get; set; }
         public string CurrentTherapy { get; set; }
+        public string IllStart { get; set; }
+        public string UsedDrugs { get; set; }
+        public string RemissionPeriod { get; set; }
+        public string LastExacerbation { get; set; }
+        public string AppliedTherapy { get; set; }
+        public string SurveyResults { get; set; }
         public string Info { get; set; }
         public string Note { get; set; }
     }

@@ -50,8 +50,14 @@ namespace MDBS_server
             PatientGrid.Columns[4].Header = "Кол-во таблеток";
             PatientGrid.Columns[5].Header = "Дата рождения";
             PatientGrid.Columns[6].Header = "Текущее лечение";
-            PatientGrid.Columns[7].Header = "Информация";
-            PatientGrid.Columns[8].Header = "Доп. информация";
+            PatientGrid.Columns[7].Header = "Заболел впервые";
+            PatientGrid.Columns[8].Header = "Чем лечился";
+            PatientGrid.Columns[9].Header = "Период ремиссии после лечения";
+            PatientGrid.Columns[10].Header = "Последнее обострение";
+            PatientGrid.Columns[11].Header = "Проведенное лечение";
+            PatientGrid.Columns[12].Header = "Результаты обследования";
+            PatientGrid.Columns[13].Header = "Информация";
+            PatientGrid.Columns[14].Header = "Доп. информация";
 
             PatientGrid.Columns[1].Width = 120;
             PatientGrid.Columns[2].Width = 50;
@@ -61,6 +67,12 @@ namespace MDBS_server
             PatientGrid.Columns[6].Width = 150;
             PatientGrid.Columns[7].Width = 150;
             PatientGrid.Columns[8].Width = 150;
+            PatientGrid.Columns[9].Width = 150;
+            PatientGrid.Columns[10].Width = 150;
+            PatientGrid.Columns[11].Width = 150;
+            PatientGrid.Columns[12].Width = 150;
+            PatientGrid.Columns[13].Width = 150;
+            PatientGrid.Columns[14].Width = 150;
 
             DataGridTextColumn curTherapyColumn = PatientGrid.Columns[6] as DataGridTextColumn;
             DataGridTextColumn infoColumn = PatientGrid.Columns[7] as DataGridTextColumn;

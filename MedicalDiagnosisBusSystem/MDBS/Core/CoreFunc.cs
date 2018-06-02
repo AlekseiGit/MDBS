@@ -509,6 +509,12 @@ namespace Core
                 patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patientInfo.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patientInfo.CurrentTherapy = row["CurrentTherapy"].ToString();
+                patientInfo.IllStart = ((DateTime)row["IllStart"]).ToString("yyyy-MM-dd");
+                patientInfo.UsedDrugs = row["UsedDrugs"].ToString();
+                patientInfo.RemissionPeriod = row["RemissionPeriod"].ToString();
+                patientInfo.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("yyyy-MM-dd");
+                patientInfo.AppliedTherapy = row["AppliedTherapy"].ToString();
+                patientInfo.SurveyResults = row["SurveyResults"].ToString();
                 patientInfo.Info = row["Info"].ToString();
                 patientInfo.Note = row["Note"].ToString();
             }
@@ -530,6 +536,12 @@ namespace Core
             DateTime birthDate,
             string medicalCardNumber,
             string currentTherapy,
+            DateTime illStart,
+            string usedDrugs,
+            string remissionPeriod,
+            DateTime lastExacerbation,
+            string appliedTherapy,
+            string surveyResults,
             string info,
             string note)
         {
@@ -550,6 +562,12 @@ namespace Core
                 cmd.Parameters.Add("@birthDate", SqlDbType.DateTime);
                 cmd.Parameters.Add("@medicalCardNumber", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@currentTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@illStart", SqlDbType.DateTime);
+                cmd.Parameters.Add("@usedDrugs", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@remissionPeriod", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@lastExacerbation", SqlDbType.DateTime);
+                cmd.Parameters.Add("@appliedTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@surveyResults", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@note", SqlDbType.NVarChar, 4000);
 
@@ -561,6 +579,12 @@ namespace Core
                 cmd.Parameters["@birthDate"].Value = birthDate;
                 cmd.Parameters["@medicalCardNumber"].Value = medicalCardNumber;
                 cmd.Parameters["@currentTherapy"].Value = currentTherapy;
+                cmd.Parameters["@illStart"].Value = illStart;
+                cmd.Parameters["@usedDrugs"].Value = usedDrugs;
+                cmd.Parameters["@remissionPeriod"].Value = remissionPeriod;
+                cmd.Parameters["@lastExacerbation"].Value = lastExacerbation;
+                cmd.Parameters["@appliedTherapy"].Value = appliedTherapy;
+                cmd.Parameters["@surveyResults"].Value = surveyResults;
                 cmd.Parameters["@info"].Value = info;
                 cmd.Parameters["@note"].Value = note;
 
@@ -703,6 +727,12 @@ namespace Core
                 patient.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patient.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patient.CurrentTherapy = row["CurrentTherapy"].ToString();
+                patient.IllStart = ((DateTime)row["IllStart"]).ToString("yyyy-MM-dd");
+                patient.UsedDrugs = row["UsedDrugs"].ToString();
+                patient.RemissionPeriod = row["RemissionPeriod"].ToString();
+                patient.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("yyyy-MM-dd");
+                patient.AppliedTherapy = row["AppliedTherapy"].ToString();
+                patient.SurveyResults = row["SurveyResults"].ToString();
                 patient.Info = row["Info"].ToString();
                 patient.Note = row["Note"].ToString();
 
@@ -757,6 +787,12 @@ namespace Core
                 patient.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patient.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patient.CurrentTherapy = row["CurrentTherapy"].ToString();
+                patient.IllStart = ((DateTime)row["IllStart"]).ToString("MM-yyyy");
+                patient.UsedDrugs = row["UsedDrugs"].ToString();
+                patient.RemissionPeriod = row["RemissionPeriod"].ToString();
+                patient.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("MM-yyyy");
+                patient.AppliedTherapy = row["AppliedTherapy"].ToString();
+                patient.SurveyResults = row["SurveyResults"].ToString();
                 patient.Info = row["Info"].ToString();
                 patient.Note = row["Note"].ToString();
 
@@ -779,6 +815,12 @@ namespace Core
             DateTime birthDate,
             string medicalCardNumber,
             string currentTherapy,
+            DateTime illStart,
+            string usedDrugs,
+            string remissionPeriod,
+            DateTime lastExacerbation,
+            string appliedTherapy,
+            string surveyResults,
             string info,
             string note)
         {
@@ -798,6 +840,12 @@ namespace Core
                 cmd.Parameters.Add("@birthDate", SqlDbType.DateTime);
                 cmd.Parameters.Add("@medicalCardNumber", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@currentTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@illStart", SqlDbType.DateTime);
+                cmd.Parameters.Add("@usedDrugs", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@remissionPeriod", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@lastExacerbation", SqlDbType.DateTime);
+                cmd.Parameters.Add("@appliedTherapy", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@surveyResults", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@note", SqlDbType.NVarChar, 200);
 
@@ -808,6 +856,12 @@ namespace Core
                 cmd.Parameters["@birthDate"].Value = birthDate;
                 cmd.Parameters["@medicalCardNumber"].Value = medicalCardNumber;
                 cmd.Parameters["@currentTherapy"].Value = currentTherapy;
+                cmd.Parameters["@illStart"].Value = illStart;
+                cmd.Parameters["@usedDrugs"].Value = usedDrugs;
+                cmd.Parameters["@remissionPeriod"].Value = remissionPeriod;
+                cmd.Parameters["@lastExacerbation"].Value = lastExacerbation;
+                cmd.Parameters["@appliedTherapy"].Value = appliedTherapy;
+                cmd.Parameters["@surveyResults"].Value = surveyResults;
                 cmd.Parameters["@info"].Value = info;
                 cmd.Parameters["@note"].Value = note;
 
