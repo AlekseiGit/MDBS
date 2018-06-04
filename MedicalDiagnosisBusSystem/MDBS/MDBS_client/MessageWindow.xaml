@@ -23,7 +23,7 @@
                 <Button Click="ChoosePatient_Click" Width="200" HorizontalAlignment="Left">Выбрать пациента</Button>
             </DockPanel>
             <DockPanel>
-                <Label Width="200" FontWeight="Bold">Проведенное лечение</Label>
+                <Label Width="200" FontWeight="Bold">Запрос</Label>
                 <TextBox Name="InfoBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
             </DockPanel>
             <!--DockPanel>

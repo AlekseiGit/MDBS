@@ -101,7 +101,8 @@ namespace MDBS_server
             var patientInfo = Core.GetPatientInfo(patientId);
 
             //PatientNameBox.Text = patientInfo.FullName;
-            PatientCardBox.Text = patientInfo.MedicalCardNumber;
+            PatientCardBoxPre.Text = patientInfo.MedicalCardNumber.Substring(0, 5);
+            PatientCardBox.Text = patientInfo.MedicalCardNumber.Substring(5, 4);
             if (patientInfo.Sex == "M")
             {
                 PatientSexBox.SelectedIndex = 0;
@@ -161,6 +162,61 @@ namespace MDBS_server
                 MessageBox.Show("Номер карты пациента не заполнен!");
                 return;
             }
+            if (this.MedicalCardNumber.Length != 4)
+            {
+                MessageBox.Show("Номер карты пациента должен состоять из префикса <" + PatientCardBoxPre.Text + "> и 4 цифр порядкового номера!");
+                return;
+            }
+            if (this.PatientBirthDate.SelectedDate == null)
+            {
+                MessageBox.Show("Дата рождения пациента не заполнена!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientWeightBox.Text))
+            {
+                MessageBox.Show("Вес пациента не заполнен!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientCurrentTherapyBox.Text))
+            {
+                MessageBox.Show("Текущее лечение не заполнено!");
+                return;
+            }
+            if (this.PatientIllStart.SelectedDate == null)
+            {
+                MessageBox.Show("Поле \"Заболел впервые\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
+            {
+                MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientDrugsCountBox.Text))
+            {
+                MessageBox.Show("Поле \"Количество таблеток\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
+            {
+                MessageBox.Show("Поле \"Период ремиссии после лечения\" не заполнено!");
+                return;
+            }
+            if (this.PatientLastExacerbation.SelectedDate == null)
+            {
+                MessageBox.Show("Поле \"Последнее обострение\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientAppliedTherapyBox.Text))
+            {
+                MessageBox.Show("Поле \"Проведенное лечение\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientSurveyResultsBox.Text))
+            {
+                MessageBox.Show("Поле \"Результаты обследования\" не заполнено!");
+                return;
+            }
 
             Core.EditPatientInfo(
                 PatientId,
@@ -168,7 +224,7 @@ namespace MDBS_server
                 this.Weight,
                 this.DrugsCount,
                 this.BirthDate,
-                this.MedicalCardNumber,
+                PatientCardBoxPre.Text + this.MedicalCardNumber,
                 this.CurrentTherapy,
                 this.IllStart,
                 this.UsedDrugs,

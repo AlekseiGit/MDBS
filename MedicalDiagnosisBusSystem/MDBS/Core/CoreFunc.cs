@@ -506,6 +506,12 @@ namespace Core
                 }
                 patientInfo.Weight = (int)row["Weight"];
                 patientInfo.DrugsCount = row["DrugsCount"].ToString();
+
+                DateTime now = DateTime.Today;
+                int age = now.Year - ((DateTime)row["BirthDate"]).Year;
+                if ((DateTime)row["BirthDate"] > now.AddYears(-age)) age--;
+                patientInfo.Age = age.ToString();
+                
                 patientInfo.BirthDate = ((DateTime)row["BirthDate"]).ToString("yyyy-MM-dd");
                 patientInfo.MedicalCardNumber = row["MedicalCardNumber"].ToString();
                 patientInfo.CurrentTherapy = row["CurrentTherapy"].ToString();

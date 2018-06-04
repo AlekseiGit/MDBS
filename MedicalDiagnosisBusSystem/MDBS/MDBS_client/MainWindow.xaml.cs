@@ -290,6 +290,11 @@ namespace MDBS_server
             PatientAge.Content = "";
             PatientCurrentTherapy.Content = "";
             PatientInfo.Content = "";
+            PatientUsedDrugs.Content = "";
+            PatientRemissionPeriod.Content = "";
+            PatientLastExacerbation.Content = "";
+            PatientAppliedTherapy.Content = "";
+            PatientSurveyResults.Content = "";
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
             MessageGrid.Columns[1].Visibility = Visibility.Collapsed;
@@ -395,7 +400,7 @@ namespace MDBS_server
                 DialogGrid.Columns[5].Visibility = Visibility.Collapsed;
                 DialogGrid.Columns[6].Visibility = Visibility.Collapsed;
 
-                DialogGrid.Columns[1].Header = "Проведенное лечение";
+                DialogGrid.Columns[1].Header = "Запрос";
                 //DialogGrid.Columns[2].Header = "Диагноз";
                 DialogGrid.Columns[3].Header = "План лечения";
                 //DialogGrid.Columns[5].Header = "Пациент";
@@ -432,10 +437,15 @@ namespace MDBS_server
                 PatientCard.Content = patientInfo.MedicalCardNumber;
                 PatientSex.Content = patientInfo.Sex;
                 PatientWeight.Content = patientInfo.Weight;
-                PatientAge.Content = patientInfo.BirthDate;
+                PatientAge.Content = patientInfo.Age;
                 PatientCurrentTherapy.Content = patientInfo.CurrentTherapy;
                 PatientDrugsCount.Content = patientInfo.DrugsCount;
                 PatientInfo.Content = patientInfo.Info;
+                PatientUsedDrugs.Content = patientInfo.UsedDrugs;
+                PatientRemissionPeriod.Content = patientInfo.RemissionPeriod;
+                PatientLastExacerbation.Content = patientInfo.LastExacerbation;
+                PatientAppliedTherapy.Content = patientInfo.AppliedTherapy;
+                PatientSurveyResults.Content = patientInfo.SurveyResults;
 
                 if (message.From != UserID)
                     core.ReadMessage(messageId);

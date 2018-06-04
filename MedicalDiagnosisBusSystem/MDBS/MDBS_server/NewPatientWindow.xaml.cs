@@ -130,6 +130,56 @@ namespace MDBS_server
                 MessageBox.Show("Номер карты пациента не заполнен!");
                 return;
             }
+            if (this.PatientBirthDate.SelectedDate == null)
+            {
+                MessageBox.Show("Дата рождения пациента не заполнена!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientWeightBox.Text))
+            {
+                MessageBox.Show("Вес пациента не заполнен!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientCurrentTherapyBox.Text))
+            {
+                MessageBox.Show("Текущее лечение не заполнено!");
+                return;
+            }
+            if (this.PatientIllStart.SelectedDate == null)
+            {
+                MessageBox.Show("Поле \"Заболел впервые\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
+            {
+                MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientDrugsCountBox.Text))
+            {
+                MessageBox.Show("Поле \"Количество таблеток\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
+            {
+                MessageBox.Show("Поле \"Период ремиссии после лечения\" не заполнено!");
+                return;
+            }
+            if (this.PatientLastExacerbation.SelectedDate == null)
+            {
+                MessageBox.Show("Поле \"Последнее обострение\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientAppliedTherapyBox.Text))
+            {
+                MessageBox.Show("Поле \"Проведенное лечение\" не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.PatientSurveyResultsBox.Text))
+            {
+                MessageBox.Show("Поле \"Результаты обследования\" не заполнено!");
+                return;
+            }
 
             var core = new CoreFunc();
 

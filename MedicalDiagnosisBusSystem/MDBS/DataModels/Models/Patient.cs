@@ -14,6 +14,7 @@ namespace DataModels
         public int Weight { get; set; }
         public string DrugsCount { get; set; }
         public string BirthDate { get; set; }
+        public string Age { get; set; }
         public string CurrentTherapy { get; set; }
         public string IllStart { get; set; }
         public string UsedDrugs { get; set; }
