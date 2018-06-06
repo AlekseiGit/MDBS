@@ -72,7 +72,7 @@
                 <Label Width="210" FontWeight="Bold">Доп. информация о пациенте:</Label>
                 <TextBox Name="PatientNoteBox"></TextBox>
             </DockPanel>
-            <Button Width="200" Click="UpdatePatient_Click">Сохранить изменения</Button>
+            <Button Name="SaveBtn" Width="200" Click="UpdatePatient_Click">Сохранить изменения</Button>
         </StackPanel>
     </Grid>
 </Window>

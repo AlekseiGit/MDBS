@@ -62,6 +62,8 @@ namespace MDBS_server
         {
             get { return PatientCurrentTherapyBox.Text; }
         }
+        public DateTime IllStart { get; set; }
+        public DateTime LastExacerbation { get; set; }
         public string Info
         {
             get { return PatientInfoBox.Text; }
@@ -74,7 +76,7 @@ namespace MDBS_server
         ///<summary>
         /// Вызов формы редактирования выбранного пациента
         ///</summary>
-        public EditPatientWindow(Guid patientId)
+        public EditPatientWindow(Guid patientId, bool editable)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -96,8 +98,31 @@ namespace MDBS_server
             PatientWeightBox.Text = patientInfo.Weight.ToString();
             PatientCurrentTherapyBox.Text = patientInfo.CurrentTherapy;
             PatientDrugsCountBox.Text = patientInfo.DrugsCount;
+
             PatientInfoBox.Text = patientInfo.Info;
             PatientNoteBox.Text = patientInfo.Note;
+
+            if (editable == false)
+            {
+                Title = "Информация о пациенте";
+
+                PatientCardBox.IsReadOnly = true;
+                PatientSexBox.IsEnabled = false;
+                PatientBirthDate.IsEnabled = false;
+                PatientWeightBox.IsReadOnly = true;
+                PatientCurrentTherapyBox.IsReadOnly = true;
+                PatientUsedDrugsBox.IsReadOnly = true;
+                PatientDrugsCountBox.IsReadOnly = true;
+                PatientRemissionPeriodBox.IsReadOnly = true;
+                PatientIllStart.IsEnabled = false;
+                PatientLastExacerbation.IsEnabled = false;
+                PatientAppliedTherapyBox.IsReadOnly = true;
+                PatientSurveyResultsBox.IsReadOnly = true;
+                PatientInfoBox.IsReadOnly = true;
+                PatientNoteBox.IsReadOnly = true;
+
+                SaveBtn.Visibility = Visibility.Hidden;
+            }
         }
 
         ///<summary>
@@ -109,6 +134,22 @@ namespace MDBS_server
                 this.BirthDate = PatientBirthDate.SelectedDate.Value;
             else
                 this.BirthDate = DateTime.Now;
+        }
+
+        private void SelectedIllStartDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PatientIllStart.SelectedDate.Value != null)
+                this.IllStart = PatientIllStart.SelectedDate.Value;
+            else
+                this.IllStart = DateTime.Now;
+        }
+
+        private void SelectedLastExacerbationDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PatientLastExacerbation.SelectedDate.Value != null)
+                this.LastExacerbation = PatientLastExacerbation.SelectedDate.Value;
+            else
+                this.LastExacerbation = DateTime.Now;
         }
 
         ///<summary>

@@ -92,7 +92,7 @@ namespace MDBS_server
         ///<summary>
         /// Вызов формы редактирования выбранного пациента
         ///</summary>
-        public EditPatientWindow(Guid patientId)
+        public EditPatientWindow(Guid patientId, bool editable)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -123,6 +123,28 @@ namespace MDBS_server
             PatientSurveyResultsBox.Text = patientInfo.SurveyResults;
             PatientInfoBox.Text = patientInfo.Info;
             PatientNoteBox.Text = patientInfo.Note;
+
+            if (editable == false)
+            {
+                Title = "Информация о пациенте";
+
+                PatientCardBox.IsReadOnly = true;
+                PatientSexBox.IsEnabled = false;
+                PatientBirthDate.IsEnabled = false;
+                PatientWeightBox.IsReadOnly = true;
+                PatientCurrentTherapyBox.IsReadOnly = true;
+                PatientUsedDrugsBox.IsReadOnly = true;
+                PatientDrugsCountBox.IsReadOnly = true;
+                PatientRemissionPeriodBox.IsReadOnly = true;
+                PatientIllStart.IsEnabled = false;
+                PatientLastExacerbation.IsEnabled = false;
+                PatientAppliedTherapyBox.IsReadOnly = true;
+                PatientSurveyResultsBox.IsReadOnly = true;
+                PatientInfoBox.IsReadOnly = true;
+                PatientNoteBox.IsReadOnly = true;
+
+                SaveBtn.Visibility = Visibility.Hidden;
+            }
         }
 
         ///<summary>

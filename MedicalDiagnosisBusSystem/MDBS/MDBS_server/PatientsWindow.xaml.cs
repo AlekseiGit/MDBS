@@ -115,7 +115,7 @@ namespace MDBS_server
             {
                 var patient = PatientGrid.SelectedItems[0] as Patient;
 
-                EditPatientWindow editPatientWindow = new EditPatientWindow(patient.ID);
+                EditPatientWindow editPatientWindow = new EditPatientWindow(patient.ID, true);
 
                 if (editPatientWindow.ShowDialog() == true)
                 {
@@ -150,6 +150,22 @@ namespace MDBS_server
                     Patients = Core.GetPatients(UserID);
                     PatientGrid.ItemsSource = Patients;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Пациент не выбран!");
+            }
+        }
+
+        public void ViewPatient(object sender, EventArgs e)
+        {
+            if (PatientGrid.SelectedItems.Count == 1)
+            {
+                var patient = PatientGrid.SelectedItems[0] as Patient;
+
+                EditPatientWindow editPatientWindow = new EditPatientWindow(patient.ID, false);
+                //editPatientWindow.d Activate = false;
+                editPatientWindow.Show();
             }
             else
             {

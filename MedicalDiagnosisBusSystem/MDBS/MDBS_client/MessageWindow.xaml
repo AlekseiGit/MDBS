@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="380">
+        Title="Новое сообщение" Width="800" Height="620">
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -32,12 +32,12 @@
             </-->
             <ScrollViewer IsTabStop="True" Height="130" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-                    <StackPanel>
+                    <DockPanel>
                         <Border BorderThickness="10" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                             <Image Name="Image0" Height="90"/>
                         </Border>
-                        <!--Button Click="AttachImage_Click">Убрать изображение</Button-->
-                    </StackPanel>
+                        <!--Button Click="AttachImage_Click" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,0,0,0">x</-->
+                    </DockPanel>
                     <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                         <Image Name="Image1" Height="90"/>
                     </Border>
@@ -67,6 +67,56 @@
                     </Border>
                 </DockPanel>
             </ScrollViewer>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 1</Label>
+                <TextBox Name="PathBox0" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn0" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 2</Label>
+                <TextBox Name="PathBox1" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn1" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 3</Label>
+                <TextBox Name="PathBox2" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn2" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 4</Label>
+                <TextBox Name="PathBox3" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn3" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 5</Label>
+                <TextBox Name="PathBox4" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn4" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 6</Label>
+                <TextBox Name="PathBox5" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn5" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 7</Label>
+                <TextBox Name="PathBox6" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn6" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 8</Label>
+                <TextBox Name="PathBox7" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn7" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 9</Label>
+                <TextBox Name="PathBox8" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn8" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
+            <DockPanel Height="24">
+                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 10</Label>
+                <TextBox Name="PathBox9" Width="500" IsReadOnly="True"></TextBox>
+                <Button Name="RemoveBtn9" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </DockPanel>
             <DockPanel>
                 <Button Width="200" Click="AttachImage_Click" HorizontalAlignment="Right" Margin="280,20,0,0">Прикрепить изображение</Button>
                 <Button Width="200" Click="SendMessage_Click" HorizontalAlignment="Right" Margin="0,20,80,0">Отправить</Button>
