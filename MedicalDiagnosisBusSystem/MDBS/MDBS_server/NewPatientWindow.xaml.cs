@@ -46,20 +46,12 @@ namespace MDBS_server
                     return 0;
             }
         }
-        public string DrugsCount
-        {
-            get { return PatientDrugsCountBox.Text; }
-        }
         public DateTime BirthDate { get; set; }
         public string MedicalCardNumber
         {
             get { return PatientCardBox.Text; }
         }
-        public string CurrentTherapy
-        {
-            get { return PatientCurrentTherapyBox.Text; }
-        }
-        public DateTime IllStart { get; set; }
+        public DateTime VisitDate { get; set; }
         public string UsedDrugs
         {
             get { return PatientUsedDrugsBox.Text; }
@@ -80,10 +72,6 @@ namespace MDBS_server
         public string Info
         {
             get { return PatientInfoBox.Text; }
-        }
-        public string Note
-        {
-            get { return PatientNoteBox.Text; }
         }
 
         public NewPatientWindow()
@@ -106,10 +94,10 @@ namespace MDBS_server
 
         private void SelectedIllStartDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PatientIllStart.SelectedDate.Value != null)
-                this.IllStart = PatientIllStart.SelectedDate.Value;
+            if (PatientVisitDate.SelectedDate.Value != null)
+                this.VisitDate = PatientVisitDate.SelectedDate.Value;
             else
-                this.IllStart = DateTime.Now;
+                this.VisitDate = DateTime.Now;
         }
 
         private void SelectedLastExacerbationDateChanged(object sender, SelectionChangedEventArgs e)
@@ -140,24 +128,14 @@ namespace MDBS_server
                 MessageBox.Show("Вес пациента не заполнен!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.PatientCurrentTherapyBox.Text))
+            if (this.PatientVisitDate.SelectedDate == null)
             {
-                MessageBox.Show("Текущее лечение не заполнено!");
-                return;
-            }
-            if (this.PatientIllStart.SelectedDate == null)
-            {
-                MessageBox.Show("Поле \"Заболел впервые\" не заполнено!");
+                MessageBox.Show("Поле \"Дата обращения\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
             {
                 MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
-                return;
-            }
-            if (string.IsNullOrEmpty(this.PatientDrugsCountBox.Text))
-            {
-                MessageBox.Show("Поле \"Количество таблеток\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
@@ -186,18 +164,15 @@ namespace MDBS_server
             core.CreatePatient(
                 this.Sex,
                 this.Weight,
-                this.DrugsCount,
                 this.BirthDate,
                 this.MedicalCardNumber,
-                this.CurrentTherapy,
-                this.IllStart,
+                this.VisitDate,
                 this.UsedDrugs,
                 this.RemissionPeriod,
                 this.LastExacerbation,
                 this.AppliedTherapy,
                 this.SurveyResults,
-                this.Info,
-                this.Note);
+                this.Info);
 
             this.DialogResult = true;
         }

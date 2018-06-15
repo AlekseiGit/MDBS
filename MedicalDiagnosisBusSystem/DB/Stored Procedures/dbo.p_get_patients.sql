@@ -14,18 +14,15 @@ BEGIN
 			p.[FullName],
 			p.[Sex],
 			p.[Weight],
-			p.[DrugsCount],
 			p.[BirthDate],
 			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[IllStart],
+			p.[VisitDate],
 			p.[UsedDrugs],
 			p.[RemissionPeriod],
 			p.[LastExacerbation],
 			p.[AppliedTherapy],
 			p.[SurveyResults],
-			p.[Info],
-			p.[Note]
+			p.[Info]
 		from dbo.patient p (nolock)
 		order by p.[MedicalCardNumber] asc
 	end
@@ -40,18 +37,15 @@ BEGIN
 			p.[FullName],
 			p.[Sex],
 			p.[Weight],
-			p.[DrugsCount],
 			p.[BirthDate],
 			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[IllStart],
+			p.[VisitDate],
 			p.[UsedDrugs],
 			p.[RemissionPeriod],
 			p.[LastExacerbation],
 			p.[AppliedTherapy],
 			p.[SurveyResults],
-			p.[Info],
-			p.[Note]
+			p.[Info]
 		from dbo.patient p (nolock)
 		where left(p.[MedicalCardNumber], 5) = @code
 		order by p.[MedicalCardNumber] asc

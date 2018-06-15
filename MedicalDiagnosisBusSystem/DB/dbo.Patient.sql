@@ -13,18 +13,15 @@ CREATE TABLE [dbo].[Patient](
 	[FullName] [nvarchar](200) NULL,
 	[Sex] [int] NULL, -- 0 - unknown; 1 - male; 2 - female
 	[Weight] [int] NULL, -- вес пациента в килограммах
-	[DrugsCount] [nvarchar](100) NULL,
 	[BirthDate] [datetime] NULL,
 	[MedicalCardNumber] [nvarchar](100) NOT NULL,
-	[CurrentTherapy] [nvarchar](max) NULL, -- текущее лечение
-	[IllStart] [datetime] NULL,
-	[UsedDrugs] [nvarchar](max) NULL,
+	[VisitDate] [datetime] NULL, -- дата обращения
+	[UsedDrugs] [nvarchar](max) NULL, -- Чем лечился, проводилась ли пелотерапия
 	[RemissionPeriod] [nvarchar](max) NULL,
 	[LastExacerbation] [datetime] NULL,
 	[AppliedTherapy] [nvarchar](max) NULL,
 	[SurveyResults] [nvarchar](max) NULL,
-	[Info] [nvarchar](max) NULL, -- заполняется по шаблону
-	[Note] [nvarchar](200) NULL,
+	[Info] [nvarchar](max) NULL, -- доп инфо по пациенту
  CONSTRAINT [PK_Patient] PRIMARY KEY CLUSTERED
 (
 	[ID] ASC

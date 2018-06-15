@@ -233,16 +233,15 @@ namespace MDBS_server
 
             PatientCard.Content = "";
             PatientSex.Content = "";
-            PatientWeight.Content = "";
-            PatientDrugsCount.Content = "";
             PatientAge.Content = "";
-            PatientCurrentTherapy.Content = "";
-            PatientInfo.Content = "";
+            PatientWeight.Content = "";
+            PatientVisitDate.Content = "";
             PatientUsedDrugs.Content = "";
             PatientRemissionPeriod.Content = "";
             PatientLastExacerbation.Content = "";
             PatientAppliedTherapy.Content = "";
             PatientSurveyResults.Content = "";
+            PatientInfo.Content = "";
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
             MessageGrid.Columns[1].Visibility = Visibility.Collapsed;
@@ -379,16 +378,15 @@ namespace MDBS_server
 
                 PatientCard.Content = patientInfo.MedicalCardNumber;
                 PatientSex.Content = patientInfo.Sex;
-                PatientWeight.Content = patientInfo.Weight;
                 PatientAge.Content = patientInfo.Age;
-                PatientCurrentTherapy.Content = patientInfo.CurrentTherapy;
-                PatientDrugsCount.Content = patientInfo.DrugsCount;
-                PatientInfo.Content = patientInfo.Info;
+                PatientWeight.Content = patientInfo.Weight;
+                PatientVisitDate.Content = patientInfo.VisitDate;
                 PatientUsedDrugs.Content = patientInfo.UsedDrugs;
                 PatientRemissionPeriod.Content = patientInfo.RemissionPeriod;
                 PatientLastExacerbation.Content = patientInfo.LastExacerbation;
                 PatientAppliedTherapy.Content = patientInfo.AppliedTherapy;
                 PatientSurveyResults.Content = patientInfo.SurveyResults;
+                PatientInfo.Content = patientInfo.Info;
 
                 if (message.From != UserID)
                     core.ReadMessage(messageId);

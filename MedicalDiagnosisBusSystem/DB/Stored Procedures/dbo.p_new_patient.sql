@@ -5,18 +5,15 @@ GO
 CREATE PROCEDURE dbo.p_new_patient
 @sex int,
 @weight int,
-@drugsCount nvarchar(10),
 @birthDate datetime,
 @medicalCardNumber nvarchar(100),
-@currentTherapy nvarchar(max),
-@illStart datetime,
+@visitDate datetime,
 @usedDrugs nvarchar(max),
 @remissionPeriod nvarchar(max),
 @lastExacerbation datetime,
 @appliedTherapy nvarchar(max),
 @surveyResults nvarchar(max),
-@info nvarchar(max),
-@note nvarchar(200)
+@info nvarchar(max)
 
 AS
 BEGIN
@@ -26,32 +23,26 @@ BEGIN
 		([ID],
 		[Sex],
 		[Weight],
-		[DrugsCount],
 		[BirthDate],
 		[MedicalCardNumber],
-		[CurrentTherapy],
-		[IllStart],
+		[VisitDate],
 		[UsedDrugs],
 		[RemissionPeriod],
 		[LastExacerbation],
 		[AppliedTherapy],
 		[SurveyResults],
-		[Info],
-		[Note])
+		[Info])
 	values
 		(@patient_id,
 		@sex,
 		@weight,
-		@drugsCount,
 		@birthDate,
 		@medicalCardNumber,
-		@currentTherapy,
-		@illStart,
+		@visitDate,
 		@usedDrugs,
 		@remissionPeriod,
 		@lastExacerbation,
 		@appliedTherapy,
 		@surveyResults,
-		@info,
-		@note)
+		@info)
 END;

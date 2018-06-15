@@ -15,12 +15,15 @@ BEGIN
 			p.[FullName],
 			p.[Sex],
 			p.[Weight],
-			p.[DrugsCount],
 			p.[BirthDate],
 			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[Info],
-			p.[Note]
+			p.[VisitDate],
+			p.[UsedDrugs],
+			p.[RemissionPeriod],
+			p.[LastExacerbation],
+			p.[AppliedTherapy],
+			p.[SurveyResults],
+			p.[Info]
 		from dbo.patient p (nolock)
 		where p.[MedicalCardNumber] like '%' + @num + '%'
 		order by p.[FullName] asc
@@ -36,12 +39,15 @@ BEGIN
 			p.[FullName],
 			p.[Sex],
 			p.[Weight],
-			p.[DrugsCount],
 			p.[BirthDate],
 			p.[MedicalCardNumber],
-			p.[CurrentTherapy],
-			p.[Info],
-			p.[Note]
+			p.[VisitDate],
+			p.[UsedDrugs],
+			p.[RemissionPeriod],
+			p.[LastExacerbation],
+			p.[AppliedTherapy],
+			p.[SurveyResults],
+			p.[Info]
 		from dbo.patient p (nolock)
 		where left(p.[MedicalCardNumber], 5) = @code and p.[MedicalCardNumber] like '%' + @num + '%'
 		order by p.[FullName] asc

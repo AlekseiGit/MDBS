@@ -49,28 +49,16 @@ namespace MDBS_server
                     return 0;
             }
         }
-        public string DrugsCount
-        {
-            get { return PatientDrugsCountBox.Text; }
-        }
         public DateTime BirthDate { get; set; }
         public string MedicalCardNumber
         {
             get { return PatientCardBox.Text; }
         }
-        public string CurrentTherapy
-        {
-            get { return PatientCurrentTherapyBox.Text; }
-        }
-        public DateTime IllStart { get; set; }
+        public DateTime VisitDate { get; set; }
         public DateTime LastExacerbation { get; set; }
         public string Info
         {
             get { return PatientInfoBox.Text; }
-        }
-        public string Note
-        {
-            get { return PatientNoteBox.Text; }
         }
 
         ///<summary>
@@ -96,11 +84,13 @@ namespace MDBS_server
             }
             PatientBirthDate.SelectedDate = DateTime.ParseExact(patientInfo.BirthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientWeightBox.Text = patientInfo.Weight.ToString();
-            PatientCurrentTherapyBox.Text = patientInfo.CurrentTherapy;
-            PatientDrugsCountBox.Text = patientInfo.DrugsCount;
-
+            PatientUsedDrugsBox.Text = patientInfo.UsedDrugs;
+            PatientRemissionPeriodBox.Text = patientInfo.RemissionPeriod;
+            PatientVisitDate.SelectedDate = DateTime.ParseExact(patientInfo.VisitDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            PatientLastExacerbation.SelectedDate = DateTime.ParseExact(patientInfo.LastExacerbation, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            PatientAppliedTherapyBox.Text = patientInfo.AppliedTherapy;
+            PatientSurveyResultsBox.Text = patientInfo.SurveyResults;
             PatientInfoBox.Text = patientInfo.Info;
-            PatientNoteBox.Text = patientInfo.Note;
 
             if (editable == false)
             {
@@ -110,16 +100,13 @@ namespace MDBS_server
                 PatientSexBox.IsEnabled = false;
                 PatientBirthDate.IsEnabled = false;
                 PatientWeightBox.IsReadOnly = true;
-                PatientCurrentTherapyBox.IsReadOnly = true;
                 PatientUsedDrugsBox.IsReadOnly = true;
-                PatientDrugsCountBox.IsReadOnly = true;
                 PatientRemissionPeriodBox.IsReadOnly = true;
-                PatientIllStart.IsEnabled = false;
+                PatientVisitDate.IsEnabled = false;
                 PatientLastExacerbation.IsEnabled = false;
                 PatientAppliedTherapyBox.IsReadOnly = true;
                 PatientSurveyResultsBox.IsReadOnly = true;
                 PatientInfoBox.IsReadOnly = true;
-                PatientNoteBox.IsReadOnly = true;
 
                 SaveBtn.Visibility = Visibility.Hidden;
             }
@@ -138,10 +125,10 @@ namespace MDBS_server
 
         private void SelectedIllStartDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PatientIllStart.SelectedDate.Value != null)
-                this.IllStart = PatientIllStart.SelectedDate.Value;
+            if (PatientVisitDate.SelectedDate.Value != null)
+                this.VisitDate = PatientVisitDate.SelectedDate.Value;
             else
-                this.IllStart = DateTime.Now;
+                this.VisitDate = DateTime.Now;
         }
 
         private void SelectedLastExacerbationDateChanged(object sender, SelectionChangedEventArgs e)

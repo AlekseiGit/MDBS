@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новый пациент" Height="450" Width="900">
+        Title="Новый пациент" Height="580" Width="900">
     <Grid>
         <StackPanel Name="PatientInfoPanel">
             <!--DockPanel>
@@ -13,64 +13,52 @@
                 <TextBox Name="PatientNameBox"></TextBox>
             </-->
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Номер карты пациента:</Label>
+                <Label Width="270" FontWeight="Bold">Номер карты пациента:</Label>
                 <TextBox Width="50" Name="PatientCardBoxPre" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" ></TextBox>
                 <TextBox Name="PatientCardBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Пол:</Label>
+                <Label Width="270" FontWeight="Bold">Пол:</Label>
                 <ComboBox Name="PatientSexBox" SelectedIndex="0">
                     <ComboBoxItem>М</ComboBoxItem>
                     <ComboBoxItem>Ж</ComboBoxItem>
                 </ComboBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Дата рождения:</Label>
+                <Label Width="270" FontWeight="Bold">Дата рождения:</Label>
                 <DatePicker Name="PatientBirthDate" SelectedDateChanged="SelectedDateChanged"/>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Вес пациента:</Label>
+                <Label Width="270" FontWeight="Bold">Вес пациента:</Label>
                 <TextBox Name="PatientWeightBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Текущее лечение:</Label>
-                <TextBox Name="PatientCurrentTherapyBox"></TextBox>
+                <Label Width="270" FontWeight="Bold">Дата обращения:</Label>
+                <DatePicker Name="PatientVisitDate" SelectedDateChanged="SelectedIllStartDateChanged"></DatePicker>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Заболел впервые:</Label>
-                <DatePicker Name="PatientIllStart" SelectedDateChanged="SelectedIllStartDateChanged"></DatePicker>
+                <Label Width="270" FontWeight="Bold">Чем лечился, проводилась ли пелотерапия:</Label>
+                <TextBox Name="PatientUsedDrugsBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Чем лечился:</Label>
-                <TextBox Name="PatientUsedDrugsBox"></TextBox>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="210" FontWeight="Bold">Количество таблеток:</Label>
-                <TextBox Name="PatientDrugsCountBox"></TextBox>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="210" FontWeight="Bold">Период ремиссии после лечения:</Label>
+                <Label Width="270" FontWeight="Bold">Период ремиссии после лечения:</Label>
                 <TextBox Name="PatientRemissionPeriodBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Последнее обострение:</Label>
+                <Label Width="270" FontWeight="Bold">Последнее обострение:</Label>
                 <DatePicker Name="PatientLastExacerbation" SelectedDateChanged="SelectedLastExacerbationDateChanged"></DatePicker>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Проведенное лечение:</Label>
-                <TextBox Name="PatientAppliedTherapyBox"></TextBox>
+                <Label Width="270" FontWeight="Bold">Проведено лечение:</Label>
+                <TextBox Name="PatientAppliedTherapyBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Результаты обследования:</Label>
-                <TextBox Name="PatientSurveyResultsBox"></TextBox>
+                <Label Width="270" FontWeight="Bold">Результаты обследования:</Label>
+                <TextBox Name="PatientSurveyResultsBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="210" FontWeight="Bold">Информация о пациенте:</Label>
-                <TextBox Name="PatientInfoBox"></TextBox>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="210" FontWeight="Bold">Доп. информация о пациенте:</Label>
-                <TextBox Name="PatientNoteBox"></TextBox>
+                <Label Width="270" FontWeight="Bold">Доп. информация о пациенте:</Label>
+                <TextBox Name="PatientInfoBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <Button Width="200" Click="CreatePatient_Click">Создать пациента</Button>
         </StackPanel>

@@ -53,7 +53,7 @@
             <TabItem  Style="{StaticResource ColorTab}" Header="Базы"  Width="120" Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
                 <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Margin="-1,-1,-1,-1" >
                     <Button Style="{StaticResource TransparentStyle}" Content="Пациенты" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="0,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowPatients"/>
-                    <Button Style="{StaticResource TransparentStyle}" Content="Пользователи" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowPatients"/>
+                    <Button Style="{StaticResource TransparentStyle}" Content="Пользователи" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Margin="120,0,0,0" BorderBrush="{x:Null}" Background="#FFF0F0F0" Click="ShowUsers"/>
                 </Grid>
             </TabItem>
             <TabItem  Style="{StaticResource ColorTab}" Header="Справка"  Width="120"  Padding="0,0,0,0" BorderBrush="{x:Null}" Margin="-2,-2,2,0">
@@ -110,56 +110,52 @@
                 <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <StackPanel x:Name="PatientInfoPanel">
                         <DockPanel>
-                            <Label Width="70" FontWeight="Bold" Content="Пациент:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Пациент:"/>
                             <Label x:Name="PatientCard"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="70" FontWeight="Bold" Content="Пол:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Пол:"/>
                             <Label x:Name="PatientSex"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Возраст:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Возраст:"/>
                             <Label x:Name="PatientAge"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Вес пациента:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Вес пациента:"/>
                             <Label x:Name="PatientWeight"/>
-                        </DockPanel>
-                        <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Информация о пациенте:"/>
-                            <Label x:Name="PatientInfo"/>
                         </DockPanel>
                     </StackPanel>
                     <StackPanel x:Name="PatientInfoPanel2">
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Текущее лечение:"/>
-                            <Label x:Name="PatientCurrentTherapy"/>
+                            <Label Width="270" FontWeight="Bold" Content="Дата обращения:"/>
+                            <Label x:Name="PatientVisitDate"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Количество таблеток:"/>
-                            <Label x:Name="PatientDrugsCount"/>
-                        </DockPanel>
-                        <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Чем лечился:"/>
+                            <Label Width="270" FontWeight="Bold" Content="Чем лечился, проводилась ли пелотерапия:"/>
                             <Label x:Name="PatientUsedDrugs"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Период ремиссии:"/>
+                            <Label Width="270" FontWeight="Bold" Content="Период ремиссии:"/>
                             <Label x:Name="PatientRemissionPeriod"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Последнее обострение:"/>
+                            <Label Width="270" FontWeight="Bold" Content="Последнее обострение:"/>
                             <Label x:Name="PatientLastExacerbation"/>
                         </DockPanel>
                     </StackPanel>
                     <StackPanel x:Name="PatientInfoPanel3">
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Проведенное лечение:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Проведено лечение:"/>
                             <Label x:Name="PatientAppliedTherapy"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="180" FontWeight="Bold" Content="Результаты обследования:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Результаты обследования:"/>
                             <Label x:Name="PatientSurveyResults"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Width="210" FontWeight="Bold" Content="Доп. информация о пациенте:"/>
+                            <Label x:Name="PatientInfo"/>
                         </DockPanel>
                     </StackPanel>
                 </DockPanel>

@@ -43,40 +43,35 @@ namespace MDBS_server
         public void PatientGridColumnsGenerated(object sender, EventArgs e)
         {
             PatientGrid.Columns[0].Visibility = Visibility.Collapsed;
+            PatientGrid.Columns[5].Visibility = Visibility.Collapsed;
 
             PatientGrid.Columns[1].Header = "Медицинская карта";
             PatientGrid.Columns[2].Header = "Пол";
             PatientGrid.Columns[3].Header = "Вес";
-            PatientGrid.Columns[4].Header = "Кол-во таблеток";
-            PatientGrid.Columns[5].Header = "Дата рождения";
-            PatientGrid.Columns[6].Header = "Текущее лечение";
-            PatientGrid.Columns[7].Header = "Заболел впервые";
-            PatientGrid.Columns[8].Header = "Чем лечился";
-            PatientGrid.Columns[9].Header = "Период ремиссии после лечения";
-            PatientGrid.Columns[10].Header = "Последнее обострение";
-            PatientGrid.Columns[11].Header = "Проведенное лечение";
-            PatientGrid.Columns[12].Header = "Результаты обследования";
-            PatientGrid.Columns[13].Header = "Информация";
-            PatientGrid.Columns[14].Header = "Доп. информация";
+            PatientGrid.Columns[4].Header = "Дата рождения";
+            PatientGrid.Columns[6].Header = "Дата обращения";
+            PatientGrid.Columns[7].Header = "Чем лечился, проводилась ли пелотерапия";
+            PatientGrid.Columns[8].Header = "Период ремиссии после лечения";
+            PatientGrid.Columns[9].Header = "Последнее обострение";
+            PatientGrid.Columns[10].Header = "Проведенное лечение";
+            PatientGrid.Columns[11].Header = "Результаты обследования";
+            PatientGrid.Columns[12].Header = "Доп. информация о пациенте";
 
             PatientGrid.Columns[1].Width = 120;
             PatientGrid.Columns[2].Width = 50;
             PatientGrid.Columns[3].Width = 50;
-            PatientGrid.Columns[4].Width = 120;
-            PatientGrid.Columns[5].Width = 120;
-            PatientGrid.Columns[6].Width = 150;
-            PatientGrid.Columns[7].Width = 150;
-            PatientGrid.Columns[8].Width = 150;
+            PatientGrid.Columns[4].Width = 100;
+            PatientGrid.Columns[6].Width = 120;
+            PatientGrid.Columns[7].Width = 250;
+            PatientGrid.Columns[8].Width = 200;
             PatientGrid.Columns[9].Width = 150;
-            PatientGrid.Columns[10].Width = 150;
-            PatientGrid.Columns[11].Width = 150;
-            PatientGrid.Columns[12].Width = 150;
-            PatientGrid.Columns[13].Width = 150;
-            PatientGrid.Columns[14].Width = 150;
+            PatientGrid.Columns[10].Width = 250;
+            PatientGrid.Columns[11].Width = 250;
+            PatientGrid.Columns[12].Width = 250;
 
-            DataGridTextColumn curTherapyColumn = PatientGrid.Columns[6] as DataGridTextColumn;
-            DataGridTextColumn infoColumn = PatientGrid.Columns[7] as DataGridTextColumn;
-            DataGridTextColumn noteColumn = PatientGrid.Columns[8] as DataGridTextColumn;
+            DataGridTextColumn curTherapyColumn = PatientGrid.Columns[7] as DataGridTextColumn;
+            DataGridTextColumn infoColumn = PatientGrid.Columns[10] as DataGridTextColumn;
+            DataGridTextColumn noteColumn = PatientGrid.Columns[11] as DataGridTextColumn;
 
             Style style = PatientGrid.Resources["wordWrapStyle"] as Style;
 

@@ -49,20 +49,12 @@ namespace MDBS_server
                     return 0;
             }
         }
-        public string DrugsCount
-        {
-            get { return PatientDrugsCountBox.Text; }
-        }
         public DateTime BirthDate { get; set; }
         public string MedicalCardNumber
         {
             get { return PatientCardBox.Text; }
         }
-        public string CurrentTherapy
-        {
-            get { return PatientCurrentTherapyBox.Text; }
-        }
-        public DateTime IllStart { get; set; }
+        public DateTime VisitDate { get; set; }
         public string UsedDrugs
         {
             get { return PatientUsedDrugsBox.Text; }
@@ -83,10 +75,6 @@ namespace MDBS_server
         public string Info
         {
             get { return PatientInfoBox.Text; }
-        }
-        public string Note
-        {
-            get { return PatientNoteBox.Text; }
         }
 
         ///<summary>
@@ -113,16 +101,13 @@ namespace MDBS_server
             }
             PatientBirthDate.SelectedDate = DateTime.ParseExact(patientInfo.BirthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientWeightBox.Text = patientInfo.Weight.ToString();
-            PatientCurrentTherapyBox.Text = patientInfo.CurrentTherapy;
             PatientUsedDrugsBox.Text = patientInfo.UsedDrugs;
-            PatientDrugsCountBox.Text = patientInfo.DrugsCount;
             PatientRemissionPeriodBox.Text = patientInfo.RemissionPeriod;
-            PatientIllStart.SelectedDate = DateTime.ParseExact(patientInfo.IllStart, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            PatientVisitDate.SelectedDate = DateTime.ParseExact(patientInfo.VisitDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientLastExacerbation.SelectedDate = DateTime.ParseExact(patientInfo.LastExacerbation, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientAppliedTherapyBox.Text = patientInfo.AppliedTherapy;
             PatientSurveyResultsBox.Text = patientInfo.SurveyResults;
             PatientInfoBox.Text = patientInfo.Info;
-            PatientNoteBox.Text = patientInfo.Note;
 
             if (editable == false)
             {
@@ -132,16 +117,13 @@ namespace MDBS_server
                 PatientSexBox.IsEnabled = false;
                 PatientBirthDate.IsEnabled = false;
                 PatientWeightBox.IsReadOnly = true;
-                PatientCurrentTherapyBox.IsReadOnly = true;
                 PatientUsedDrugsBox.IsReadOnly = true;
-                PatientDrugsCountBox.IsReadOnly = true;
                 PatientRemissionPeriodBox.IsReadOnly = true;
-                PatientIllStart.IsEnabled = false;
+                PatientVisitDate.IsEnabled = false;
                 PatientLastExacerbation.IsEnabled = false;
                 PatientAppliedTherapyBox.IsReadOnly = true;
                 PatientSurveyResultsBox.IsReadOnly = true;
                 PatientInfoBox.IsReadOnly = true;
-                PatientNoteBox.IsReadOnly = true;
 
                 SaveBtn.Visibility = Visibility.Hidden;
             }
@@ -160,10 +142,10 @@ namespace MDBS_server
 
         private void SelectedIllStartDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PatientIllStart.SelectedDate.Value != null)
-                this.IllStart = PatientIllStart.SelectedDate.Value;
+            if (PatientVisitDate.SelectedDate.Value != null)
+                this.VisitDate = PatientVisitDate.SelectedDate.Value;
             else
-                this.IllStart = DateTime.Now;
+                this.VisitDate = DateTime.Now;
         }
 
         private void SelectedLastExacerbationDateChanged(object sender, SelectionChangedEventArgs e)
@@ -199,24 +181,14 @@ namespace MDBS_server
                 MessageBox.Show("Вес пациента не заполнен!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.PatientCurrentTherapyBox.Text))
+            if (this.PatientVisitDate.SelectedDate == null)
             {
-                MessageBox.Show("Текущее лечение не заполнено!");
-                return;
-            }
-            if (this.PatientIllStart.SelectedDate == null)
-            {
-                MessageBox.Show("Поле \"Заболел впервые\" не заполнено!");
+                MessageBox.Show("Поле \"Дата обращения\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
             {
                 MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
-                return;
-            }
-            if (string.IsNullOrEmpty(this.PatientDrugsCountBox.Text))
-            {
-                MessageBox.Show("Поле \"Количество таблеток\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
@@ -244,18 +216,15 @@ namespace MDBS_server
                 PatientId,
                 this.Sex,
                 this.Weight,
-                this.DrugsCount,
                 this.BirthDate,
                 PatientCardBoxPre.Text + this.MedicalCardNumber,
-                this.CurrentTherapy,
-                this.IllStart,
+                this.VisitDate,
                 this.UsedDrugs,
                 this.RemissionPeriod,
                 this.LastExacerbation,
                 this.AppliedTherapy,
                 this.SurveyResults,
-                this.Info,
-                this.Note);
+                this.Info);
 
             this.DialogResult = true;
         }
