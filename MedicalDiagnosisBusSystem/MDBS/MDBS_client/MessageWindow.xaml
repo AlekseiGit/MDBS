@@ -5,38 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Новое сообщение" Width="800" Height="620">
+        Title="Новое сообщение" Width="800" Height="720">
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Name="MessagPanel">
             <DockPanel>
-                <Label Width="200" FontWeight="Bold">Кому</Label>
+                <Label Width="170" FontWeight="Bold">Кому</Label>
                 <ComboBox Name="ToBox" SelectedIndex="0">
                     <ComboBoxItem>Московская Клиника</ComboBoxItem>
                 </ComboBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="200" FontWeight="Bold">Номер карты пациента</Label>
+                <Label Width="170" FontWeight="Bold">Номер карты пациента</Label>
                 <TextBox Name="PatientBox" Width="200" IsReadOnly="True"></TextBox>
                 <Button Click="ChoosePatient_Click" Width="200" HorizontalAlignment="Left">Выбрать пациента</Button>
             </DockPanel>
             <DockPanel>
-                <Label Width="200" FontWeight="Bold">Запрос</Label>
+                <Label Width="170" FontWeight="Bold">Запрос</Label>
                 <TextBox Name="InfoBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
             </DockPanel>
             <!--DockPanel>
                 <Label Width="200" FontWeight="Bold">Диагноз</Label>
                 <TextBox Name="DiagnosisBox" Height="80" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
             </-->
-            <ScrollViewer IsTabStop="True" Height="130" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <!--ScrollViewer IsTabStop="True" Height="130" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                     <DockPanel>
                         <Border BorderThickness="10" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                             <Image Name="Image0" Height="90"/>
                         </Border>
-                        <!--Button Click="AttachImage_Click" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,0,0,0">x</-->
                     </DockPanel>
                     <Border BorderThickness="5" CornerRadius="5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
                         <Image Name="Image1" Height="90"/>
@@ -66,56 +65,96 @@
                         <Image Name="Image9" Height="90"/>
                     </Border>
                 </DockPanel>
-            </ScrollViewer>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 1</Label>
-                <TextBox Name="PathBox0" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn0" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            </-->
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                <Image Name="Image0" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox0" Width="542" IsReadOnly="True"  Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox0" Width="542"/>
+                </StackPanel>
+                <Button Name="RemoveBtn0" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 2</Label>
-                <TextBox Name="PathBox1" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn1" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Image Name="Image1" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox1" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox1" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn1" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 3</Label>
-                <TextBox Name="PathBox2" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn2" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                <Image Name="Image2" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox2" Width="542" IsReadOnly="True"  Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox2" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn2" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 4</Label>
-                <TextBox Name="PathBox3" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn3" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Image Name="Image3" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox3" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox3" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn3" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 5</Label>
-                <TextBox Name="PathBox4" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn4" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                <Image Name="Image4" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox4" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox4" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn4" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 6</Label>
-                <TextBox Name="PathBox5" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn5" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Image Name="Image5" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox5" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox5" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn5" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 7</Label>
-                <TextBox Name="PathBox6" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn6" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                <Image Name="Image6" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox6" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox6" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn6" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 8</Label>
-                <TextBox Name="PathBox7" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn7" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Image Name="Image7" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox7" Width="542" IsReadOnly="True"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox7" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn7" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 9</Label>
-                <TextBox Name="PathBox8" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn8" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                <Image Name="Image8" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox8" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox8" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn8" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
-            <DockPanel Height="24">
-                <Label Width="110" FontWeight="Bold" FontSize="10">Изображение 10</Label>
-                <TextBox Name="PathBox9" Width="500" IsReadOnly="True"></TextBox>
-                <Button Name="RemoveBtn9" Width="50" Click="RemoveImage_Click" HorizontalAlignment="Left">Убрать</Button>
+            <DockPanel Height="50" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Image Name="Image9" Width="170"/>
+                <StackPanel>
+                    <!--TextBox Name="PathBox9" Width="542" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"></-->
+                    <Label Width="542" Height="22" VerticalAlignment="Top" FontSize="10">Комментарий к изображению:</Label>
+                    <TextBox Name="CommentBox9" Width="542"></TextBox>
+                </StackPanel>
+                <Button Name="RemoveBtn9" Width="50" Height="25" Click="RemoveImage_Click" HorizontalAlignment="Left" Margin="15,0,0,0">Убрать</Button>
             </DockPanel>
             <DockPanel>
                 <Button Width="200" Click="AttachImage_Click" HorizontalAlignment="Right" Margin="280,20,0,0">Прикрепить изображение</Button>

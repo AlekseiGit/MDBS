@@ -22,6 +22,7 @@ BEGIN
 			p.[LastExacerbation],
 			p.[AppliedTherapy],
 			p.[SurveyResults],
+			p.[Complaints],
 			p.[Info]
 		from dbo.patient p (nolock)
 		order by p.[MedicalCardNumber] asc
@@ -45,6 +46,7 @@ BEGIN
 			p.[LastExacerbation],
 			p.[AppliedTherapy],
 			p.[SurveyResults],
+			p.[Complaints],
 			p.[Info]
 		from dbo.patient p (nolock)
 		where left(p.[MedicalCardNumber], 5) = @code

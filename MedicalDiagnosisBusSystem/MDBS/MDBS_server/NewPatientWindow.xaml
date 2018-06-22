@@ -36,7 +36,7 @@
                 <DatePicker Name="PatientVisitDate" SelectedDateChanged="SelectedIllStartDateChanged"></DatePicker>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Чем лечился, проводилась ли пелотерапия:</Label>
+                <Label Width="270" FontWeight="Bold">Чем лечился, проводилась ли ПУВА-терапия:</Label>
                 <TextBox Name="PatientUsedDrugsBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>

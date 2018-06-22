@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDBS_server"
         mc:Ignorable="d"
-        Title="Изменения информации о пациенте" Height="580" Width="900">
+        Title="Изменения информации о пациенте" Height="650" Width="900">
     <Grid>
         <StackPanel Name="PatientInfoPanel" CanHorizontallyScroll="True">
             <!--DockPanel>
@@ -13,50 +13,54 @@
                 <TextBox Name="PatientNameBox"></TextBox>
             </-->
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Номер карты пациента:</Label>
+                <Label Width="220" FontWeight="Bold">Дата обращения:</Label>
+                <DatePicker Name="PatientVisitDate" SelectedDateChanged="SelectedIllStartDateChanged"></DatePicker>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="220" FontWeight="Bold">Номер карты пациента:</Label>
                 <TextBox Name="PatientCardBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Пол:</Label>
+                <Label Width="220" FontWeight="Bold">Пол:</Label>
                 <ComboBox Name="PatientSexBox" SelectedIndex="0">
                     <ComboBoxItem>М</ComboBoxItem>
                     <ComboBoxItem>Ж</ComboBoxItem>
                 </ComboBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Дата рождения:</Label>
-                <DatePicker Name="PatientBirthDate" SelectedDateChanged="SelectedDateChanged"/>
-            </DockPanel>
-            <DockPanel>
-                <Label Width="270" FontWeight="Bold">Вес пациента:</Label>
+                <Label Width="220" FontWeight="Bold">Вес пациента:</Label>
                 <TextBox Name="PatientWeightBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Дата обращения:</Label>
-                <DatePicker Name="PatientVisitDate" SelectedDateChanged="SelectedIllStartDateChanged"></DatePicker>
+                <Label Width="220" FontWeight="Bold">Дата рождения:</Label>
+                <DatePicker Name="PatientBirthDate" SelectedDateChanged="SelectedDateChanged"/>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Чем лечился, проводилась ли пелотерапия:</Label>
+                <Label Width="220" FontWeight="Bold">Жалобы:</Label>
+                <TextBox Name="PatientComplaintsBox" TextWrapping="Wrap" Height="80"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label Width="220" FontWeight="Bold">Когда заболел, чем лечился:</Label>
                 <TextBox Name="PatientUsedDrugsBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Период ремиссии после лечения:</Label>
+                <Label Width="220" FontWeight="Bold">Период ремиссии после лечения:</Label>
                 <TextBox Name="PatientRemissionPeriodBox"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Последнее обострение:</Label>
+                <Label Width="220" FontWeight="Bold">Последнее обострение:</Label>
                 <DatePicker Name="PatientLastExacerbation" SelectedDateChanged="SelectedLastExacerbationDateChanged"></DatePicker>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Проведено лечение:</Label>
+                <Label Width="220" FontWeight="Bold">Проведено лечение:</Label>
                 <TextBox Name="PatientAppliedTherapyBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Результаты обследования:</Label>
+                <Label Width="220" FontWeight="Bold">Результаты обследования:</Label>
                 <TextBox Name="PatientSurveyResultsBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <DockPanel>
-                <Label Width="270" FontWeight="Bold">Доп. информация о пациенте:</Label>
+                <Label Width="220" FontWeight="Bold">Доп. информация о пациенте:</Label>
                 <TextBox Name="PatientInfoBox" TextWrapping="Wrap" Height="80"></TextBox>
             </DockPanel>
             <Button Name="SaveBtn" Width="200" Click="UpdatePatient_Click">Сохранить изменения</Button>

@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[Patient](
 	[LastExacerbation] [datetime] NULL,
 	[AppliedTherapy] [nvarchar](max) NULL,
 	[SurveyResults] [nvarchar](max) NULL,
+	[Complaints] [nvarchar](max) NULL,
 	[Info] [nvarchar](max) NULL, -- доп инфо по пациенту
  CONSTRAINT [PK_Patient] PRIMARY KEY CLUSTERED
 (

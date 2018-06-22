@@ -20,6 +20,7 @@ BEGIN
 		p.[LastExacerbation],
 		p.[AppliedTherapy],
 		p.[SurveyResults],
+		p.[Complaints],
 		p.[Info]
 	from dbo.patient p (nolock)
 	where

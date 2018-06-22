@@ -153,12 +153,7 @@ namespace MDBS_server
                 MessageBox.Show("Поле \"Проведенное лечение\" не заполнено!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.PatientSurveyResultsBox.Text))
-            {
-                MessageBox.Show("Поле \"Результаты обследования\" не заполнено!");
-                return;
-            }
-
+            /*
             var core = new CoreFunc();
 
             core.CreatePatient(
@@ -173,7 +168,7 @@ namespace MDBS_server
                 this.AppliedTherapy,
                 this.SurveyResults,
                 this.Info);
-
+            */
             this.DialogResult = true;
         }
     }

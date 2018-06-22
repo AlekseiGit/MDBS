@@ -122,7 +122,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image0.Source = img;
-                        PathBox0.Text = filename;
+                        //PathBox0.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -134,7 +134,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image1.Source = img;
-                        PathBox1.Text = filename;
+                        //PathBox1.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -146,7 +146,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image2.Source = img;
-                        PathBox2.Text = filename;
+                        //PathBox2.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -158,7 +158,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image3.Source = img;
-                        PathBox3.Text = filename;
+                        //PathBox3.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -170,7 +170,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image4.Source = img;
-                        PathBox4.Text = filename;
+                        //PathBox4.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -182,7 +182,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image5.Source = img;
-                        PathBox5.Text = filename;
+                        //PathBox5.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -194,7 +194,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image6.Source = img;
-                        PathBox6.Text = filename;
+                        //PathBox6.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -206,7 +206,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image7.Source = img;
-                        PathBox7.Text = filename;
+                        //PathBox7.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -218,7 +218,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image8.Source = img;
-                        PathBox8.Text = filename;
+                        //PathBox8.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -230,7 +230,7 @@ namespace MDBS_server
                         var mc = new MessageContainer();
 
                         Image9.Source = img;
-                        PathBox9.Text = filename;
+                        //PathBox9.Text = filename;
                         mc.ImgsPath = filename;
                         mc.ImgsData = File.ReadAllBytes(filename);
                         mc.ImgsDataPath = "";
@@ -351,6 +351,9 @@ namespace MDBS_server
 
                     MC[i].ImgsDataPath = @".\Data\" + this.Patient + @"\" + msgFolder +
                         @"\" + i + MC[i].ImgsPath.Substring(MC[i].ImgsPath.IndexOf("."));
+
+                    var comment = (TextBox)this.FindName("CommentBox" + i.ToString());
+                    MC[i].ImgsComment = comment.Text;
                 }
             }
 

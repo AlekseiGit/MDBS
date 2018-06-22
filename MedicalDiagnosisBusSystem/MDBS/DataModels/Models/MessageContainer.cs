@@ -11,5 +11,6 @@ namespace DataModels
         public string ImgsPath { get; set; }
         public string ImgsDataPath { get; set; }
         public byte[] ImgsData { get; set; }
+        public string ImgsComment { get; set; }
     }
 }

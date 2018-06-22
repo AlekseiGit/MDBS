@@ -14,6 +14,7 @@ CREATE PROCEDURE dbo.p_edit_patient
 @lastExacerbation datetime,
 @appliedTherapy nvarchar(max),
 @surveyResults nvarchar(max),
+@complaints nvarchar(max),
 @info nvarchar(max)
 
 AS
@@ -30,6 +31,7 @@ BEGIN
 		p.[LastExacerbation] = @lastExacerbation,
 		p.[AppliedTherapy] = @appliedTherapy,
 		p.[SurveyResults] = @surveyResults,
+		p.[Complaints] = @complaints,
 		p.[Info] = @info
 	from dbo.[Patient] p
 	where

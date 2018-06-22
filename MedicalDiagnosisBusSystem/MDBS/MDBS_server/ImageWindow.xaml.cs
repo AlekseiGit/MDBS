@@ -20,9 +20,10 @@ namespace MDBS_server
     public partial class ImageWindow : Window
     {
         BitmapImage[] Images = new BitmapImage[10];
+        string[] ImageComments = new string[10];
         int CurrentImage;
 
-        public ImageWindow(BitmapImage[] images, int currentImage)
+        public ImageWindow(BitmapImage[] images, string[] imageComments, int currentImage)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
@@ -31,8 +32,10 @@ namespace MDBS_server
             {
                 FullImage.Source = images[currentImage];
                 Images = images;
+                ImageComments = imageComments;
                 CurrentImage = currentImage;
                 CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
+                CommentBox.Content = imageComments[currentImage];
             }
         }
 
@@ -44,6 +47,7 @@ namespace MDBS_server
             if (CurrentImage - 1 >=0 && CurrentImage - 1 <= 9 && Images[CurrentImage - 1] != null)
             {
                 FullImage.Source = Images[CurrentImage - 1];
+                CommentBox.Content = ImageComments[CurrentImage - 1];
                 CurrentImage = CurrentImage - 1;
                 CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
             }
@@ -57,6 +61,7 @@ namespace MDBS_server
             if (CurrentImage + 1 >= 0 && CurrentImage + 1 <= 9 && Images[CurrentImage + 1] != null)
             {
                 FullImage.Source = Images[CurrentImage + 1];
+                CommentBox.Content = ImageComments[CurrentImage + 1];
                 CurrentImage = CurrentImage + 1;
                 CountBox.Text = (CurrentImage + 1).ToString() + " из " + Images.Where(i => i != null).Count().ToString();
             }

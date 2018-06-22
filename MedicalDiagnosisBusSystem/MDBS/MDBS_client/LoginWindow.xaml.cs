@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Core;
 using DataModels;
 using System.Collections.ObjectModel;
+using System.Net;
 
 namespace MDBS_server
 {
@@ -28,6 +29,18 @@ namespace MDBS_server
             WindowStyle = WindowStyle.None;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoginBox.ItemsSource = logins;
+
+            WebClient Client = new WebClient();
+            string Response;
+
+            try
+            {
+                Response = Client.DownloadString("http://www.microsoft.com");
+            }
+            catch
+            {
+                ErrorMessage.Text = "Отсутствует подключение к интернету!";
+            }
         }
 
         public static User CurrentUser { get; set; }

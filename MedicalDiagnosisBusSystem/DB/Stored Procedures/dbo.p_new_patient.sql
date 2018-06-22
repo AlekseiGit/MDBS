@@ -13,7 +13,8 @@ CREATE PROCEDURE dbo.p_new_patient
 @lastExacerbation datetime,
 @appliedTherapy nvarchar(max),
 @surveyResults nvarchar(max),
-@info nvarchar(max)
+@info nvarchar(max),
+@fio nvarchar(200)
 
 AS
 BEGIN
@@ -21,6 +22,7 @@ BEGIN
 	
 	insert into dbo.[Patient]
 		([ID],
+		[FullName],
 		[Sex],
 		[Weight],
 		[BirthDate],
@@ -34,6 +36,7 @@ BEGIN
 		[Info])
 	values
 		(@patient_id,
+		@fio,
 		@sex,
 		@weight,
 		@birthDate,

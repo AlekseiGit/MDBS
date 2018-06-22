@@ -356,7 +356,7 @@ namespace Core
 
                         string sql = "declare @attachment_id uniqueidentifier = newid() " +
                             "insert into dbo.[Attachments]([ID], [MessageID], [Data], [Comment]) " +
-                            "values(@attachment_id, @message_id, null, '') " +
+                            "values(@attachment_id, @message_id, null, '" + MC[i].ImgsComment + "') " +
                             "insert into dbo.[AttachmentsQueue] ([MessageID], [AttachmentID], [FileName], [Checksumm], [Status]) " +
                             "values(@message_id, @attachment_id, @file_name, @checksumm, 0)";
 
@@ -519,6 +519,7 @@ namespace Core
                 patientInfo.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("yyyy-MM-dd");
                 patientInfo.AppliedTherapy = row["AppliedTherapy"].ToString();
                 patientInfo.SurveyResults = row["SurveyResults"].ToString();
+                patientInfo.Complaints = row["Complaints"].ToString();
                 patientInfo.Info = row["Info"].ToString();
             }
 
@@ -543,6 +544,7 @@ namespace Core
             DateTime lastExacerbation,
             string appliedTherapy,
             string surveyResults,
+            string complaints,
             string info)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -566,6 +568,7 @@ namespace Core
                 cmd.Parameters.Add("@lastExacerbation", SqlDbType.DateTime);
                 cmd.Parameters.Add("@appliedTherapy", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@surveyResults", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@complaints", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
 
                 cmd.Parameters["@patient_id"].Value = patientId;
@@ -580,6 +583,7 @@ namespace Core
                 cmd.Parameters["@lastExacerbation"].Value = lastExacerbation;
                 cmd.Parameters["@appliedTherapy"].Value = appliedTherapy;
                 cmd.Parameters["@surveyResults"].Value = surveyResults;
+                cmd.Parameters["@complaints"].Value = complaints;
                 cmd.Parameters["@info"].Value = info;
 
                 cmd.ExecuteNonQuery();
@@ -725,6 +729,7 @@ namespace Core
                 patient.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("yyyy-MM-dd");
                 patient.AppliedTherapy = row["AppliedTherapy"].ToString();
                 patient.SurveyResults = row["SurveyResults"].ToString();
+                patient.Complaints = row["Complaints"].ToString();
                 patient.Info = row["Info"].ToString();
 
                 patients.Add(patient);
@@ -739,20 +744,20 @@ namespace Core
         /// Метод поиска пациентов по номеру карты,
         /// входные параметры - id пользователя и номер карты
         ///</summary>
-        public List<Patient> GetPatientsByNumber(Guid userID, string cardNumber)
+        public List<Patient> GetPatientsByField(Guid userID, string field)
         {
             List<Patient> patients = new List<Patient>();
 
             SqlCommand sqlCmd = new SqlCommand();
 
-            sqlCmd.CommandText = "dbo.p_get_patients_by_number";
+            sqlCmd.CommandText = "dbo.p_get_patients_by_field";
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Connection = DBConnection;
 
             sqlCmd.Parameters.Add("@user_id", SqlDbType.UniqueIdentifier);
-            sqlCmd.Parameters.Add("@num", SqlDbType.NVarChar, 100);
+            sqlCmd.Parameters.Add("@field", SqlDbType.NVarChar, 200);
             sqlCmd.Parameters["@user_id"].Value = userID;
-            sqlCmd.Parameters["@num"].Value = cardNumber;
+            sqlCmd.Parameters["@field"].Value = field;
 
             DBConnection.Open();
 
@@ -782,6 +787,7 @@ namespace Core
                 patient.LastExacerbation = ((DateTime)row["LastExacerbation"]).ToString("yyyy-MM-dd");
                 patient.AppliedTherapy = row["AppliedTherapy"].ToString();
                 patient.SurveyResults = row["SurveyResults"].ToString();
+                patient.Complaints = row["Complaints"].ToString();
                 patient.Info = row["Info"].ToString();
 
                 patients.Add(patient);
@@ -807,7 +813,8 @@ namespace Core
             DateTime lastExacerbation,
             string appliedTherapy,
             string surveyResults,
-            string info)
+            string info,
+            string fio)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -830,6 +837,7 @@ namespace Core
                 cmd.Parameters.Add("@appliedTherapy", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@surveyResults", SqlDbType.NVarChar, 4000);
                 cmd.Parameters.Add("@info", SqlDbType.NVarChar, 4000);
+                cmd.Parameters.Add("@fio", SqlDbType.NVarChar, 200);
 
                 //cmd.Parameters["@fullName"].Value = fullName;
                 cmd.Parameters["@sex"].Value = sex;
@@ -843,6 +851,7 @@ namespace Core
                 cmd.Parameters["@appliedTherapy"].Value = appliedTherapy;
                 cmd.Parameters["@surveyResults"].Value = surveyResults;
                 cmd.Parameters["@info"].Value = info;
+                cmd.Parameters["@fio"].Value = fio;
 
                 cmd.ExecuteNonQuery();
 

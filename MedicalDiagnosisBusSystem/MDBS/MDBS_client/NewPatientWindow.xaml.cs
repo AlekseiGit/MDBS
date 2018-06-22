@@ -73,6 +73,18 @@ namespace MDBS_server
         {
             get { return PatientInfoBox.Text; }
         }
+        public string SName
+        {
+            get { return PatientSNameBox.Text; }
+        }
+        public string FName
+        {
+            get { return PatientFNameBox.Text; }
+        }
+        public string MName
+        {
+            get { return PatientMNameBox.Text; }
+        }
 
         public NewPatientWindow(string docNumber)
         {
@@ -124,6 +136,21 @@ namespace MDBS_server
                 MessageBox.Show("Номер карты пациента должен состоять из префикса <" + PatientCardBoxPre.Text + "> и 4 цифр порядкового номера!");
                 return;
             }
+            if (string.IsNullOrEmpty(this.SName))
+            {
+                MessageBox.Show("Фамилия пациента не заполнена!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.FName))
+            {
+                MessageBox.Show("Имя пациента не заполнено!");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.MName))
+            {
+                MessageBox.Show("Отчество пациента не заполнено!");
+                return;
+            }
             if (this.PatientBirthDate.SelectedDate == null)
             {
                 MessageBox.Show("Дата рождения пациента не заполнена!");
@@ -141,7 +168,7 @@ namespace MDBS_server
             }
             if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
             {
-                MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
+                MessageBox.Show("Поле \"Когда заболел, чем лечился\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
@@ -159,11 +186,6 @@ namespace MDBS_server
                 MessageBox.Show("Поле \"Проведенное лечение\" не заполнено!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.PatientSurveyResultsBox.Text))
-            {
-                MessageBox.Show("Поле \"Результаты обследования\" не заполнено!");
-                return;
-            }
 
             var core = new CoreFunc();
 
@@ -178,7 +200,8 @@ namespace MDBS_server
                 this.LastExacerbation,
                 this.AppliedTherapy,
                 this.SurveyResults,
-                this.Info);
+                this.Info,
+                this.SName + this.FName + this.MName + "_" + this.BirthDate.ToString("yyyyMMdd"));
 
             this.DialogResult = true;
         }

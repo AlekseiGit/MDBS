@@ -50,12 +50,13 @@ namespace MDBS_server
             PatientGrid.Columns[3].Header = "Вес";
             PatientGrid.Columns[4].Header = "Дата рождения";
             PatientGrid.Columns[6].Header = "Дата обращения";
-            PatientGrid.Columns[7].Header = "Чем лечился, проводилась ли пелотерапия";
+            PatientGrid.Columns[7].Header = "Когда заболел, чем лечился";
             PatientGrid.Columns[8].Header = "Период ремиссии после лечения";
             PatientGrid.Columns[9].Header = "Последнее обострение";
             PatientGrid.Columns[10].Header = "Проведенное лечение";
             PatientGrid.Columns[11].Header = "Результаты обследования";
-            PatientGrid.Columns[12].Header = "Доп. информация о пациенте";
+            PatientGrid.Columns[12].Header = "Жалобы";
+            PatientGrid.Columns[13].Header = "Доп. информация о пациенте";
 
             PatientGrid.Columns[1].Width = 120;
             PatientGrid.Columns[2].Width = 50;
@@ -68,6 +69,7 @@ namespace MDBS_server
             PatientGrid.Columns[10].Width = 250;
             PatientGrid.Columns[11].Width = 250;
             PatientGrid.Columns[12].Width = 250;
+            PatientGrid.Columns[13].Width = 250;
 
             DataGridTextColumn curTherapyColumn = PatientGrid.Columns[7] as DataGridTextColumn;
             DataGridTextColumn infoColumn = PatientGrid.Columns[10] as DataGridTextColumn;
@@ -170,12 +172,24 @@ namespace MDBS_server
             }
         }
 
+        public void ShowAllPatients(object sender, EventArgs e)
+        {
+            Patients = Core.GetPatients(UserID);
+            PatientGrid.ItemsSource = Patients;
+        }
+
         ///<summary>
         /// Поиск пациента по номеру карты
         ///</summary>
         public void FindPatient(object sender, EventArgs e)
         {
-            Patients = Core.GetPatientsByNumber(UserID, PatientSearchBox.Text);
+            if (PatientBDDate.SelectedDate == null)
+            {
+                MessageBox.Show("Дата рождения пациента не заполнена!");
+                return;
+            }
+
+            Patients = Core.GetPatientsByField(UserID, PatientSNameBox.Text + PatientFNameBox.Text + PatientMNameBox.Text + "_" + PatientBDDate.SelectedDate.Value.ToString("yyyyMMdd"));
             PatientGrid.ItemsSource = Patients;
         }
     }

@@ -9,6 +9,7 @@
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="23"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,7 +20,11 @@
         <Button Grid.Column="0" Grid.Row="0" Width="200" Click="PrevImage_Click" HorizontalAlignment="Center">Предыдущее изображение</Button>
         <TextBox Name="CountBox" Grid.Column="1" Grid.Row="0" IsReadOnly="True" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"></TextBox>
         <Button Grid.Column="2" Grid.Row="0" Width="200" Click="NextImage_Click" HorizontalAlignment="Center">Следующее изображение</Button>
-        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" CanContentScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+            <Label Width="200">Комментарий к изображению:</Label>
+            <Label Name="CommentBox"></Label>
+        </DockPanel>
+        <ScrollViewer Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" CanContentScroll="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
                 <Image Stretch="None" Name="FullImage" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>

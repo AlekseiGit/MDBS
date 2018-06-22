@@ -72,6 +72,10 @@ namespace MDBS_server
         {
             get { return PatientSurveyResultsBox.Text; }
         }
+        public string Complaints
+        {
+            get { return PatientComplaintsBox.Text; }
+        }
         public string Info
         {
             get { return PatientInfoBox.Text; }
@@ -107,6 +111,7 @@ namespace MDBS_server
             PatientLastExacerbation.SelectedDate = DateTime.ParseExact(patientInfo.LastExacerbation, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientAppliedTherapyBox.Text = patientInfo.AppliedTherapy;
             PatientSurveyResultsBox.Text = patientInfo.SurveyResults;
+            PatientComplaintsBox.Text = patientInfo.Complaints;
             PatientInfoBox.Text = patientInfo.Info;
 
             if (editable == false)
@@ -123,6 +128,7 @@ namespace MDBS_server
                 PatientLastExacerbation.IsEnabled = false;
                 PatientAppliedTherapyBox.IsReadOnly = true;
                 PatientSurveyResultsBox.IsReadOnly = true;
+                PatientComplaintsBox.IsReadOnly = true;
                 PatientInfoBox.IsReadOnly = true;
 
                 SaveBtn.Visibility = Visibility.Hidden;
@@ -188,7 +194,7 @@ namespace MDBS_server
             }
             if (string.IsNullOrEmpty(this.PatientUsedDrugsBox.Text))
             {
-                MessageBox.Show("Поле \"Чем лечился\" не заполнено!");
+                MessageBox.Show("Поле \"Когда заболел, чем лечился\" не заполнено!");
                 return;
             }
             if (string.IsNullOrEmpty(this.PatientRemissionPeriodBox.Text))
@@ -206,11 +212,6 @@ namespace MDBS_server
                 MessageBox.Show("Поле \"Проведенное лечение\" не заполнено!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.PatientSurveyResultsBox.Text))
-            {
-                MessageBox.Show("Поле \"Результаты обследования\" не заполнено!");
-                return;
-            }
 
             Core.EditPatientInfo(
                 PatientId,
@@ -224,6 +225,7 @@ namespace MDBS_server
                 this.LastExacerbation,
                 this.AppliedTherapy,
                 this.SurveyResults,
+                this.Complaints,
                 this.Info);
 
             this.DialogResult = true;

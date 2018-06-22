@@ -31,6 +31,7 @@ namespace MDBS_server
         public static Guid UserID;
 
         public static BitmapImage[] Images = new BitmapImage[10];
+        public static string[] ImageComments = new string[10];
         public static BitmapImage Image_0;
         public static BitmapImage Image_1;
         public static BitmapImage Image_2;
@@ -202,10 +203,10 @@ namespace MDBS_server
                 messages = core.GetNeedAnswerMessages();
                 MessageGridLabel.Content = "Нужен ответ:";
             }
-            else if (categoryName.Contains("Архив"))
+            else if (categoryName.Contains("Архив сообщений"))
             {
                 messages = core.GetArchiveMessages();
-                MessageGridLabel.Content = "Архив:";
+                MessageGridLabel.Content = "Архив сообщений:";
             }
 
             FillMessageGrid(messages);
@@ -241,6 +242,7 @@ namespace MDBS_server
             PatientLastExacerbation.Content = "";
             PatientAppliedTherapy.Content = "";
             PatientSurveyResults.Content = "";
+            PatientComplaints.Content = "";
             PatientInfo.Content = "";
 
             MessageGrid.Columns[0].Visibility = Visibility.Collapsed;
@@ -386,6 +388,7 @@ namespace MDBS_server
                 PatientLastExacerbation.Content = patientInfo.LastExacerbation;
                 PatientAppliedTherapy.Content = patientInfo.AppliedTherapy;
                 PatientSurveyResults.Content = patientInfo.SurveyResults;
+                PatientComplaints.Content = patientInfo.Complaints;
                 PatientInfo.Content = patientInfo.Info;
 
                 if (message.From != UserID)
@@ -485,6 +488,7 @@ namespace MDBS_server
         public void AttachmentsUpdate(Guid messageId)
         {
             Images = new BitmapImage[10];
+            ImageComments = new string[10];
             ImageControl0.Source = null;
             ImageControl1.Source = null;
             ImageControl2.Source = null;
@@ -505,54 +509,64 @@ namespace MDBS_server
                 {
                     Images[0] = ToImage(images[0].Data);
                     ImageControl0.Source = Images[0];
+                    ImageComments[0] = images[0].Comment;
                 }
 
                 if (images.ElementAtOrDefault(1) != null)
                 {
                     Images[1] = ToImage(images[1].Data);
                     ImageControl1.Source = Images[1];
+                    ImageComments[1] = images[1].Comment;
                 }
 
                 if (images.ElementAtOrDefault(2) != null)
                 {
                     Images[2] = ToImage(images[2].Data);
                     ImageControl2.Source = Images[2];
+                    ImageComments[2] = images[2].Comment;
                 }
 
                 if (images.ElementAtOrDefault(3) != null)
                 {
                     Images[3] = ToImage(images[3].Data);
                     ImageControl3.Source = Images[3];
+                    ImageComments[3] = images[3].Comment;
                 }
                 if (images.ElementAtOrDefault(4) != null)
                 {
                     Images[4] = ToImage(images[4].Data);
                     ImageControl4.Source = Images[4];
+                    ImageComments[4] = images[4].Comment;
                 }
                 if (images.ElementAtOrDefault(5) != null)
                 {
                     Images[5] = ToImage(images[5].Data);
                     ImageControl5.Source = Images[5];
+                    ImageComments[5] = images[5].Comment;
                 }
                 if (images.ElementAtOrDefault(6) != null)
                 {
                     Images[6] = ToImage(images[6].Data);
                     ImageControl6.Source = Images[6];
+                    ImageComments[6] = images[6].Comment;
                 }
                 if (images.ElementAtOrDefault(7) != null)
                 {
                     Images[7] = ToImage(images[7].Data);
                     ImageControl7.Source = Images[7];
+                    ImageComments[7] = images[7].Comment;
                 }
                 if (images.ElementAtOrDefault(8) != null)
                 {
                     Images[8] = ToImage(images[8].Data);
                     ImageControl8.Source = Images[8];
+                    ImageComments[8] = images[8].Comment;
                 }
                 if (images.ElementAtOrDefault(9) != null)
                 {
                     Images[9] = ToImage(images[9].Data);
                     ImageControl9.Source = Images[9];
+                    ImageComments[9] = images[9].Comment;
                 }
             }
         }
@@ -586,7 +600,7 @@ namespace MDBS_server
                 {
                     string elementName = source.Name;
 
-                    ImageWindow imageWindow = new ImageWindow(Images, int.Parse(elementName.Substring(12)));
+                    ImageWindow imageWindow = new ImageWindow(Images, ImageComments, int.Parse(elementName.Substring(12)));
 
                     if (imageWindow.ShowDialog() == true)
                     {

@@ -90,6 +90,7 @@ namespace MDBS_server
             PatientLastExacerbation.SelectedDate = DateTime.ParseExact(patientInfo.LastExacerbation, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             PatientAppliedTherapyBox.Text = patientInfo.AppliedTherapy;
             PatientSurveyResultsBox.Text = patientInfo.SurveyResults;
+            PatientComplaintsBox.Text = patientInfo.Complaints;
             PatientInfoBox.Text = patientInfo.Info;
 
             if (editable == false)
@@ -106,6 +107,7 @@ namespace MDBS_server
                 PatientLastExacerbation.IsEnabled = false;
                 PatientAppliedTherapyBox.IsReadOnly = true;
                 PatientSurveyResultsBox.IsReadOnly = true;
+                PatientComplaintsBox.IsReadOnly = true;
                 PatientInfoBox.IsReadOnly = true;
 
                 SaveBtn.Visibility = Visibility.Hidden;
