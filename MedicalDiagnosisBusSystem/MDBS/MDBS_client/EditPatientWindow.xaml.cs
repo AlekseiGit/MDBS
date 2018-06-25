@@ -182,6 +182,11 @@ namespace MDBS_server
                 MessageBox.Show("Дата рождения пациента не заполнена!");
                 return;
             }
+            if (string.IsNullOrEmpty(this.PatientComplaintsBox.Text))
+            {
+                MessageBox.Show("Поле \"Жалобы\" не заполнено!");
+                return;
+            }
             if (string.IsNullOrEmpty(this.PatientWeightBox.Text))
             {
                 MessageBox.Show("Вес пациента не заполнен!");

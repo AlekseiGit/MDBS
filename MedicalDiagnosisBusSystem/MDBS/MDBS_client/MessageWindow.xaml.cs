@@ -301,8 +301,8 @@ namespace MDBS_server
             var btn = sender as Button;
             var num = btn.Name.Substring(9);
 
-            var pathText = (TextBox)this.FindName("PathBox" + num.ToString());
-            pathText.Text = "";
+            //var pathText = (TextBox)this.FindName("PathBox" + num.ToString());
+            //pathText.Text = "";
 
             var attachedImage = (Image)this.FindName("Image" + num.ToString());
             attachedImage.Source = null;
