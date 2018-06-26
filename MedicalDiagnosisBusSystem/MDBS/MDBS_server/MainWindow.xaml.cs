@@ -86,8 +86,8 @@ namespace MDBS_server
             {
                 var systemData = Core.GetSystemData(UserID);
 
-                Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
-                Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
+                Incoming.Content = "Входящие запросы (" + systemData.IncomingInfo + ")";
+                Outgoing.Content = "Исходящие ответы (" + systemData.OutgoingInfo + ")";
                 NeedAnswer.Content = "Нужен ответ (" + systemData.NeedAnswerInfo + ")";
 
                 var diff = (DateTime.Now - systemData.NeedAnswerDate).TotalDays;
