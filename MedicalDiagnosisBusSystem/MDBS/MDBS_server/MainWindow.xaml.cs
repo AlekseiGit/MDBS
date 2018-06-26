@@ -211,6 +211,8 @@ namespace MDBS_server
 
             FillMessageGrid(messages);
             DialogGridLabel.Content = "";
+            MessageGridLabel.Focusable = true;
+            Keyboard.Focus(MessageGridLabel);
         }
 
         ///<summary>

@@ -113,8 +113,8 @@ namespace MDBS_server
                 var core = new CoreFunc(UserID);
                 var systemData = core.GetSystemData(UserID);
 
-                Incoming.Content = "Входящие (" + systemData.IncomingInfo + ")";
-                Outgoing.Content = "Исходящие (" + systemData.OutgoingInfo + ")";
+                Incoming.Text = "Входящие ответы (" + systemData.IncomingInfo + ")";
+                Outgoing.Text = "Исходящие запросы (" + systemData.OutgoingInfo + ")";
 
                 core.SendMessages(UserID);
             }
@@ -228,40 +228,43 @@ namespace MDBS_server
         ///</summary>
         private void RefreshMessageGrid()
         {
-            if ((ListBoxItem)this.CategoryListBox.SelectedItem == null)
+            if ((DockPanel)this.CategoryListBox.SelectedItem == null)
                 return;
 
             var core = new CoreFunc(UserID);
-            var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
+            var categoryName = ((DockPanel)this.CategoryListBox.SelectedItem).Name;
             var messages = new List<Message>();
 
-            if (categoryName.Contains("Входящие"))
+            if (categoryName == "IncomingTab")
             {
                 messages = core.GetIncomingMessages();
-                MessageGridLabel.Content = "Входящие:";
+                MessageGridLabel.Content = "Входящие ответы:";
             }
-            else if (categoryName.Contains("Исходящие"))
+            else if (categoryName == "OutgoingTab")
             {
                 messages = core.GetOutgoingMessages();
-                MessageGridLabel.Content = "Исходящие:";
+                MessageGridLabel.Content = "Исходящие запросы:";
             }
-            else if (categoryName.Contains("Отправляются"))
+            else if (categoryName == "SendingTab")
             {
                 messages = core.GetSendingMessages();
                 MessageGridLabel.Content = "Отправляются:";
             }
-            else if (categoryName.Contains("Нужен ответ"))
+            else if (categoryName == "NeedAnswerTab")
             {
                 messages = core.GetNeedAnswerMessages();
                 MessageGridLabel.Content = "Нужен ответ:";
             }
-            else if (categoryName.Contains("Архив сообщений"))
+            else if (categoryName == "ArchiveTab")
             {
                 messages = core.GetArchiveMessages();
                 MessageGridLabel.Content = "Архив сообщений:";
             }
 
             FillMessageGrid(messages);
+            DialogGridLabel.Content = "";
+            MessageGridLabel.Focusable = true;
+            Keyboard.Focus(MessageGridLabel);
         }
 
         ///<summary>
@@ -307,7 +310,7 @@ namespace MDBS_server
             MessageGrid.Columns[5].Header = "Дата";
 
             MessageGrid.Columns[2].Width = 120;
-            MessageGrid.Columns[4].Width = 160;
+            MessageGrid.Columns[4].Width = 180;
             MessageGrid.Columns[5].Width = 100;
         }
 
@@ -413,7 +416,7 @@ namespace MDBS_server
                 DialogGrid.Columns[3].Width = 170;
                 DialogGrid.Columns[4].Width = 90;
                 DialogGrid.Columns[6].Width = 100;
-                DialogGrid.Columns[7].Width = 110;
+                DialogGrid.Columns[7].Width = 180;
 
                 DataGridTextColumn infoColumn = DialogGrid.Columns[1] as DataGridTextColumn;
                 DataGridTextColumn diagnosisColumn = DialogGrid.Columns[2] as DataGridTextColumn;
@@ -472,14 +475,14 @@ namespace MDBS_server
 
             if (RowDataContaxt != null)
             {
-                var categoryName = ((ListBoxItem)this.CategoryListBox.SelectedItem).Content.ToString();
+                var categoryName = ((DockPanel)this.CategoryListBox.SelectedItem).Name;
 
-                if (RowDataContaxt.Status == 0 && categoryName.Contains("Входящие"))
+                if (RowDataContaxt.Status == 0 && categoryName == "IncomingTab")
                 {
                     e.Row.FontWeight = FontWeight.FromOpenTypeWeight(900);
                 }
 
-                if (CategoryListBox.SelectedItem.ToString().Contains("Нужен ответ"))
+                if (categoryName == "NeedAnswerTab")
                 {
                     var diff = (DateTime.Now - DateTime.Parse(RowDataContaxt.MessageDate)).TotalDays;
 

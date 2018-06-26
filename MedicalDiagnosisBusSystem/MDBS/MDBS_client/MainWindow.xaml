@@ -67,12 +67,23 @@
         </TabControl>
 
 
-        <ListBox Name="CategoryListBox" Width="168" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
-            <ListBoxItem Name="Incoming" Content="Входящие" Height="30"/>
-            <ListBoxItem Name="Outgoing" Content="Исходящие" Height="30"/>
-            <ListBoxItem Name="Sending" Content="Отправляются" Height="30"/>
-            <!--ListBoxItem Name="NeedAnswer" Content="Нужен ответ" Height="30"/-->
-            <ListBoxItem Name="Archive" Content="Архив сообщений" Height="30"/>
+        <ListBox Name="CategoryListBox" Width="190" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="{DynamicResource {x:Static SystemColors.ScrollBarBrushKey}}" SelectionChanged="ListBox_SelectionChanged">
+            <DockPanel x:Name="IncomingTab" Width="175" Background="DarkGray">
+                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\mail-import.png" Width="35" Height="35"></Image>
+                <TextBlock x:Name="Incoming" TextAlignment="Center" TextWrapping="Wrap" Text="Входящие ответы" Height="50"/>
+            </DockPanel>
+            <DockPanel Name="OutgoingTab" Width="175" Background="DarkGray">
+                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\mail-forward-2.png" Width="35" Height="35"></Image>
+                <TextBlock x:Name="Outgoing" TextAlignment="Center" TextWrapping="Wrap" Text="Исходящие запросы" Width="145" Height="50"/>
+            </DockPanel>
+            <DockPanel Name="SendingTab" Width="175" Background="DarkGray">
+                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\view-history.png" Width="35" Height="35"></Image>
+                <TextBlock x:Name="Sending" TextAlignment="Center" TextWrapping="Wrap" Text="Отправляются" Width="140" Height="50"/>
+            </DockPanel>
+            <DockPanel Name="ArchiveTab" Width="175" Background="DarkGray">
+                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\document-save-5.png" Width="35" Height="35"></Image>
+                <TextBlock x:Name="Archive" TextAlignment="Center" TextWrapping="Wrap" Text="Архив сообщений" Width="140" Height="50"/>
+            </DockPanel>
         </ListBox>
         <Grid ShowGridLines="False" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
             <Grid.RowDefinitions>
@@ -85,10 +96,10 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="1.7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
-            <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-            <Label Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
-            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="None" Grid.Column="1" Grid.Row="3" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Label Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="WhiteSmoke" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+            <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="All" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="WhiteSmoke"/>
+            <Label Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="WhiteSmoke" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="Horizontal" Grid.Column="1" Grid.Row="3" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="LightSteelBlue">
                 <DataGrid.Resources>
                     <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
                         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -106,95 +117,95 @@
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
-            <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <ScrollViewer Grid.Column="1" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="LightSteelBlue">
                 <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <StackPanel x:Name="PatientInfoPanel">
                         <DockPanel>
-                            <Label Width="115" FontWeight="Bold" Content="Дата обращения:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Дата обращения:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientVisitDate"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="115" FontWeight="Bold" Content="Пациент:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Пациент:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientCard"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="115" FontWeight="Bold" Content="Пол:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Пол:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientSex"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="115" FontWeight="Bold" Content="Вес пациента:"/>
+                            <Label Width="115" FontWeight="Bold" Content="Вес пациента:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientWeight"/>
                         </DockPanel>
                     </StackPanel>
                     <StackPanel x:Name="PatientInfoPanel2">
                         <DockPanel>
-                            <Label Width="200" FontWeight="Bold" Content="Возраст:"/>
+                            <Label Width="200" FontWeight="Bold" Content="Возраст:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientAge"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="200" FontWeight="Bold" Content="Жалобы:"/>
+                            <Label Width="200" FontWeight="Bold" Content="Жалобы:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientComplaints"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="200" FontWeight="Bold" Content="Когда заболел, чем лечился:"/>
+                            <Label Width="200" FontWeight="Bold" Content="Когда заболел, чем лечился:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientUsedDrugs"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="200" FontWeight="Bold" Content="Период ремиссии:"/>
+                            <Label Width="200" FontWeight="Bold" Content="Период ремиссии:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientRemissionPeriod"/>
                         </DockPanel>
                     </StackPanel>
                     <StackPanel x:Name="PatientInfoPanel3">
                         <DockPanel>
-                            <Label Width="210" FontWeight="Bold" Content="Последнее обострение:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Последнее обострение:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientLastExacerbation"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="210" FontWeight="Bold" Content="Проведено лечение:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Проведено лечение:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientAppliedTherapy"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="210" FontWeight="Bold" Content="Результаты обследования:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Результаты обследования:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientSurveyResults"/>
                         </DockPanel>
                         <DockPanel>
-                            <Label Width="210" FontWeight="Bold" Content="Доп. информация о пациенте:"/>
+                            <Label Width="210" FontWeight="Bold" Content="Доп. информация о пациенте:" Background="LightSteelBlue"/>
                             <Label x:Name="PatientInfo"/>
                         </DockPanel>
                     </StackPanel>
                 </DockPanel>
             </ScrollViewer>
             <ScrollViewer IsTabStop="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2">
-                <DockPanel Name="ImagePanel" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
+                <DockPanel x:Name="ImagePanel" Background="LightSteelBlue">
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl0" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl1" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl2" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl3" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl4" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl5" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl6" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl7" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl8" MouseDown="ImageControl_MouseDown"/>
                     </Border>
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
-                        <Image Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="LightSteelBlue">
+                        <Image x:Name="ImageControl9" MouseDown="ImageControl_MouseDown"/>
                     </Border>
                 </DockPanel>
             </ScrollViewer>
