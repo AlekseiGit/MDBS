@@ -75,6 +75,12 @@ namespace MDBS_server
             dispatcherTimer.Tick += new EventHandler(RefreshInformation);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
             dispatcherTimer.Start();
+            
+            IncomingImg.Source = new BitmapImage(new Uri("imgs/incoming.png", UriKind.Relative));
+            OutgoingImg.Source = new BitmapImage(new Uri("imgs/outgoing.png", UriKind.Relative));
+            NeedAnswerImg.Source = new BitmapImage(new Uri("imgs/needanswer.png", UriKind.Relative));
+            SendingImg.Source = new BitmapImage(new Uri("imgs/sending.png", UriKind.Relative));
+            ArchiveImg.Source = new BitmapImage(new Uri("imgs/archive.png", UriKind.Relative));
         }
 
         ///<summary>

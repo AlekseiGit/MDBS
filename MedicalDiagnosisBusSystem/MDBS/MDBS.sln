@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDBS_client", "MDBS_client\MDBS_client.csproj", "{9450B3AC-41FC-460A-B023-DA2991823012}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0FD12E2F-3F6A-439E-B84D-2B0DF12C0A81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModels", "DataModels\DataModels.csproj", "{E79F46A1-E440-4F37-A1A8-999C64ABFD70}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "mdbs_srv_setup", "mdbs_srv_setup\mdbs_srv_setup.vdproj", "{4EBEA368-CB69-4C6F-8E43-4BE1D6B0BE9B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "mdbs_cli_setup", "mdbs_cli_setup\mdbs_cli_setup.vdproj", "{8B19F564-44F1-4059-B68D-B54A89A72CCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +37,15 @@ Global
 		{E79F46A1-E440-4F37-A1A8-999C64ABFD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79F46A1-E440-4F37-A1A8-999C64ABFD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79F46A1-E440-4F37-A1A8-999C64ABFD70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBEA368-CB69-4C6F-8E43-4BE1D6B0BE9B}.Debug|Any CPU.ActiveCfg = Debug
+		{4EBEA368-CB69-4C6F-8E43-4BE1D6B0BE9B}.Release|Any CPU.ActiveCfg = Release
+		{8B19F564-44F1-4059-B68D-B54A89A72CCA}.Debug|Any CPU.ActiveCfg = Debug
+		{8B19F564-44F1-4059-B68D-B54A89A72CCA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ABBE9EB-380C-47C0-8184-4CB2BAA12933}
 	EndGlobalSection
 EndGlobal

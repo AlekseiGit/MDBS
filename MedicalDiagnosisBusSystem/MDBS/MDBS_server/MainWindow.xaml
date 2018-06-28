@@ -82,23 +82,23 @@
 
         <ListBox Name="CategoryListBox" Width="190" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="18" FontFamily="Aharoni" Background="LightGray" SelectionChanged="ListBox_SelectionChanged">
             <DockPanel x:Name="IncomingTab" Width="175" Background="DarkGray">
-                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\mail-import.png" Width="35" Height="35"></Image>
+                <Image Name="IncomingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Incoming" TextAlignment="Center" TextWrapping="Wrap" Text="Входящие запросы" Height="50"/>
             </DockPanel>
             <DockPanel Name="OutgoingTab" Width="175" Background="DarkGray">
-                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\mail-forward-2.png" Width="35" Height="35"></Image>
+                <Image Name="OutgoingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Outgoing" TextAlignment="Center" TextWrapping="Wrap" Text="Исходящие ответы" Width="145" Height="50"/>
             </DockPanel>
             <DockPanel Name="SendingTab" Width="175" Background="DarkGray">
-                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\view-history.png" Width="35" Height="35"></Image>
+                <Image Name="SendingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Sending" TextAlignment="Center" TextWrapping="Wrap" Text="Отправляются" Width="140" Height="50"/>
             </DockPanel>
             <DockPanel Name="NeedAnswerTab" Width="175" Background="DarkGray">
-                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\irkickflash.png" Width="35" Height="35"></Image>
+                <Image Name="NeedAnswerImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="NeedAnswer" TextAlignment="Center" TextWrapping="Wrap" Text="Нужен ответ" Width="145" Height="50"/>
             </DockPanel>
             <DockPanel Name="ArchiveTab" Width="175" Background="DarkGray">
-                <Image Source="D:\Shared Projects\MDBS\MedicalDiagnosisBusSystem\MDBS\MDBS_server\document-save-5.png" Width="35" Height="35"></Image>
+                <Image Name="ArchiveImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Archive" TextAlignment="Center" TextWrapping="Wrap" Text="Архив сообщений" Width="140" Height="50"/>
             </DockPanel>
         </ListBox>
