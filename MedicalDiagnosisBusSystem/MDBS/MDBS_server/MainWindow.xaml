@@ -85,19 +85,19 @@
                 <Image Name="IncomingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Incoming" TextAlignment="Center" TextWrapping="Wrap" Text="Входящие запросы" Height="50"/>
             </DockPanel>
-            <DockPanel Name="OutgoingTab" Width="175" Background="DarkGray">
+            <DockPanel Name="OutgoingTab" Width="175" Background="DarkGray" Margin="0,10,0,0">
                 <Image Name="OutgoingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Outgoing" TextAlignment="Center" TextWrapping="Wrap" Text="Исходящие ответы" Width="145" Height="50"/>
             </DockPanel>
-            <DockPanel Name="SendingTab" Width="175" Background="DarkGray">
+            <DockPanel Name="SendingTab" Width="175" Background="DarkGray" Margin="0,10,0,0">
                 <Image Name="SendingImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Sending" TextAlignment="Center" TextWrapping="Wrap" Text="Отправляются" Width="140" Height="50"/>
             </DockPanel>
-            <DockPanel Name="NeedAnswerTab" Width="175" Background="DarkGray">
+            <DockPanel Name="NeedAnswerTab" Width="175" Background="DarkGray" Margin="0,10,0,0">
                 <Image Name="NeedAnswerImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="NeedAnswer" TextAlignment="Center" TextWrapping="Wrap" Text="Нужен ответ" Width="145" Height="50"/>
             </DockPanel>
-            <DockPanel Name="ArchiveTab" Width="175" Background="DarkGray">
+            <DockPanel Name="ArchiveTab" Width="175" Background="DarkGray" Margin="0,10,0,0">
                 <Image Name="ArchiveImg" Width="35" Height="35"></Image>
                 <TextBlock x:Name="Archive" TextAlignment="Center" TextWrapping="Wrap" Text="Архив сообщений" Width="140" Height="50"/>
             </DockPanel>
