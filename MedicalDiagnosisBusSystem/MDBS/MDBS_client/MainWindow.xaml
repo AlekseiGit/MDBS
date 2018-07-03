@@ -99,7 +99,7 @@
             <Label Name="MessageGridLabel" Grid.Column="0" Grid.Row="0" Height="25" Background="WhiteSmoke" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
             <DataGrid Name="MessageGrid" IsReadOnly="True" GridLinesVisibility="All" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="MessageGrid_SelectionChanged" LoadingRow="MessageGrid_LoadingRow" Background="WhiteSmoke"/>
             <Label Name="DialogGridLabel" Grid.Column="1" Grid.Row="0" Height="25" Background="WhiteSmoke" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
-            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="Horizontal" Grid.Column="1" Grid.Row="3" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="LightSteelBlue">
+            <DataGrid Name="DialogGrid" IsReadOnly="True" GridLinesVisibility="All" Grid.Column="1" Grid.Row="3" Grid.RowSpan="1" SelectionChanged="DialogGrid_SelectionChanged" LoadingRow="DialogGrid_LoadingRow" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="LightSteelBlue">
                 <DataGrid.Resources>
                     <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
                         <Setter Property="TextWrapping" Value="Wrap"/>
