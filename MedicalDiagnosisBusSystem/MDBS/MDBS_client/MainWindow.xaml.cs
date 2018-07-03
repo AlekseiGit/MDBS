@@ -162,8 +162,9 @@ namespace MDBS_server
                 {
                     FlowDocument doc = new FlowDocument();
                     Section sec = new Section();
+                    Paragraph p0 = new Paragraph();
                     Paragraph p1 = new Paragraph();
-                    Paragraph p2 = new Paragraph();
+                    //Paragraph p2 = new Paragraph();
 
                     //Bold bld = new Bold();
                     //bld.Inlines.Add(new Run("First Paragraph"));
@@ -172,13 +173,19 @@ namespace MDBS_server
                     //Underline underlineItalicBld = new Underline();
                     //underlineItalicBld.Inlines.Add(italicBld);
 
-                    p1.Inlines.Add("План лечения для пациента " + dialogRow.PatientName + " (" + dialogRow.MessageDate + ")");
-                    p2.Inlines.Add(dialogRow.TherapyPlan);
+                    p0.Inlines.Add("ООО МЦ \"Компания Александр\"" + "\n" +
+                        "Специализированная дерматологическая клиника \"Псориаз-Центр\"" + "\n" +
+                        "127005, Москва, Новолесная 1 / 49" + "\n" +
+                        "Тел. 8(499)251 - 59 - 87");
+                    p1.Inlines.Add("План лечения для пациента " + dialogRow.PatientName + " (" + dialogRow.MessageDate + "):" + "\n" +
+                        dialogRow.TherapyPlan);
 
+                    sec.Blocks.Add(p0);
                     sec.Blocks.Add(p1);
-                    sec.Blocks.Add(p2);
+                    //sec.Blocks.Add(p2);
                     doc.Blocks.Add(sec);
                     doc.Name = "Doc";
+                    doc.PageWidth = 800;
 
                     PrintDialog printDlg = new PrintDialog();
 
